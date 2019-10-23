@@ -24,6 +24,7 @@ spring:
     active: dev
     include:
       - swagger
+      - no-liquibase
       # Uncomment to activate TLS for the dev profile
       #- tls
   devtools:
@@ -36,14 +37,14 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:oracle:thin:@localhost:1521:xe
-    username: system
-    password: oracle
+    url: jdbc:oracle:thin:@10.24.9.6:1521:orcl
+    username: SISPP
+    password: 123456
     hikari:
       poolName: Hikari
       auto-commit: false
   jpa:
-    database-platform: org.hibernate.dialect.Oracle12cDialect
+    database-platform: org.hibernate.dialect.Oracle10gDialect
     database: ORACLE
     show-sql: true
     properties:
@@ -52,9 +53,6 @@ spring:
       hibernate.cache.use_second_level_cache: true
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
-  liquibase:
-    # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
   mail:
     host: localhost
     port: 25
