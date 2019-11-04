@@ -5,8 +5,8 @@
 
     <groupId>pe.gob.mindef.app</groupId>
     <artifactId>mindef-app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <version>1.0</version>
+    <packaging>war</packaging>
     <name>Mindef App</name>
 
     <repositories>
@@ -318,6 +318,7 @@
 
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

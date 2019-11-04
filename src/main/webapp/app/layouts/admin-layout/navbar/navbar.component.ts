@@ -10,6 +10,8 @@ import { AccountService } from 'app/core/auth/account.service';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { LoginService } from 'app/core/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
+import { PublicRoutes } from 'app/app.routes';
+import { Account } from 'app/core/user/account.model';
 
 @Component({
   selector: 'md-navbar',
@@ -23,6 +25,7 @@ export class NavbarComponent implements OnInit {
   swaggerEnabled: boolean;
   modalRef: NgbModalRef;
   version: string;
+  account: Account;
 
   constructor(
     private loginService: LoginService,
@@ -45,6 +48,12 @@ export class NavbarComponent implements OnInit {
       this.inProduction = profileInfo.inProduction;
       this.swaggerEnabled = profileInfo.swaggerEnabled;
     });
+
+    if (this.isAuthenticated()) {
+      this.accountService.identity().subscribe(account => {
+        this.account = account;
+      });
+    }
   }
 
   changeLanguage(languageKey: string) {
@@ -67,7 +76,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.collapseNavbar();
     this.loginService.logout();
-    this.router.navigate(['']);
+    this.router.navigate([PublicRoutes.login]);
   }
 
   toggleNavbar() {

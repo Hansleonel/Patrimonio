@@ -1,0 +1,45 @@
+body {
+  background: #fff;
+}
+
+.login {
+  border: none;
+  margin: auto;
+
+  * {
+    border-radius: 7px;
+  }
+
+  img {
+    border-radius: 0px;
+    margin: 2em auto 0;
+  }
+
+  &__appName {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0 auto 1em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    background: #e4e5e6;
+
+    .login {
+      border-radius: 7px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      left: 50%;
+      margin: auto;
+      position: absolute;
+      top: 30%;
+      transform: translate(-50%, -30%);
+
+      img {
+        margin: 1em auto 0;
+      }
+    }
+  }
+}

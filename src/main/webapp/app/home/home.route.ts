@@ -7,6 +7,7 @@ export const HOME_ROUTE: Route = {
   component: HomeComponent,
   data: {
     authorities: [],
-    pageTitle: 'home.title'
+    pageTitle: 'home.title',
+    breadcrumb: true
   }
 };

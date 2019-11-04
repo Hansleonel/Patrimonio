@@ -5,8 +5,13 @@ put Sass variables here:
 eg $input-color: red;
 ****************************/
 // Override Bootstrap variables
-@import 'bootstrap-variables';
+@import 'app-variables';
 // Import Bootstrap source files from node_modules
 @import '~bootstrap/scss/bootstrap';
 
 /* jhipster-needle-scss-add-vendor JHipster will add new css style */
+$fa-font-path: '~font-awesome/fonts';
+@import '~font-awesome/scss/font-awesome';
+@import '~admin-lte/build/scss/AdminLTE-raw';
+@import '../css/bootstrap.css';
+@import 'customize-theme';

@@ -1,28 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { errorRoute } from './layouts/error/error.route';
-import { navbarRoute } from './layouts/navbar/navbar.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
+import { PublicRoutes } from 'app/app.routes';
+import { AdminLayoutComponent } from 'app/layouts/admin-layout/admin-layout.component';
+import { MdLoginComponent } from 'app/shared/login/login.component';
+import { LoginIntranetComponent } from 'app/shared/login/login-intranet.component';
 
-const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
+const LAYOUT_ROUTES = [...errorRoute];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       [
         {
-          path: 'admin',
-          data: {
-            authorities: ['ROLE_ADMIN']
-          },
+          path: '',
+          component: AdminLayoutComponent,
+          loadChildren: () => import('./home/home.module').then(m => m.MindefAppHomeModule),
           canActivate: [UserRouteAccessService],
-          loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule)
+          data: {
+            authorities: ['ROLE_USER', 'ROLE_ADMIN']
+          }
         },
         {
-          path: 'account',
-          loadChildren: () => import('./account/account.module').then(m => m.MindefAppAccountModule)
+          path: PublicRoutes.login,
+          component: MdLoginComponent
+        },
+        {
+          path: PublicRoutes.loginIntranet,
+          component: LoginIntranetComponent
         },
         ...LAYOUT_ROUTES
       ],

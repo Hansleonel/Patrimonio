@@ -1,0 +1,27 @@
+@import '../../../../content/scss/app-variables';
+
+.main-sidebar {
+  overflow-x: hidden;
+  z-index: 1030 !important;
+
+  .brand-link {
+    padding: 0.35rem 0.5rem;
+  }
+
+  .brand-image {
+    max-height: $max-height-logo;
+    margin-top: 1px;
+  }
+
+  .brand-image-logo {
+    line-height: 0.8;
+    width: auto;
+    max-height: $max-height-logo;
+    margin-left: 0.8rem;
+    margin-right: 0.5rem;
+  }
+
+  .nav-link {
+    font-weight: normal;
+  }
+}

@@ -5,7 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { LoginService } from 'app/core/login/login.service';
-import { MdLoginModalComponent } from 'app/shared/login/login.component';
+import { MdLoginComponent } from 'app/shared/login/login.component';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
 import { MindefAppTestModule } from '../../../test.module';
 import { MockLoginService } from '../../../helpers/mock-login.service';
@@ -13,8 +13,8 @@ import { MockStateStorageService } from '../../../helpers/mock-state-storage.ser
 
 describe('Component Tests', () => {
   describe('LoginComponent', () => {
-    let comp: MdLoginModalComponent;
-    let fixture: ComponentFixture<MdLoginModalComponent>;
+    let comp: MdLoginComponent;
+    let fixture: ComponentFixture<MdLoginComponent>;
     let mockLoginService: any;
     let mockStateStorageService: any;
     let mockRouter: any;
@@ -24,7 +24,7 @@ describe('Component Tests', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [MindefAppTestModule],
-        declarations: [MdLoginModalComponent],
+        declarations: [MdLoginComponent],
         providers: [
           FormBuilder,
           {
@@ -37,12 +37,12 @@ describe('Component Tests', () => {
           }
         ]
       })
-        .overrideTemplate(MdLoginModalComponent, '')
+        .overrideTemplate(MdLoginComponent, '')
         .compileComponents();
     }));
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(MdLoginModalComponent);
+      fixture = TestBed.createComponent(MdLoginComponent);
       comp = fixture.componentInstance;
       mockLoginService = fixture.debugElement.injector.get(LoginService);
       mockStateStorageService = fixture.debugElement.injector.get(StateStorageService);

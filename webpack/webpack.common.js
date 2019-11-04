@@ -10,7 +10,7 @@ module.exports = (options) => ({
         extensions: ['.ts', '.js'],
         modules: ['node_modules'],
         mainFields: [ 'es2015', 'browser', 'module', 'main'],
-        alias: utils.mapTypescriptAliasToWebpackAlias()
+        alias: utils.mapTypescriptAliasToWebpackAlias({jquery: 'jquery/src/jquery'})
     },
     stats: {
         children: false
@@ -50,6 +50,10 @@ module.exports = (options) => ({
         ]
     },
     plugins: [
+        new webpack.ProvidePlugin({
+          $: "jquery",
+          jQuery: "jquery"
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: `'${options.env}'`,

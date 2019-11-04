@@ -8,12 +8,14 @@ const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 const path = require('path');
+const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
 
 const utils = require('./utils.js');
 const commonConfig = require('./webpack.common.js');
 
 const ENV = 'production';
 const sass = require('sass');
+const ARTIFACT_ID = 'mindefApp'; // Cambiar de acuerdo al nombre del proyecto
 
 module.exports = webpackMerge(commonConfig({ env: ENV }), {
     // Enable source maps. Please note that this will slow down the build.
@@ -122,6 +124,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
         ]
     },
     plugins: [
+        new BaseHrefWebpackPlugin({ baseHref: `/${ARTIFACT_ID}/` }),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional

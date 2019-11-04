@@ -1,0 +1,65 @@
+<aside class="main-sidebar sidebar-dark-primary">
+    <!-- Brand Logo -->
+    <a routerLink="/" class="brand-link bg-light">
+        <img src="../../../../content/images/escudo.png" alt="Mindef Logo" class="brand-image">
+        <img src="../../../../content/images/logo.png" alt="Mindef Logo" class="brand-image-logo">
+        <span class="clearfix"></span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <!--<ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu">-->
+                <!--<li><a href="#" class="nav-link">One Level</a></li>-->
+                <!--<li class="nav-item has-treeview">-->
+                    <!--<a href="#" class="nav-link">Multilevel</a>-->
+                    <!--<ul class="nav-item nav-treeview">-->
+                        <!--<li><a href="#" class="nav-link">Level 2</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"
+                [ngSwitch]="true">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library  menu-open-->
+                <li class="nav-item has-treeview" *ngSwitchCase="true">
+                    <a class="nav-link" routerLink="/">
+                        <fa-icon class="nav-icon" [icon]="'home'"></fa-icon>
+                        <p>
+                            <span jhiTranslate="global.menu.home">Home</span>
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item has-treeview" *ngSwitchCase="true">
+                    <a class="nav-link">
+                        <fa-icon class="nav-icon" [icon]="'list'"></fa-icon>
+                        <p>
+                            <span jhiTranslate="global.menu.admin.main">Configuration</span>
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/" routerLinkActive="active">
+                                <fa-icon class="nav-icon" [icon]="'tasks'" [fixedWidth]="true"></fa-icon>
+                                <p jhiTranslate="global.menu.admin.main"></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/" routerLinkActive="active">
+                                <fa-icon class="nav-icon" [icon]="'tasks'" [fixedWidth]="true"></fa-icon>
+                                <p jhiTranslate="global.menu.admin.main"></p>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
