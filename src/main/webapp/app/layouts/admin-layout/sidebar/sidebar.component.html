@@ -11,13 +11,13 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <!--<ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu">-->
-                <!--<li><a href="#" class="nav-link">One Level</a></li>-->
-                <!--<li class="nav-item has-treeview">-->
-                    <!--<a href="#" class="nav-link">Multilevel</a>-->
-                    <!--<ul class="nav-item nav-treeview">-->
-                        <!--<li><a href="#" class="nav-link">Level 2</a></li>-->
-                    <!--</ul>-->
-                <!--</li>-->
+            <!--<li><a href="#" class="nav-link">One Level</a></li>-->
+            <!--<li class="nav-item has-treeview">-->
+            <!--<a href="#" class="nav-link">Multilevel</a>-->
+            <!--<ul class="nav-item nav-treeview">-->
+            <!--<li><a href="#" class="nav-link">Level 2</a></li>-->
+            <!--</ul>-->
+            <!--</li>-->
             <!--</ul>-->
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"
                 [ngSwitch]="true">
@@ -36,21 +36,21 @@
                     <a class="nav-link">
                         <fa-icon class="nav-icon" [icon]="'list'"></fa-icon>
                         <p>
-                            <span jhiTranslate="global.menu.admin.main">Configuration</span>
+                            <span jhiTranslate="bienes.title">Bienes</span>
                             <i class="right fa fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a class="nav-link" routerLink="/" routerLinkActive="active">
+                            <a class="nav-link" routerLink="/bienes-muebles" routerLinkActive="active">
                                 <fa-icon class="nav-icon" [icon]="'tasks'" [fixedWidth]="true"></fa-icon>
-                                <p jhiTranslate="global.menu.admin.main"></p>
+                                <p jhiTranslate="bienes.sub01"></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" routerLink="/" routerLinkActive="active">
-                                <fa-icon class="nav-icon" [icon]="'tasks'" [fixedWidth]="true"></fa-icon>
-                                <p jhiTranslate="global.menu.admin.main"></p>
+                            <a class="nav-link" routerLink="/" routerLinkActive="">
+                                <fa-icon class="nav-icon" [icon]="'database'" [fixedWidth]="true"></fa-icon>
+                                <p jhiTranslate="bienes.sub02"></p>
                             </a>
                         </li>
 
