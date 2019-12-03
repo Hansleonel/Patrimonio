@@ -1,0 +1,31 @@
+<div class="e-card" id="basic_card_photo" tabindex="0">
+    <div class="e-card-header">
+
+        <div class="e-card-header-caption">
+            <div class="e-card-header-title">GRAFICO 02</div>
+            <div class="e-card-sub-title">ACTUALIZADO | 25 oct. 2019</div>
+        </div>
+    </div>
+    <div class="e-card-content">
+        <table>
+            <tbody>
+            <!-- TODO CHART 02 -->
+            <ejs-chart id="chartcontainer2" [primaryXAxis]='primaryXAxis' [primaryYAxis]='primaryYAxis'
+                       [title]='title' [palettes]='palette' width="100%" height="250px">
+                <e-series-collection>
+                    <e-series [dataSource]='chartData' type='Column' xName='country' yName='gold'
+                              name='Gold'></e-series>
+                    <e-series [dataSource]='chartData' type='Column' xName='country' yName='silver'
+                              name='Silver'></e-series>
+                    <e-series [dataSource]='chartData' type='Column' xName='country' yName='bronze'
+                              name='Bronze'></e-series>
+                </e-series-collection>
+            </ejs-chart>
+            <!-- TODO CHART 02 -->
+            </tbody>
+        </table>
+        <br></div>
+    <div class="e-card-actions"><a class="e-btn e-outline e-primary" target="_blank"
+                                   href="">Ver
+        en Mapa</a></div>
+</div>

@@ -6,6 +6,7 @@ import { MdAlertErrorComponent } from './alert/alert-error.component';
 import { MdLoginComponent } from './login/login.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 import { LoadingComponent } from './loading/loading.component';
+import { TitleComponent } from './title/title.component';
 
 @NgModule({
   imports: [MindefAppSharedLibsModule],
@@ -15,7 +16,8 @@ import { LoadingComponent } from './loading/loading.component';
     MdAlertErrorComponent,
     MdLoginComponent,
     HasAnyAuthorityDirective,
-    LoadingComponent
+    LoadingComponent,
+    TitleComponent
   ],
   entryComponents: [MdLoginComponent, LoadingComponent],
   exports: [
@@ -25,7 +27,8 @@ import { LoadingComponent } from './loading/loading.component';
     MdAlertErrorComponent,
     MdLoginComponent,
     HasAnyAuthorityDirective,
-    LoadingComponent
+    LoadingComponent,
+    TitleComponent
   ]
 })
 export class MindefAppSharedModule {}

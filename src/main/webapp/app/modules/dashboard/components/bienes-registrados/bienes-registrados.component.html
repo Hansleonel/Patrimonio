@@ -1,0 +1,37 @@
+<!--<ejs-grid [dataSource]='dataGrid' allowPaging='true' [enableHover]="false" [allowSelection]="true"
+          [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'>
+    <e-columns>
+        <e-column type='checkbox' width='50'></e-column>
+        <e-column field='CodInterno' isPrimaryKey='true' headerText='Cod Interno' width='120'
+                  textAlign='Center'></e-column>
+        <e-column field='CodPatrimonial' headerText='Cod Patrimonial' width='120'></e-column>
+        <e-column field='Denominacion' headerText='Denominacion' width='140' textAlign='Center'></e-column>
+        <e-column field='Marca' headerText='Marca' width='100' format='C2' textAlign='Center'></e-column>
+        <e-column field='Modelo' headerText='Modelo' width='100' textAlign='Center'></e-column>
+        <e-column field='Serie' headerText='Serie/Dimenciones' width='100' textAlign='Center'></e-column>
+        <e-column field='Color' headerText='Color' width='100' textAlign='Center'></e-column>
+        <e-column field='Estado' headerText='Estado' width='120' textAlign='Center'></e-column>
+    </e-columns>
+</ejs-grid>-->
+<div class="row">
+    <div class="col-12 pl-0 pr-0" style="display: block;">
+        <!--<button type="button" class="btn btn-light">Borrar</button>-->
+        <button type="button" class="btn btn-primary float-right ">Ver Solicitud</button>
+        <button type="button" class="btn btn-light float-right mr-2">Aprobar Solicitud</button>
+    </div>
+</div>
+<div class="row mt-3">
+    <ejs-grid [dataSource]='dataGridEmpleado' allowPaging='true' [enableHover]="false" [allowSelection]="true"
+              [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'>
+        <e-columns>
+            <e-column type='checkbox' width='50'></e-column>
+            <e-column field='doc_iden' isPrimaryKey='true' headerText='DNI' width='120' textAlign='Center'></e-column>
+            <e-column field='usu_cod' headerText='Usuario' width='120'></e-column>
+            <e-column field='nombre1' headerText='Nombre' width='100' format='C2' textAlign='Center'></e-column>
+            <e-column field='ape_pat' headerText='Paterno' width='100' textAlign='Center'></e-column>
+            <e-column field='ape_mat' headerText='Materno' width='100' textAlign='Center'></e-column>
+            <e-column field='oficina' headerText='Oficina' width='140' textAlign='Center'></e-column>
+            <e-column field='cargo' headerText='Cargo' width='100' format='C2' textAlign='Center'></e-column>
+        </e-columns>
+    </ejs-grid>
+</div>

@@ -1,0 +1,552 @@
+<!-- TODO <TITULO> -->
+<md-title tituloGeneral="Bienes Muebles"
+          tituloDescripcion="Registro de Bienes Muebles"></md-title>
+<!-- TODO </TITULO> -->
+
+<!-- TODO FORMULARIO-->
+<!--<form class="mt-4">
+    <div class="row">
+
+        <div class="form-group col-4">
+            <label>Datos del Usuario : </label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Dependencia Oficina</label>
+            <input type="email" class="form-control" id="depedenciaInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Nombre y Apellidos</label>
+            <input type="email" class="form-control" id="nombreInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Documento de Identidad</label>
+            <input type="email" class="form-control" id="documentoInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Numero de Documento">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Cargo Nivel</label>
+            <input type="email" class="form-control" id="cargoInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Cargo">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-4">
+
+        </div>
+        <div class="form-group col-8">
+            <label for="depedenciaInput">Modalidad</label><br>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline1">Funcionario</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline2">Servidor Publico</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline3">CAS</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline4" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline4">Practicante</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline5" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline5">Tercero</label>
+            </div>
+            &lt;!&ndash;<label for="depedenciaInput">Modalidad</label><br>
+            <div class="btn-primary btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-info active" style="">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked> [Funcionario]
+                </label>
+                <label class="btn btn-info">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> [Servidor Publico]
+                </label>
+                <label class="btn btn-info">
+                    <input type="radio" name="options" id="option3" autocomplete="off"> [CAS]
+                </label>
+                <label class="btn btn-info">
+                    <input type="radio" name="options" id="option4" autocomplete="off"> [Practicante]
+                </label>
+                <label class="btn btn-info">
+                    <input type="radio" name="options" id="option5" autocomplete="off"> [Tercero]
+                </label>
+            </div>&ndash;&gt;
+
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="form-group col-4">
+            <label>Datos del Mueble : </label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Codigo Interno</label>
+            <input type="email" class="form-control" id="codigoInternoInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Codigo Patrimonial</label>
+            <input type="email" class="form-control" id="codigoPatrimonialInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-8">
+            <label for="depedenciaInput">Denominacion</label>
+            <input type="email" class="form-control" id="denominacionInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Marca</label>
+            <input type="email" class="form-control" id="marcaInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Modelo</label>
+            <input type="email" class="form-control" id="modeloInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Serie/Dimenciones</label>
+            <input type="email" class="form-control" id="serieInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Color</label>
+            <input type="email" class="form-control" id="colorInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-8">
+            <label for="depedenciaInput">Estado</label><br>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline6" name="customRadioInline2" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline6">Bien</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline7" name="customRadioInline2" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline7">Regular</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline8" name="customRadioInline2" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline8">Mlo</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-8">
+            <a class="btn btn-primary" (click)="metodoEnviar()" style="color: white">Agregar</a>
+        </div>
+    </div>
+    <hr>
+    <div>
+
+    </div>
+    <div class="alert alert-primary" role="alert">
+        This is a primary alert—check it out!
+    </div>
+</form>
+&lt;!&ndash; TODO /FORMULARIO &ndash;&gt;-->
+
+<form class="mt-4">
+    <div class="row">
+
+        <div class="form-group col-4">
+            <label>Datos Principales del bien Mueble : </label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Codigo Patrimonial SIGA</label>
+            <input type="email" class="form-control" id="depedenciaInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Codigo Patrimonial SIGA">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Codigo Interno</label>
+            <input type="email" class="form-control" id="nombreInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Codigo Interno">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-8">
+            <label for="depedenciaInput">Descripcion</label>
+            <input type="email" class="form-control" id="descripcionInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Descripcion">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-8">
+            <label for="depedenciaInput">Caracteristicas</label>
+            <input type="email" class="form-control" id="caracteristicasInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Caracteristicas">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-4">
+
+        </div>
+        <div class="form-group col-8">
+            <label for="depedenciaInput">Modalidad</label><br>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline1">Funcionario</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline2">Servidor Publico</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline3">CAS</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline4" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline4">Practicante</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline5" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline5">Tercero</label>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="form-group col-4">
+            <label>Datos Secundarios del bien Mueble : </label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Marca</label>
+            <input type="email" class="form-control" id="marcaInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Marca">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Modelo</label>
+            <input type="email" class="form-control" id="modeloInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Modelo">
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Nro de Serie</label>
+            <input type="email" class="form-control" id="serieInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Medidas</label>
+            <input type="email" class="form-control" id="medidasInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Codigo Color</label>
+            <input type="email" class="form-control" id="codigoColorInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Nombre Color</label>
+            <input type="email" class="form-control" id="nombreColorInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="form-group col-4">
+            <label>Catalogo del bien Mueble : </label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Tipo Bien</label>
+            <input type="email" class="form-control" id="tipoBienInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Grupo Bien</label>
+            <input type="email" class="form-control" id="grupoBienInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Clase Bien</label>
+            <input type="email" class="form-control" id="claseBienInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Familia Bien</label>
+            <input type="email" class="form-control" id="familiaBienInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Item Bien</label>
+            <input type="email" class="form-control" id="itemBienInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+
+    </div>
+    <hr>
+    <div class="row">
+        <div class="form-group col-4">
+            <label>Ubicacion del bien Mueble:</label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Codigo Ubicacion</label>
+            <input type="email" class="form-control" id="codigoInternoInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Tipo de Ubicacion</label>
+            <input type="email" class="form-control" id="codigoPatrimonialInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Centro de Costo</label>
+            <input type="email" class="form-control" id="centroCostoInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Empleado con Asignacion</label>
+            <input type="email" class="form-control" id="empleadoInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Sede</label>
+            <input type="email" class="form-control" id="sedeInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Pliego</label>
+            <input type="email" class="form-control" id="pliegoInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-8">
+            <label for="depedenciaInput">Origen Activo</label>
+            <input type="email" class="form-control" id="origenActivoInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Caracteristicas">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-8">
+            <label for="depedenciaInput">Estado</label><br>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline6" name="customRadioInline2" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline6">Bien</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline7" name="customRadioInline2" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline7">Regular</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline8" name="customRadioInline2" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline8">Mlo</label>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="form-group col-4">
+            <label>Estado del bien Mueble:</label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Estado</label>
+            <input type="email" class="form-control" id="estadoInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Conservacion</label>
+            <input type="email" class="form-control" id="observacionInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Reparacion</label>
+            <input type="email" class="form-control" id="reparacionInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Slida</label>
+            <input type="email" class="form-control" id="slidaInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-8">
+            <label for="depedenciaInput">Estado de Asignacion</label><br>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline9" name="customRadioInline3" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline9">Asignado</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline10" name="customRadioInline3" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline10">No Asignado</label>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="form-group col-4">
+            <label>Datos Contables:</label>
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Valor Inicial</label>
+            <input type="email" class="form-control" id="valorInicialInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Valor depre.</label>
+            <input type="email" class="form-control" id="valorDepreInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Clasificador</label>
+            <input type="email" class="form-control" id="clasificadorInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Mayor</label>
+            <input type="email" class="form-control" id="mayorInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-4">
+
+        </div>
+        <div class="form-group col-4">
+            <label for="depedenciaInput">Año de Ejecuc.</label>
+            <input type="email" class="form-control" id="aEjecuInput" aria-describedby="emailHelp"
+                   placeholder="Seleccione la dependencia">
+        </div>
+        <div class="form-group col-4">
+            <label for="nombreInput">Sub Cta</label>
+            <input type="email" class="form-control" id="subCtaInput" aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-8">
+            <a class="btn btn-primary" (click)="metodoEnviar()" style="color: white">Agregar</a>
+        </div>
+    </div>
+    <hr>
+    <div>
+
+    </div>
+    <div class="alert alert-primary" role="alert">
+        This is a primary alert—check it out!
+    </div>
+</form>
+<!-- TODO /FORMULARIO -->
+
+
+<!-- TODO GRID FORMULARIO-->
+<div class="control-section">
+    <ejs-grid [dataSource]='dataGrid' allowPaging='true' [enableHover]="false" [allowSelection]="true"
+              [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'>
+        <e-columns>
+            <e-column type='checkbox' width='50'></e-column>
+            <e-column field='CodInterno' isPrimaryKey='true' headerText='Cod Interno' width='120'
+                      textAlign='Center'></e-column>
+            <e-column field='CodPatrimonial' headerText='Cod Patrimonial' width='120'></e-column>
+            <e-column field='Denominacion' headerText='Denominacion' width='140' textAlign='Center'></e-column>
+            <e-column field='Marca' headerText='Marca' width='100' format='C2' textAlign='Center'></e-column>
+            <e-column field='Modelo' headerText='Modelo' width='100' textAlign='Center'></e-column>
+            <e-column field='Serie' headerText='Serie/Dimenciones' width='100' textAlign='Center'></e-column>
+            <e-column field='Color' headerText='Color' width='100' textAlign='Center'></e-column>
+            <e-column field='Estado' headerText='Estado' width='120' textAlign='Center'></e-column>
+        </e-columns>
+    </ejs-grid>
+</div>
+<!-- TODO /GRID FORMULARIO -->

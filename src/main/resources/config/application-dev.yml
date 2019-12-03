@@ -38,7 +38,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:oracle:thin:@10.24.9.6:1521:orcl
-    username: SISPP
+    username: PATRIMONIOMD
     password: 123456
     hikari:
       poolName: Hikari

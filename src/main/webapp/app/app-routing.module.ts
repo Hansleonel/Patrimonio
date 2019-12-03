@@ -18,7 +18,16 @@ const LAYOUT_ROUTES = [...errorRoute];
         {
           path: '',
           component: AdminLayoutComponent,
-          loadChildren: () => import('./home/home.module').then(m => m.MindefAppHomeModule),
+          loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: ['ROLE_USER', 'ROLE_ADMIN']
+          }
+        },
+        {
+          path: '',
+          component: AdminLayoutComponent,
+          loadChildren: () => import('./modules/bienes/bienes.module').then(m => m.BienesModule),
           canActivate: [UserRouteAccessService],
           data: {
             authorities: ['ROLE_USER', 'ROLE_ADMIN']

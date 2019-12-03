@@ -1,5 +1,4 @@
 /* after changing this file run 'npm run webpack:build' */
-
 /***************************
 put Sass variables here:
 eg $input-color: red;
@@ -15,3 +14,14 @@ $fa-font-path: '~font-awesome/fonts';
 @import '~admin-lte/build/scss/AdminLTE-raw';
 @import '../css/bootstrap.css';
 @import 'customize-theme';
+@import '~@syncfusion/ej2-base/styles/bootstrap4.css';
+@import '~@syncfusion/ej2-buttons/styles/bootstrap4.css';
+@import '~@syncfusion/ej2-popups/styles/bootstrap4.css';
+@import '~@syncfusion/ej2-lists/styles/bootstrap4.css';
+@import '~@syncfusion/ej2-navigations/styles/bootstrap4.css';
+@import '~@syncfusion/ej2-calendars/styles/bootstrap4.css';
+@import '~@syncfusion/ej2-dropdowns/styles/bootstrap4.css';
+@import '~@syncfusion/ej2-inputs/styles/bootstrap4.css';
+@import '~@syncfusion/ej2-splitbuttons/styles/bootstrap4.css';
+@import '~@syncfusion/ej2-angular-calendars/styles/bootstrap4.css';
+@import '~@syncfusion/ej2-angular-grids/styles/bootstrap4.css';

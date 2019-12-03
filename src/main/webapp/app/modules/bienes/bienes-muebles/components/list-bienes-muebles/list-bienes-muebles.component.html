@@ -1,0 +1,52 @@
+<!-- TODO <TITULO> -->
+<md-title tituloGeneral="Bienes Muebles"
+          tituloDescripcion="Listado Total de Bienes Muebles"></md-title>
+<!-- TODO </TITULO> -->
+
+<div class="row">
+    <div class="col-12 pl-0 pr-0" style="display: block;">
+        <!--<button type="button" class="btn btn-light">Borrar</button>-->
+        <button type="button" class="btn btn-primary float-right mr-3" (click)="registrarNuevoBien()">Registrar</button>
+        <button type="button" class="btn btn-secondary float-right mr-2">Editar</button>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-12" style="display: block;">
+        <!-- TODO GRID DASHBOARD -->
+        <div class="control-section">
+            <ejs-grid [dataSource]='data' allowPaging='true' [pageSettings]='pageSettings'
+                      [editSettings]='editSettings' [toolbar]='toolbar'>
+                <e-columns>
+                    <e-column type='checkbox' width='50'></e-column>
+                    <e-column field='OrderID' headerText='Order ID' width='120' textAlign='Right' isPrimaryKey='true'
+                              [validationRules]='orderidrules'></e-column>
+                    <e-column field='CustomerID' headerText='Customer ID' width='120' textAlign='Right'
+                              [validationRules]='customeridrules'></e-column>
+                    <e-column field='Freight' headerText='Freight' width='120' format='C2' textAlign='Right'
+                              editType='numericedit' [validationRules]='freightrules'></e-column>
+                    <e-column field='OrderDate' headerText='Order Date' width='130' type='date' format='yMd'
+                              editType='datepickeredit' textAlign='Right'></e-column>
+                    <e-column field='ShipCountry' headerText='Ship Country' width='150' editType='dropdownedit'
+                              [edit]='editparams'></e-column>
+                    <e-column headerText='Manage Records' width='160' [commands]='commands'></e-column>
+                </e-columns>
+            </ejs-grid>
+        </div>
+        <!-- TODO /GRID DASHBOARD -->
+    </div>
+</div>
+
+<div class="col-12 pl-0 pr-0" *ngIf="mostrarAlert" style="display: block;">
+    <div class="alert alert-primary" role="alert">
+        CONEXION CORRECTA BIENES MUEBLES REGISTRADOS
+    </div>
+    <!--<div class="alert alert-success" role="alert">
+        Se realizo exitosamente
+    </div>
+    <div class="alert alert-danger" role="alert">
+        Ocurrio un error
+    </div>
+    <div class="alert alert-warning" role="alert">
+        Existe una advertencia
+    </div>-->
+</div>
