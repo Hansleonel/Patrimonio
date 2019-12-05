@@ -14,4 +14,41 @@ body {
   border: transparent;
 }
 
+/*
+ * Component: Main Header
+ * ----------------------
+ */
+.content-header {
+  background-color: #fff;
+  padding: 1.2rem 1.5rem 1rem 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6;
+
+  h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  .breadcrumb {
+    margin-bottom: 0;
+    padding: 0;
+    background: transparent;
+    line-height: 1.8rem;
+
+    a {
+      color: $accent-theme;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+}
+
+/* Component: TAB*/
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #007bff;
+  background-color: #ffffff;
+  border-color: #dee2e6 #dee2e6 #ffffff;
+}
+
 @import 'login';

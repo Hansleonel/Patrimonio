@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IMenuItem } from 'app/shared/models/menu';
 
 @Component({
   selector: 'md-sidebar',
@@ -6,31 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  valoresRutas = [];
+  @Input() items: IMenuItem[];
 
   constructor() {}
 
-  ngOnInit() {
-    this.valoresRutas = [
-      {
-        link: '',
-        icon: 'database',
-        text: 'bienes',
-        children: [
-          {
-            link: '/bienes-muebles',
-            icon: 'database',
-            text: 'bienes muebles'
-            // children: []
-          },
-          {
-            link: '/asignaciones-muebles',
-            icon: 'database',
-            text: 'asiganciones muebles'
-            // children: []
-          }
-        ]
-      }
-    ];
-  }
+  ngOnInit() {}
 }

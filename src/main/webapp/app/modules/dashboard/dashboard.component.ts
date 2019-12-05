@@ -15,29 +15,29 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.enlaces = [
       {
-        titulo: 'Bienes',
-        descripcion: 'Registrados',
+        titulo: 'Registrados',
+        descripcion: 'Bienes',
         cantidad: 40000,
         classes: 'info-box-icon bg-blue',
         iconClasses: 'fa fa-check-circle'
       },
       {
-        titulo: 'Bienes',
-        descripcion: 'Asignados',
+        titulo: 'Asignados',
+        descripcion: 'Bienes',
         cantidad: 3500,
         classes: 'info-box-icon bg-red',
         iconClasses: 'fa fa-apple'
       },
       {
-        titulo: 'Bienes',
-        descripcion: 'Desplazados',
+        titulo: 'Desplazados',
+        descripcion: 'Bienes',
         cantidad: 300,
         classes: 'info-box-icon bg-green',
         iconClasses: 'fa fa-upload'
       },
       {
-        titulo: 'Bienes',
-        descripcion: 'Internados',
+        titulo: 'Internados',
+        descripcion: 'Bienes',
         cantidad: 100,
         classes: 'info-box-icon bg-dark',
         iconClasses: 'fa fa-address-book'
@@ -46,6 +46,10 @@ export class DashboardComponent implements OnInit {
   }
 
   verBienEnlace(titulo: string) {
-    this.router.navigate(['/bienes-muebles']);
+    if (titulo.startsWith('Registrados')) {
+      this.router.navigate(['/bienes-muebles']);
+    } else {
+      console.log('enlace');
+    }
   }
 }

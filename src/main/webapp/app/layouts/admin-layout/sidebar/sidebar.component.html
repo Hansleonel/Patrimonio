@@ -23,7 +23,7 @@
                 [ngSwitch]="true">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library  menu-open-->
-                <li class="nav-item has-treeview" *ngSwitchCase="true">
+                <li class="nav-item has-treeview">
                     <a class="nav-link" routerLink="/">
                         <fa-icon class="nav-icon" [icon]="'home'"></fa-icon>
                         <p>
@@ -31,30 +31,21 @@
                         </p>
                     </a>
                 </li>
-
-                <li class="nav-item has-treeview" *ngSwitchCase="true">
-                    <a class="nav-link">
-                        <fa-icon class="nav-icon" [icon]="'list'"></fa-icon>
+                <li class="nav-item has-treeview" *ngFor="let item of items">
+                    <a class="nav-link" href="#">
+                        <fa-icon class="nav-icon" [icon]="item.icon"></fa-icon>
                         <p>
-                            <span jhiTranslate="bienes.title">Bienes</span>
+                            <span jhiTranslate="{{item.translate}}">{{item.text}}</span>
                             <i class="right fa fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/bienes-muebles" routerLinkActive="active">
-                                <fa-icon class="nav-icon" [icon]="'tasks'" [fixedWidth]="true"></fa-icon>
-                                <p jhiTranslate="bienes.sub01"></p>
+                        <li class="nav-item" *ngFor="let subItem of item.children">
+                            <a class="nav-link" routerLink="/{{subItem.link}}" routerLinkActive="active">
+                                <fa-icon class="nav-icon" [icon]="subItem.icon" [fixedWidth]="true"></fa-icon>
+                                <p jhiTranslate="{{subItem.translate}}"></p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/" routerLinkActive="">
-                                <fa-icon class="nav-icon" [icon]="'database'" [fixedWidth]="true"></fa-icon>
-                                <p jhiTranslate="bienes.sub02"></p>
-                            </a>
-                        </li>
-
-
                     </ul>
                 </li>
             </ul>

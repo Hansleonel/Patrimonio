@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommandColumnService, CommandModel, EditService, PageService } from '@syncfusion/ej2-angular-grids';
 import { Router } from '@angular/router';
+import { BienesService } from 'app/modules/bienes/bienes.service';
 
 @Component({
   selector: 'md-list-bienes-muebles',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ListBienesMueblesComponent implements OnInit {
   public data: Object[];
+  public dataBien: Object[];
   public editSettings: Object;
   public orderidrules: Object;
   public customeridrules: Object;
@@ -21,151 +23,14 @@ export class ListBienesMueblesComponent implements OnInit {
   public filter: Object;
   mostrarAlert = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private bienService: BienesService) {
     this.timerAlertListaBienes();
   }
 
   ngOnInit() {
+    this.listarBien();
     this.filter = { type: 'CheckBox' };
     this.toolbar = ['Search'];
-    this.data = [
-      {
-        OrderID: '10253',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      },
-      {
-        OrderID: '10248',
-        CustomerID: 'SUPRD',
-        Freight: '$51.30',
-        OrderDate: '7/8/1996',
-        ShipCountry: 'Belgium',
-        Status: 'Active'
-      }
-    ];
     this.editSettings = {
       allowEditing: true,
       allowAdding: true,
@@ -177,7 +42,7 @@ export class ListBienesMueblesComponent implements OnInit {
     this.customeridrules = { required: true };
     this.freightrules = { required: true };
     this.editparams = { params: { popupHeight: '300px' } };
-    this.pageSettings = { pageCount: 5, pageSize: 15 };
+    this.pageSettings = { pageCount: 5, pageSize: 100 };
     this.commands = [
       { type: 'Edit', buttonOption: { iconCss: ' e-icons e-edit', cssClass: 'e-flat' } },
       { type: 'Delete', buttonOption: { iconCss: 'e-icons e-delete', cssClass: 'e-flat' } },
@@ -196,5 +61,12 @@ export class ListBienesMueblesComponent implements OnInit {
     setTimeout(() => {
       this.mostrarAlert = false;
     }, 2400);
+  }
+
+  listarBien() {
+    this.bienService.getBien().subscribe((response: any) => {
+      this.dataBien = response;
+      console.log(this.dataBien);
+    });
   }
 }

@@ -179,9 +179,358 @@
 </form>
 &lt;!&ndash; TODO /FORMULARIO &ndash;&gt;-->
 
-<form class="mt-4">
-    <div class="row">
+<!--TODO <TABS> -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <!-- TODO <TABS TITTLES> -->
+    <li class="nav-item">
+        <a class="nav-link active" id="dato-tab" data-toggle="tab" href="#dato" role="tab" aria-controls="dato"
+           aria-selected="true">Datos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="ubicacion-tab" data-toggle="tab" href="#ubicacion" role="tab" aria-controls="ubicacion"
+           aria-selected="false">Ubicacion</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="estado-tab" data-toggle="tab" href="#estado" role="tab" aria-controls="estado"
+           aria-selected="false">Estado</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="catalogo-tab" data-toggle="tab" href="#catalogo" role="tab" aria-controls="catalogo"
+           aria-selected="false">Catalogo</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contable-tab" data-toggle="tab" href="#contable" role="tab" aria-controls="contable"
+           aria-selected="false">Contable</a>
+    </li>
+    <!-- TODO </TABS TITTLES> -->
+</ul>
+<div class="tab-content" id="myTabContent">
+    <!-- TODO <TABS CONTENTS>-->
+    <div class="tab-pane fade show active" id="dato" role="tabpanel" aria-labelledby="dato-tab">
+        <!-- TODO <FORM> -->
+        <form class="mt-4">
+            <!-- TODO <DATOS PRINCIPALES DEL MUEBLE> -->
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Datos Principales del bien Mueble : </label>
+                </div>
+                <div class="form-group col-4">
+                    <label>Codigo Patrimonial SIGA</label>
+                    <input type="number" class="form-control" id="depedenciaInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese Codigo Patrimonial SIGA">
+                </div>
+                <div class="form-group col-4">
+                    <label>Codigo Interno</label>
+                    <input type="number" class="form-control" id="codigoInternoInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese Secuencia">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label> </label>
+                </div>
+                <div class="form-group col-4">
+                    <label>Descripcion</label>
+                    <input type="text" class="form-control" id="descripcionInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese Descripcion">
+                </div>
+                <div class="form-group col-4">
+                    <label>Secuencia</label>
+                    <input type="number" class="form-control" id="secuenciaInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese numero de secuencia">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label> </label>
+                </div>
+                <div class="form-group col-8">
+                    <label>Caracteristicas</label>
+                    <input type=text class="form-control" id="caracteristicasInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese Caracteristicas">
+                </div>
+            </div>
 
+            <!-- TODO </DATOS PRINCIPALES DEL MUEBLE> -->
+            <hr>
+
+            <!-- TODO <DATOS SECUNDARIOS DEL MUEBLE> -->
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Datos Secundarios del bien Mueble : </label>
+                </div>
+                <div class="form-group col-4">
+                    <label>Marca</label>
+                    <input type="number" class="form-control" id="marcaInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese Marca">
+                </div>
+                <div class="form-group col-4">
+                    <label>Modelo</label>
+                    <input type="text" class="form-control" id="modeloInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese Modelo">
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="form-group col-4">
+                    <label> </label>
+                </div>
+                <div class="form-group col-4">
+                    <label>Nro de Serie</label>
+                    <input type="number" class="form-control" id="serieInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese nro de Serie">
+                </div>
+                <div class="form-group col-4">
+                    <label>Medidas</label>
+                    <input type="text" class="form-control" id="medidasInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese las medidas del bien">
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="form-group col-4">
+                    <label> </label>
+                </div>
+                <div class="form-group col-4">
+                    <label>Codigo Color</label>
+                    <input type="number" class="form-control" id="codigoColorInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese el Codigo del Color">
+                </div>
+                <div class="form-group col-4">
+                    <label>Nombre Color</label>
+                    <input type="text" class="form-control" id="nombreColorInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese el nombre del color">
+                </div>
+            </div>
+            <!-- TODO <DATOS SCUNDARIOS DEL MUEBLE> -->
+        </form>
+    </div>
+    <div class="tab-pane fade" id="ubicacion" role="tabpanel" aria-labelledby="ubicacion-tab">
+        <form class="mt-4">
+            <!-- TODO <UBICACION DEL MUEBLE> -->
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Ubicacion del bien Mueble:</label>
+                </div>
+                <div class="form-group col-4">
+                    <label>Codigo Ubicacion</label>
+                    <input type="number" class="form-control" id="codigoUbicacionInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese Codigo ubicacion">
+                </div>
+                <div class="form-group col-4">
+                    <label>Tipo de Ubicacion</label>
+                    <input type="number" class="form-control" id="codigoPatrimonialInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese el tipo de Ubicacion">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+
+                </div>
+                <div class="form-group col-4">
+                    <label>Centro de Costo</label>
+                    <input type="number" class="form-control" id="centroCostoInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese el centro de costo">
+                </div>
+                <div class="form-group col-4">
+                    <label>Empleado con Asignacion</label>
+                    <input type="number" class="form-control" id="empleadoInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese el codigo del empleado">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+
+                </div>
+                <div class="form-group col-4">
+                    <label>Sede</label>
+                    <input type="number" class="form-control" id="sedeInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese la sede">
+                </div>
+                <div class="form-group col-4">
+                    <label>Pliego</label>
+                    <input type="number" class="form-control" id="pliegoInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese el Pliego">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label> </label>
+                </div>
+                <div class="form-group col-8">
+                    <label>Origen Activo</label>
+                    <input type="text" class="form-control" id="origenActivoInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese el Origen Activo">
+                </div>
+            </div>
+            <!-- TODO </UBICACION DEL MUEBLE> -->
+        </form>
+    </div>
+    <div class="tab-pane fade" id="estado" role="tabpanel" aria-labelledby="estado-tab">
+        <form class="mt-4">
+            <!-- TODO <ESTADO DEL MUEBLE> -->
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Estado del bien Mueble:</label>
+                </div>
+                <div class="form-group col-4">
+                    <label>Estado</label>
+                    <input type="text" class="form-control" id="estadoInputTab" aria-describedby="emailHelp"
+                           placeholder="Activo Fijo">
+                </div>
+                <div class="form-group col-4">
+                    <label>Conservacion</label>
+                    <input type="text" class="form-control" id="observacionInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese el estado de conservacion">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+
+                </div>
+                <div class="form-group col-4">
+                    <label>Reparacion</label>
+                    <input type="text" class="form-control" id="reparacionInputTab" aria-describedby="emailHelp"
+                           placeholder="Pendiente">
+                </div>
+                <div class="form-group col-4">
+                    <label>Slida</label>
+                    <input type="text" class="form-control" id="slidaInputTab" aria-describedby="emailHelp"
+                           placeholder="NO">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-4">
+                    <label> </label>
+                </div>
+                <div class="form-group col-8">
+                    <label>Estado de Asignacion</label><br>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customTabRadioInline9" name="customRadioInline4"
+                               class="custom-control-input">
+                        <label class="custom-control-label" for="customTabRadioInline9">Asignado</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customTabRadioInline10" name="customRadioInline4"
+                               class="custom-control-input">
+                        <label class="custom-control-label" for="customTabRadioInline10">No Asignado</label>
+                    </div>
+                </div>
+            </div>
+            <!-- TODO </ESTADO DEL MUEBLE> -->
+        </form>
+    </div>
+    <div class="tab-pane fade" id="catalogo" role="tabpanel" aria-labelledby="catalogo-tab">
+        <form class="mt-4">
+            <!-- TODO <CATALOGO DEL MUEBLE> -->
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Catalogo del bien Mueble : </label>
+                </div>
+                <div class="form-group col-4">
+                    <label>Tipo Bien</label>
+                    <input type="text" class="form-control" id="tipoBienInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese el tipo del bien">
+                </div>
+                <div class="form-group col-4">
+                    <label>Grupo Bien</label>
+                    <input type="number" class="form-control" id="grupoBienInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese el grupo del bien">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+
+                </div>
+                <div class="form-group col-4">
+                    <label>Clase Bien</label>
+                    <input type="number" class="form-control" id="claseBienInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese la clase del bien">
+                </div>
+                <div class="form-group col-4">
+                    <label>Familia Bien</label>
+                    <input type="number" class="form-control" id="familiaBienInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese la familia del bien">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+
+                </div>
+                <div class="form-group col-4">
+                    <label>Item Bien</label>
+                    <input type="number" class="form-control" id="itemBienInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese el item del bien">
+                </div>
+
+            </div>
+            <!-- TODO <CATALOGO DEL MUEBLE> -->
+        </form>
+    </div>
+    <div class="tab-pane fade" id="contable" role="tabpanel" aria-labelledby="contable-tab">
+        <form class="mt-4">
+            <!-- TODO <DATOS CONTABLES DEL MUEBLE> -->
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Datos Contables:</label>
+                </div>
+                <div class="form-group col-4">
+                    <label>Valor Inicial</label>
+                    <input type="text" class="form-control" id="valorInicialInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese el valor inicial del mueble">
+                </div>
+                <div class="form-group col-4">
+                    <label>Valor depre.</label>
+                    <input type="text" class="form-control" id="valorDepreInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese valor con depreciacion del mueble">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+
+                </div>
+                <div class="form-group col-4">
+                    <label>Clasificador</label>
+                    <input type="text" class="form-control" id="clasificadorInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese su clasificador">
+                </div>
+                <div class="form-group col-4">
+                    <label>Mayor</label>
+                    <input type="number" class="form-control" id="mayorInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese cifra">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-4">
+
+                </div>
+                <div class="form-group col-4">
+                    <label>Año de Ejecuc.</label>
+                    <input type="number" class="form-control" id="aEjecuInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese año">
+                </div>
+                <div class="form-group col-4">
+                    <label>Sub Cta</label>
+                    <input type="number" class="form-control" id="subCtaInputTab" aria-describedby="emailHelp"
+                           placeholder="Ingrese sub cta">
+                </div>
+            </div>
+            <!-- TODO </DATOS CONTABLES DEL MUEBLE> -->
+
+        </form>
+    </div>
+    <!-- TODO <TABS CONTENTS>-->
+</div>
+<!--TODO </TABS> -->
+
+
+<!-- TODO <FORM> -->
+<!--<form class="mt-4">
+    &lt;!&ndash; TODO <DATOS PRINCIPALES DEL MUEBLE> &ndash;&gt;
+    <div class="row">
         <div class="form-group col-4">
             <label>Datos Principales del bien Mueble : </label>
         </div>
@@ -217,36 +566,10 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="form-group col-4">
-
-        </div>
-        <div class="form-group col-8">
-            <label for="depedenciaInput">Modalidad</label><br>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline1">Funcionario</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline2">Servidor Publico</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline3">CAS</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline4" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline4">Practicante</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline5" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline5">Tercero</label>
-            </div>
-
-        </div>
-    </div>
+    &lt;!&ndash; TODO </DATOS PRINCIPALES DEL MUEBLE> &ndash;&gt;
     <hr>
+
+    &lt;!&ndash; TODO <DATOS SECUNDARIOS DEL MUEBLE> &ndash;&gt;
     <div class="row">
         <div class="form-group col-4">
             <label>Datos Secundarios del bien Mueble : </label>
@@ -270,12 +593,12 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Nro de Serie</label>
             <input type="email" class="form-control" id="serieInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Ingrese nro de Serie">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Medidas</label>
             <input type="email" class="form-control" id="medidasInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="Ingrese las medidas del bien">
         </div>
     </div>
     <div class="row">
@@ -286,15 +609,17 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Codigo Color</label>
             <input type="email" class="form-control" id="codigoColorInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Ingrese el Codigo del Color">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Nombre Color</label>
             <input type="email" class="form-control" id="nombreColorInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="Ingrese el nombre del color">
         </div>
     </div>
+    &lt;!&ndash; TODO <DATOS SCUNDARIOS DEL MUEBLE> &ndash;&gt;
     <hr>
+    &lt;!&ndash; TODO <CATALOGO DEL MUEBLE> &ndash;&gt;
     <div class="row">
         <div class="form-group col-4">
             <label>Catalogo del bien Mueble : </label>
@@ -302,12 +627,12 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Tipo Bien</label>
             <input type="email" class="form-control" id="tipoBienInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Ingrese el tipo del bien">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Grupo Bien</label>
             <input type="email" class="form-control" id="grupoBienInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="Ingrese el grupo del bien">
         </div>
     </div>
     <div class="row">
@@ -317,12 +642,12 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Clase Bien</label>
             <input type="email" class="form-control" id="claseBienInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Ingrese la clase del bien">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Familia Bien</label>
             <input type="email" class="form-control" id="familiaBienInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="Ingrese la familia del bien">
         </div>
     </div>
     <div class="row">
@@ -332,11 +657,13 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Item Bien</label>
             <input type="email" class="form-control" id="itemBienInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Ingrese el item del bien">
         </div>
 
     </div>
+    &lt;!&ndash; TODO <CATALOGO DEL MUEBLE> &ndash;&gt;
     <hr>
+    &lt;!&ndash; TODO <UBICACION DEL MUEBLE> &ndash;&gt;
     <div class="row">
         <div class="form-group col-4">
             <label>Ubicacion del bien Mueble:</label>
@@ -344,12 +671,12 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Codigo Ubicacion</label>
             <input type="email" class="form-control" id="codigoInternoInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Ingrese Codigo del Bien">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Tipo de Ubicacion</label>
             <input type="email" class="form-control" id="codigoPatrimonialInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="Ingrese el tipo de Ubicacion">
         </div>
     </div>
     <div class="row">
@@ -359,12 +686,12 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Centro de Costo</label>
             <input type="email" class="form-control" id="centroCostoInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Ingrese el centro de costo">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Empleado con Asignacion</label>
             <input type="email" class="form-control" id="empleadoInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="Ingrese el codigo del empleado">
         </div>
     </div>
     <div class="row">
@@ -374,12 +701,12 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Sede</label>
             <input type="email" class="form-control" id="sedeInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Ingrese la sede">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Pliego</label>
             <input type="email" class="form-control" id="pliegoInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="Ingrese el Pliego">
         </div>
     </div>
     <div class="row">
@@ -389,33 +716,12 @@
         <div class="form-group col-8">
             <label for="depedenciaInput">Origen Activo</label>
             <input type="email" class="form-control" id="origenActivoInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Caracteristicas">
+                   placeholder="Ingrese el Origen Activo">
         </div>
     </div>
-
-    <div class="row">
-        <div class="form-group col-4">
-            <label> </label>
-        </div>
-        <div class="form-group col-8">
-            <label for="depedenciaInput">Estado</label><br>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline6" name="customRadioInline2" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline6">Bien</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline7" name="customRadioInline2" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline7">Regular</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline8" name="customRadioInline2" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline8">Mlo</label>
-            </div>
-        </div>
-    </div>
-
+    &lt;!&ndash; TODO </UBICACION DEL MUEBLE> &ndash;&gt;
     <hr>
-
+    &lt;!&ndash; TODO <ESTADO DEL MUEBLE> &ndash;&gt;
     <div class="row">
         <div class="form-group col-4">
             <label>Estado del bien Mueble:</label>
@@ -423,12 +729,12 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Estado</label>
             <input type="email" class="form-control" id="estadoInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Activo Fijo">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Conservacion</label>
             <input type="email" class="form-control" id="observacionInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="Ingrese el estado de conservacion">
         </div>
     </div>
     <div class="row">
@@ -438,12 +744,12 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Reparacion</label>
             <input type="email" class="form-control" id="reparacionInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Pendiente">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Slida</label>
             <input type="email" class="form-control" id="slidaInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="NO">
         </div>
     </div>
 
@@ -463,8 +769,10 @@
             </div>
         </div>
     </div>
+    &lt;!&ndash; TODO </ESTADO DEL MUEBLE> &ndash;&gt;
 
     <hr>
+    &lt;!&ndash; TODO <DATOS CONTABLES DEL MUEBLE> &ndash;&gt;
     <div class="row">
         <div class="form-group col-4">
             <label>Datos Contables:</label>
@@ -472,12 +780,12 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Valor Inicial</label>
             <input type="email" class="form-control" id="valorInicialInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Ingrese el valor inicial del mueble">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Valor depre.</label>
             <input type="email" class="form-control" id="valorDepreInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="Ingrese valor con depreciacion del mueble">
         </div>
     </div>
     <div class="row">
@@ -487,12 +795,12 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Clasificador</label>
             <input type="email" class="form-control" id="clasificadorInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Ingrese su clasificador">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Mayor</label>
             <input type="email" class="form-control" id="mayorInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="Ingrese cifra">
         </div>
     </div>
 
@@ -503,12 +811,12 @@
         <div class="form-group col-4">
             <label for="depedenciaInput">Año de Ejecuc.</label>
             <input type="email" class="form-control" id="aEjecuInput" aria-describedby="emailHelp"
-                   placeholder="Seleccione la dependencia">
+                   placeholder="Ingrese año">
         </div>
         <div class="form-group col-4">
             <label for="nombreInput">Sub Cta</label>
             <input type="email" class="form-control" id="subCtaInput" aria-describedby="emailHelp"
-                   placeholder="Ingrese Nombres y Apellidos">
+                   placeholder="Ingrese sub cta">
         </div>
     </div>
 
@@ -520,6 +828,8 @@
             <a class="btn btn-primary" (click)="metodoEnviar()" style="color: white">Agregar</a>
         </div>
     </div>
+    &lt;!&ndash; TODO </DATOS CONTABLES DEL MUEBLE> &ndash;&gt;
+
     <hr>
     <div>
 
@@ -527,26 +837,44 @@
     <div class="alert alert-primary" role="alert">
         This is a primary alert—check it out!
     </div>
-</form>
-<!-- TODO /FORMULARIO -->
+</form>-->
+<!-- TODO </FORM>-->
 
 
-<!-- TODO GRID FORMULARIO-->
-<div class="control-section">
-    <ejs-grid [dataSource]='dataGrid' allowPaging='true' [enableHover]="false" [allowSelection]="true"
-              [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'>
-        <e-columns>
-            <e-column type='checkbox' width='50'></e-column>
-            <e-column field='CodInterno' isPrimaryKey='true' headerText='Cod Interno' width='120'
-                      textAlign='Center'></e-column>
-            <e-column field='CodPatrimonial' headerText='Cod Patrimonial' width='120'></e-column>
-            <e-column field='Denominacion' headerText='Denominacion' width='140' textAlign='Center'></e-column>
-            <e-column field='Marca' headerText='Marca' width='100' format='C2' textAlign='Center'></e-column>
-            <e-column field='Modelo' headerText='Modelo' width='100' textAlign='Center'></e-column>
-            <e-column field='Serie' headerText='Serie/Dimenciones' width='100' textAlign='Center'></e-column>
-            <e-column field='Color' headerText='Color' width='100' textAlign='Center'></e-column>
-            <e-column field='Estado' headerText='Estado' width='120' textAlign='Center'></e-column>
-        </e-columns>
-    </ejs-grid>
+<div class="row">
+    <div class="col-12 pl-0 pr-0" style="display: block;">
+        <!--<button type="button" class="btn btn-light">Borrar</button>-->
+        <button type="button" class="btn btn-primary float-right mr-3" (click)="adicionarNuevoBien()">Añadir</button>
+        <button type="button" class="btn btn-secondary float-right mr-2">Registrar</button>
+    </div>
 </div>
+
+<div class="row mt-3">
+    <div class="col-12" style="display: block;">
+        <!-- TODO GRID DASHBOARD -->
+        <div class="control-section">
+            <ejs-grid [dataSource]='dataGridService' allowPaging='true' [pageSettings]='pageSettings'
+                      [editSettings]='editSettings' [toolbar]='toolbar'>
+                <e-columns>
+                    <e-column type='checkbox' width='30'></e-column>
+                    <e-column field='id_patrimonio' headerText='ID Patrimonio SIGA' width='90' textAlign='Right'
+                              isPrimaryKey='true'
+                              [validationRules]='orderidrules'></e-column>
+                    <e-column field='id_interno' headerText='ID Interno' width='60' textAlign='Right'
+                              [validationRules]='customeridrules' isPrimaryKey='true'></e-column>
+                    <e-column field='descripcion' headerText='Descripcion' width='250' textAlign='Right'
+                              [validationRules]='freightrules'></e-column>
+                    <e-column field='estado_asignado' headerText='Estado Asignacion' width='90'
+                              textAlign='Right'></e-column>
+                    <e-column field='empleado' headerText='Empleado' width='100' editType='dropdownedit'
+                              [edit]='editparams' textAlign='Right'></e-column>
+                    <e-column field='caracteristica' headerText='Caracteristica' width='150'></e-column>
+                    <e-column headerText='Manage Records' width='90' [commands]='commands'></e-column>
+                </e-columns>
+            </ejs-grid>
+        </div>
+        <!-- TODO /GRID DASHBOARD -->
+    </div>
+</div>
+
 <!-- TODO /GRID FORMULARIO -->

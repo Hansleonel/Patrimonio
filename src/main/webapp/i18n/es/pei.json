@@ -1,0 +1,14 @@
+{
+  "pei": {
+    "title": "PEI",
+    "configuration": {
+      "title": "Configuración"
+    },
+    "goals": {
+      "title": "Objetivos Estratégicos"
+    },
+    "actions": {
+      "title": "Acciones Estratégicas"
+    }
+  }
+}

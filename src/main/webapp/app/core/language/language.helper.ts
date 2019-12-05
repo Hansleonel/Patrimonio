@@ -4,6 +4,7 @@ import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 import { LANGUAGES } from 'app/core/language/language.constants';
+import { ContentService } from 'app/layouts/admin-layout/content/content.service';
 
 @Injectable({ providedIn: 'root' })
 export class JhiLanguageHelper {
@@ -13,6 +14,7 @@ export class JhiLanguageHelper {
     private translateService: TranslateService,
     private titleService: Title,
     private router: Router,
+    private contentService: ContentService,
     rootRenderer: RendererFactory2
   ) {
     this.renderer = rootRenderer.createRenderer(document.querySelector('html'), null);
@@ -37,6 +39,7 @@ export class JhiLanguageHelper {
 
     this.translateService.get(titleKey).subscribe(title => {
       this.titleService.setTitle(title);
+      this.contentService.setTitle(title);
     });
   }
 

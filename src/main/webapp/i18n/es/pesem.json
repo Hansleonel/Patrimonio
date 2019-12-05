@@ -1,0 +1,14 @@
+{
+  "pesem": {
+    "title": "PESEM 123",
+    "configuration": {
+      "title": "Configuración"
+    },
+    "goals": {
+      "title": "Objetivos Estratégicos"
+    },
+    "actions": {
+      "title": "Acciones Estratégicas"
+    }
+  }
+}
