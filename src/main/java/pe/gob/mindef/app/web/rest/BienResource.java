@@ -54,12 +54,12 @@ public class BienResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/bien")
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\")")
+    //@PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<Bien> createBien(@Valid @RequestBody Bien bien) throws URISyntaxException {
         log.debug("REST request to save bien : {}", bien);
-        if (bien.getId_patrimonio() != null) {
+        /*if (bien.getId_patrimonio() != null) {
             throw new BadRequestAlertException("A new bien cannot already have an ID", ENTITY_NAME, "idexists");
-        }
+        }*/
         Bien result = bienService.save(bien);
         return ResponseEntity.created(new URI("/api/bien/" + result.getId_patrimonio()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId_patrimonio().toString()))

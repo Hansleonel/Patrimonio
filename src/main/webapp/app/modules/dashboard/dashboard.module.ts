@@ -9,8 +9,9 @@ import { ChartBienesIngresosComponent } from './components/chart-bienes-ingresos
 import { BienesRegistradosComponent } from './components/bienes-registrados/bienes-registrados.component';
 import { MindefAppSharedModule } from 'app/shared/shared.module';
 import { GridModule, PageService, SortService, FilterService, GroupService, ToolbarService } from '@syncfusion/ej2-angular-grids';
-
-// CHART
+// TODO TOAST
+import { ToastModule } from '@syncfusion/ej2-angular-notifications';
+// TODO CHART
 import { AccumulationChartModule } from '@syncfusion/ej2-angular-charts';
 import { ChartModule } from '@syncfusion/ej2-angular-charts';
 import {
@@ -25,6 +26,8 @@ import {
 } from '@syncfusion/ej2-angular-charts';
 import { CalendarBienesIngresosComponent } from './components/calendar-bienes-ingresos/calendar-bienes-ingresos.component';
 import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
+import { ToastEmpleadoComponent } from './components/toast-empleado/toast-empleado.component';
+import { CardSolicitudComponent } from './components/card-solicitud/card-solicitud.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +36,20 @@ import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
     ChartEmpleadoComponent,
     ChartBienesIngresosComponent,
     BienesRegistradosComponent,
-    CalendarBienesIngresosComponent
+    CalendarBienesIngresosComponent,
+    ToastEmpleadoComponent,
+    CardSolicitudComponent
   ],
-  imports: [CommonModule, DashboardRoutingModule, MindefAppSharedModule, AccumulationChartModule, ChartModule, GridModule, CalendarModule],
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    MindefAppSharedModule,
+    AccumulationChartModule,
+    ChartModule,
+    GridModule,
+    CalendarModule,
+    ToastModule
+  ],
   providers: [
     CategoryService,
     BarSeriesService,

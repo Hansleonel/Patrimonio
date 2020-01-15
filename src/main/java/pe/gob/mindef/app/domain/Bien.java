@@ -84,7 +84,7 @@ public class Bien implements Serializable {
     private String medidas;
 
     @Column(name = "NROSERIE")
-    private String medida;
+    private String nroserie;
 
     @Column(name = "VALORINICIAL")
     private String valor_inicial;
@@ -122,7 +122,7 @@ public class Bien implements Serializable {
     public Bien() {
     }
 
-    public Bien(Long id_patrimonio, Long id_interno, int secuencia, String tipo_bien, int grupo_bien, int clase_bien, int familia_bien, int item_bien, String descripcion, int sede, int pliego, long centro_costo, long empleado, String origen_activo, int tipo_ubicacion, int codigo_ubicacion, int codigo_marca, int codigo_color, String nombre_color, String caracteristica, String modelo, String medidas, String medida, String valor_inicial, String valor_deprec, String clasificador, int ano_e, long sub_cta, int mayor, String estado_asignado, String estado_reparacion, String salida, String estado_activo, String estado_consercacion) {
+    public Bien(Long id_patrimonio, Long id_interno, int secuencia, String tipo_bien, int grupo_bien, int clase_bien, int familia_bien, int item_bien, String descripcion, int sede, int pliego, long centro_costo, long empleado, String origen_activo, int tipo_ubicacion, int codigo_ubicacion, int codigo_marca, int codigo_color, String nombre_color, String caracteristica, String modelo, String medidas, String nroserie, String valor_inicial, String valor_deprec, String clasificador, int ano_e, long sub_cta, int mayor, String estado_asignado, String estado_reparacion, String salida, String estado_activo, String estado_consercacion) {
         this.id_patrimonio = id_patrimonio;
         this.id_interno = id_interno;
         this.secuencia = secuencia;
@@ -145,7 +145,7 @@ public class Bien implements Serializable {
         this.caracteristica = caracteristica;
         this.modelo = modelo;
         this.medidas = medidas;
-        this.medida = medida;
+        this.nroserie = nroserie;
         this.valor_inicial = valor_inicial;
         this.valor_deprec = valor_deprec;
         this.clasificador = clasificador;
@@ -335,12 +335,12 @@ public class Bien implements Serializable {
         this.medidas = medidas;
     }
 
-    public String getMedida() {
-        return medida;
+    public String getNroserie() {
+        return nroserie;
     }
 
-    public void setMedida(String medida) {
-        this.medida = medida;
+    public void setNroserie(String nroserie) {
+        this.nroserie = nroserie;
     }
 
     public String getValor_inicial() {
@@ -436,12 +436,45 @@ public class Bien implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Bien)) return false;
         Bien bien = (Bien) o;
-        return Objects.equals(getId_patrimonio(), bien.getId_patrimonio());
+        return getSecuencia() == bien.getSecuencia() &&
+            getGrupo_bien() == bien.getGrupo_bien() &&
+            getClase_bien() == bien.getClase_bien() &&
+            getFamilia_bien() == bien.getFamilia_bien() &&
+            getItem_bien() == bien.getItem_bien() &&
+            getSede() == bien.getSede() &&
+            getPliego() == bien.getPliego() &&
+            getCentro_costo() == bien.getCentro_costo() &&
+            getEmpleado() == bien.getEmpleado() &&
+            getTipo_ubicacion() == bien.getTipo_ubicacion() &&
+            getCodigo_ubicacion() == bien.getCodigo_ubicacion() &&
+            getCodigo_marca() == bien.getCodigo_marca() &&
+            getCodigo_color() == bien.getCodigo_color() &&
+            getAno_e() == bien.getAno_e() &&
+            getSub_cta() == bien.getSub_cta() &&
+            getMayor() == bien.getMayor() &&
+            Objects.equals(getId_patrimonio(), bien.getId_patrimonio()) &&
+            Objects.equals(getId_interno(), bien.getId_interno()) &&
+            Objects.equals(getTipo_bien(), bien.getTipo_bien()) &&
+            Objects.equals(getDescripcion(), bien.getDescripcion()) &&
+            Objects.equals(getOrigen_activo(), bien.getOrigen_activo()) &&
+            Objects.equals(getNombre_color(), bien.getNombre_color()) &&
+            Objects.equals(getCaracteristica(), bien.getCaracteristica()) &&
+            Objects.equals(getModelo(), bien.getModelo()) &&
+            Objects.equals(getMedidas(), bien.getMedidas()) &&
+            Objects.equals(getNroserie(), bien.getNroserie()) &&
+            Objects.equals(getValor_inicial(), bien.getValor_inicial()) &&
+            Objects.equals(getValor_deprec(), bien.getValor_deprec()) &&
+            Objects.equals(getClasificador(), bien.getClasificador()) &&
+            Objects.equals(getEstado_asignado(), bien.getEstado_asignado()) &&
+            Objects.equals(getEstado_reparacion(), bien.getEstado_reparacion()) &&
+            Objects.equals(getSalida(), bien.getSalida()) &&
+            Objects.equals(getEstado_activo(), bien.getEstado_activo()) &&
+            Objects.equals(getEstado_consercacion(), bien.getEstado_consercacion());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId_patrimonio());
+        return Objects.hash(getId_patrimonio(), getId_interno(), getSecuencia(), getTipo_bien(), getGrupo_bien(), getClase_bien(), getFamilia_bien(), getItem_bien(), getDescripcion(), getSede(), getPliego(), getCentro_costo(), getEmpleado(), getOrigen_activo(), getTipo_ubicacion(), getCodigo_ubicacion(), getCodigo_marca(), getCodigo_color(), getNombre_color(), getCaracteristica(), getModelo(), getMedidas(), getNroserie(), getValor_inicial(), getValor_deprec(), getClasificador(), getAno_e(), getSub_cta(), getMayor(), getEstado_asignado(), getEstado_reparacion(), getSalida(), getEstado_activo(), getEstado_consercacion());
     }
 
     @Override
@@ -469,7 +502,7 @@ public class Bien implements Serializable {
             ", caracteristica='" + caracteristica + '\'' +
             ", modelo='" + modelo + '\'' +
             ", medidas='" + medidas + '\'' +
-            ", medida='" + medida + '\'' +
+            ", nroserie='" + nroserie + '\'' +
             ", valor_inicial='" + valor_inicial + '\'' +
             ", valor_deprec='" + valor_deprec + '\'' +
             ", clasificador='" + clasificador + '\'' +

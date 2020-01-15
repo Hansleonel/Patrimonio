@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { DashboardService } from 'app/modules/dashboard/dashboard.service';
+import { GridComponent, RowSelectEventArgs } from '@syncfusion/ej2-angular-grids';
 
 @Component({
   selector: 'md-bienes-registrados',
@@ -15,7 +16,15 @@ export class BienesRegistradosComponent implements OnInit {
   public editSettings;
   public toolbar;
 
-  constructor(private empleadoService: DashboardService) {}
+  // TODO emitir un evento del componente hijo bienes-registrados.component al componente padre dashboard.component
+  @Output() datosSeleccionados: EventEmitter<Object[]>;
+
+  @ViewChild('grid', { static: false })
+  public grid: GridComponent;
+
+  constructor(private empleadoService: DashboardService) {
+    this.datosSeleccionados = new EventEmitter<Object[]>();
+  }
 
   ngOnInit() {
     this.buscarEmpleado();
@@ -201,8 +210,9 @@ export class BienesRegistradosComponent implements OnInit {
         Estado: 'Estado del Patrimonio'
       }
     ];
-    this.selectOptions = { persistSelection: true };
+    // this.selectOptions = { persistSelection: true };
     this.editSettings = { allowDeleting: true };
+    this.selectOptions = { checkboxMode: 'ResetOnRowClick' };
     this.toolbar = ['Search'];
     // this.initialPage = { pageSizes: true, pageCount: 4 };
   }
@@ -212,5 +222,15 @@ export class BienesRegistradosComponent implements OnInit {
       this.dataGridEmpleado = response;
       console.log(this.dataGridEmpleado);
     });
+  }
+
+  rowSelected(args: RowSelectEventArgs) {
+    const selectedrowindex: number[] = this.grid.getSelectedRowIndexes();
+    // alert(selectedrowindex);
+    console.log(selectedrowindex);
+    const selectedrecords: Object[] = this.grid.getSelectedRecords();
+    // console.log(selectedrecords);
+    console.log(selectedrecords[0]['doc_iden']);
+    this.datosSeleccionados.emit(selectedrecords);
   }
 }

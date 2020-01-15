@@ -22,18 +22,22 @@ export class ChartBienesIngresosComponent implements OnInit {
   ngOnInit() {
     // TODO <BAR CHART>
     this.chartData = [
-      { country: 'USA', gold: 50, silver: 70, bronze: 45 },
-      { country: 'China', gold: 40, silver: 60, bronze: 55 },
-      { country: 'Japan', gold: 70, silver: 60, bronze: 50 },
-      { country: 'Australia', gold: 60, silver: 56, bronze: 40 },
-      { country: 'France', gold: 50, silver: 45, bronze: 35 },
-      { country: 'Germany', gold: 40, silver: 30, bronze: 22 },
-      { country: 'Italy', gold: 40, silver: 35, bronze: 37 },
-      { country: 'Sweden', gold: 30, silver: 25, bronze: 27 }
+      { country: 'Enero', gold: 50, silver: 70, bronze: 45 },
+      { country: 'Febrero', gold: 40, silver: 60, bronze: 55 },
+      { country: 'Marzo', gold: 70, silver: 60, bronze: 50 },
+      { country: 'Abril', gold: 60, silver: 56, bronze: 40 },
+      { country: 'Mayo', gold: 50, silver: 45, bronze: 35 },
+      { country: 'Junio', gold: 40, silver: 30, bronze: 22 },
+      { country: 'Julio', gold: 40, silver: 35, bronze: 37 },
+      { country: 'Agosto', gold: 30, silver: 25, bronze: 27 },
+      { country: 'Septiembre', gold: 50, silver: 25, bronze: 26 },
+      { country: 'Octubre', gold: 60, silver: 48, bronze: 36 },
+      { country: 'Noviembre', gold: 70, silver: 26, bronze: 31 },
+      { country: 'Diciembre', gold: 80, silver: 25, bronze: 28 }
     ];
     this.primaryXAxis = {
       valueType: 'Category',
-      title: 'Countries'
+      title: 'Meses'
     };
     this.primaryYAxis = {
       minimum: 0,
@@ -44,7 +48,7 @@ export class ChartBienesIngresosComponent implements OnInit {
     };
 
     this.palette = ['#007bff', '#28a745', '#dc3545', '#fd7e14', 'ffc107'];
-    this.title = 'Cuadro de Ingreso de Bienes Muebles';
+    this.title = 'Cuadro de Estado de los Bienes Muebles';
     // TODO </BAR CHART>
   }
 }

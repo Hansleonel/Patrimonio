@@ -38,8 +38,8 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:oracle:thin:@10.24.9.6:1521:orcl
-    username: PATRIMONIOMD
-    password: 123456
+    username: PATRIMONIOMD2
+    password: patrimoniomd2
     hikari:
       poolName: Hikari
       auto-commit: false

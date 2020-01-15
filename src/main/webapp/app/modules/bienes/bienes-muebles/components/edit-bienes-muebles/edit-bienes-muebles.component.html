@@ -187,7 +187,8 @@
            aria-selected="true">Datos</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="ubicacion-tab" data-toggle="tab" href="#ubicacion" role="tab" aria-controls="ubicacion"
+        <a class="nav-link" id="ubicacion-tab" data-toggle="tab" href="#ubicacion" role="tab"
+           aria-controls="ubicacion"
            aria-selected="false">Ubicacion</a>
     </li>
     <li class="nav-item">
@@ -216,13 +217,22 @@
                 </div>
                 <div class="form-group col-4">
                     <label>Codigo Patrimonial SIGA</label>
-                    <input type="number" class="form-control" id="depedenciaInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese Codigo Patrimonial SIGA">
+                    <input [ngClass]="validarInput"
+                           type="number" class="form-control" id="depedenciaInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese Codigo Patrimonial SIGA" #codigoSIGA value="{{codigoPatrimonialEdit}}"
+                           (keyup)="comprobarValorCodSiga(codigoSIGA.value)">
+                    <div class="invalid-feedback">
+                        El ID ya existe, asegurate de no repetirlo
+                    </div>
+                    <div class="valid-feedback">
+                        El ID es valido
+                    </div>
                 </div>
                 <div class="form-group col-4">
                     <label>Codigo Interno</label>
                     <input type="number" class="form-control" id="codigoInternoInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese Secuencia">
+                           placeholder="Ingrese Secuencia" #codigoInterno value="{{codigoInternoEdit}}">
                 </div>
             </div>
             <div class="row">
@@ -231,13 +241,14 @@
                 </div>
                 <div class="form-group col-4">
                     <label>Descripcion</label>
-                    <input type="text" class="form-control" id="descripcionInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese Descripcion">
+                    <input type="text" maxlength="480" class="form-control" id="descripcionInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese Descripcion" #descripcion value="{{descripcionEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Secuencia</label>
                     <input type="number" class="form-control" id="secuenciaInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese numero de secuencia">
+                           placeholder="Ingrese numero de secuencia" #secuencia value="{{secuenciaEdit}}">
                 </div>
             </div>
             <div class="row">
@@ -246,8 +257,9 @@
                 </div>
                 <div class="form-group col-8">
                     <label>Caracteristicas</label>
-                    <input type=text class="form-control" id="caracteristicasInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese Caracteristicas">
+                    <input type=text maxlength="480" class="form-control" id="caracteristicasInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese Caracteristicas" #caracteristicas value="{{caracteristicaEdit}}">
                 </div>
             </div>
 
@@ -262,12 +274,13 @@
                 <div class="form-group col-4">
                     <label>Marca</label>
                     <input type="number" class="form-control" id="marcaInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese Marca">
+                           placeholder="Ingrese Marca" #marca value="{{marcaEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Modelo</label>
-                    <input type="text" class="form-control" id="modeloInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese Modelo">
+                    <input type="text" maxlength="120" class="form-control" id="modeloInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese Modelo" #modelo value="{{modeloEdit}}">
                 </div>
             </div>
             <div class="row">
@@ -277,13 +290,15 @@
                 </div>
                 <div class="form-group col-4">
                     <label>Nro de Serie</label>
-                    <input type="number" class="form-control" id="serieInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese nro de Serie">
+                    <input type="number" maxlength="120" class="form-control" id="serieInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese nro de Serie" #nroSerie value="{{nroSerieEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Medidas</label>
-                    <input type="text" class="form-control" id="medidasInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese las medidas del bien">
+                    <input type="text" maxlength="120" class="form-control" id="medidasInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese las medidas del bien" #medidas value="{{medidasEdit}}">
                 </div>
             </div>
             <div class="row">
@@ -294,12 +309,13 @@
                 <div class="form-group col-4">
                     <label>Codigo Color</label>
                     <input type="number" class="form-control" id="codigoColorInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese el Codigo del Color">
+                           placeholder="Ingrese el Codigo del Color" #codigoColor>
                 </div>
                 <div class="form-group col-4">
                     <label>Nombre Color</label>
-                    <input type="text" class="form-control" id="nombreColorInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese el nombre del color">
+                    <input type="text" maxlength="60" class="form-control" id="nombreColorInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese el nombre del color" #nombreColor value="{{nombreColorEdit}}">
                 </div>
             </div>
             <!-- TODO <DATOS SCUNDARIOS DEL MUEBLE> -->
@@ -315,13 +331,13 @@
                 <div class="form-group col-4">
                     <label>Codigo Ubicacion</label>
                     <input type="number" class="form-control" id="codigoUbicacionInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese Codigo ubicacion">
+                           placeholder="Ingrese Codigo ubicacion" #codigoUbicacion value="{{codigoUbicacionEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Tipo de Ubicacion</label>
                     <input type="number" class="form-control" id="codigoPatrimonialInputTab"
                            aria-describedby="emailHelp"
-                           placeholder="Ingrese el tipo de Ubicacion">
+                           placeholder="Ingrese el tipo de Ubicacion" #tipoUbicacion value="{{tipoubicacionEdit}}">
                 </div>
             </div>
             <div class="row">
@@ -331,12 +347,12 @@
                 <div class="form-group col-4">
                     <label>Centro de Costo</label>
                     <input type="number" class="form-control" id="centroCostoInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese el centro de costo">
+                           placeholder="Ingrese el centro de costo" #centroCosto value="{{centrocostoEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Empleado con Asignacion</label>
                     <input type="number" class="form-control" id="empleadoInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese el codigo del empleado">
+                           placeholder="Ingrese el codigo del empleado" #empleadoAsignacion value="{{empleadoEdit}}">
                 </div>
             </div>
             <div class="row">
@@ -346,12 +362,12 @@
                 <div class="form-group col-4">
                     <label>Sede</label>
                     <input type="number" class="form-control" id="sedeInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese la sede">
+                           placeholder="Ingrese la sede" #sede value="{{sedeEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Pliego</label>
                     <input type="number" class="form-control" id="pliegoInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese el Pliego">
+                           placeholder="Ingrese el Pliego" #pliego value="{{pliegoEdit}}">
                 </div>
             </div>
             <div class="row">
@@ -360,8 +376,9 @@
                 </div>
                 <div class="form-group col-8">
                     <label>Origen Activo</label>
-                    <input type="text" class="form-control" id="origenActivoInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese el Origen Activo">
+                    <input type="text" maxlength="240" class="form-control" id="origenActivoInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese el Origen Activo" #origenActivo value="{{origenactivoEdit}}">
                 </div>
             </div>
             <!-- TODO </UBICACION DEL MUEBLE> -->
@@ -377,12 +394,13 @@
                 <div class="form-group col-4">
                     <label>Estado</label>
                     <input type="text" class="form-control" id="estadoInputTab" aria-describedby="emailHelp"
-                           placeholder="Activo Fijo">
+                           placeholder="Activo Fijo" #estado value="{{estadoEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Conservacion</label>
-                    <input type="text" class="form-control" id="observacionInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese el estado de conservacion">
+                    <input type="text" maxlength="64" class="form-control" id="observacionInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese el estado de conservacion" #conservacion value="{{conservacionEdit}}">
                 </div>
             </div>
             <div class="row">
@@ -391,13 +409,14 @@
                 </div>
                 <div class="form-group col-4">
                     <label>Reparacion</label>
-                    <input type="text" class="form-control" id="reparacionInputTab" aria-describedby="emailHelp"
-                           placeholder="Pendiente">
+                    <input type="text" maxlength="32" class="form-control" id="reparacionInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Pendiente" #reparacion value="{{reparacionEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Slida</label>
                     <input type="text" class="form-control" id="slidaInputTab" aria-describedby="emailHelp"
-                           placeholder="NO">
+                           placeholder="NO" #slida value="{{slidaEdit}}">
                 </div>
             </div>
 
@@ -407,16 +426,13 @@
                 </div>
                 <div class="form-group col-8">
                     <label>Estado de Asignacion</label><br>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="customTabRadioInline9" name="customRadioInline4"
-                               class="custom-control-input">
-                        <label class="custom-control-label" for="customTabRadioInline9">Asignado</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="customTabRadioInline10" name="customRadioInline4"
-                               class="custom-control-input">
-                        <label class="custom-control-label" for="customTabRadioInline10">No Asignado</label>
-                    </div>
+                    <!--<div id="text">Selected : Option 1</div>-->
+
+                    <ejs-radiobutton #radio1 label="Option 1" name="default" checked="true"
+                                     (change)='changeOption1($event)'></ejs-radiobutton>
+                    <ejs-radiobutton #radio2 label="Option 2" name="default"
+                                     (change)='changeOption2($event)'></ejs-radiobutton>
+
                 </div>
             </div>
             <!-- TODO </ESTADO DEL MUEBLE> -->
@@ -431,13 +447,14 @@
                 </div>
                 <div class="form-group col-4">
                     <label>Tipo Bien</label>
-                    <input type="text" class="form-control" id="tipoBienInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese el tipo del bien">
+                    <input type="text" maxlength="20" class="form-control" id="tipoBienInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese el tipo del bien" #tipoBien value="{{tipoBienEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Grupo Bien</label>
                     <input type="number" class="form-control" id="grupoBienInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese el grupo del bien">
+                           placeholder="Ingrese el grupo del bien" #grupoBien value="{{grupoBienEdit}}">
                 </div>
             </div>
             <div class="row">
@@ -447,12 +464,12 @@
                 <div class="form-group col-4">
                     <label>Clase Bien</label>
                     <input type="number" class="form-control" id="claseBienInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese la clase del bien">
+                           placeholder="Ingrese la clase del bien" #claseBien value="{{claseBienEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Familia Bien</label>
                     <input type="number" class="form-control" id="familiaBienInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese la familia del bien">
+                           placeholder="Ingrese la familia del bien" #familiaBien value="{{familiaBienEdit}}">
                 </div>
             </div>
             <div class="row">
@@ -462,7 +479,7 @@
                 <div class="form-group col-4">
                     <label>Item Bien</label>
                     <input type="number" class="form-control" id="itemBienInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese el item del bien">
+                           placeholder="Ingrese el item del bien" #itemBien value="{{itemBienEdit}}">
                 </div>
 
             </div>
@@ -478,13 +495,16 @@
                 </div>
                 <div class="form-group col-4">
                     <label>Valor Inicial</label>
-                    <input type="text" class="form-control" id="valorInicialInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese el valor inicial del mueble">
+                    <input type="text" maxlength="20" class="form-control" id="valorInicialInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese el valor inicial del mueble" #valorInicial value="{{valorInicialEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Valor depre.</label>
-                    <input type="text" class="form-control" id="valorDepreInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese valor con depreciacion del mueble">
+                    <input type="text" maxlength="20" class="form-control" id="valorDepreInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese valor con depreciacion del mueble" #valorDeprec
+                           value="{{valorDepEdit}}">
                 </div>
             </div>
             <div class="row">
@@ -493,13 +513,14 @@
                 </div>
                 <div class="form-group col-4">
                     <label>Clasificador</label>
-                    <input type="text" class="form-control" id="clasificadorInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese su clasificador">
+                    <input type="text" maxlength="32" class="form-control" id="clasificadorInputTab"
+                           aria-describedby="emailHelp"
+                           placeholder="Ingrese su clasificador" #clasificador value="{{clasificadorEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Mayor</label>
                     <input type="number" class="form-control" id="mayorInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese cifra">
+                           placeholder="Ingrese cifra" #mayor value="{{mayorEdit}}">
                 </div>
             </div>
 
@@ -510,12 +531,12 @@
                 <div class="form-group col-4">
                     <label>Año de Ejecuc.</label>
                     <input type="number" class="form-control" id="aEjecuInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese año">
+                           placeholder="Ingrese año" #anoe value="{{anoEEdit}}">
                 </div>
                 <div class="form-group col-4">
                     <label>Sub Cta</label>
                     <input type="number" class="form-control" id="subCtaInputTab" aria-describedby="emailHelp"
-                           placeholder="Ingrese sub cta">
+                           placeholder="Ingrese sub cta" #sub value="{{subctaEdit}}">
                 </div>
             </div>
             <!-- TODO </DATOS CONTABLES DEL MUEBLE> -->
@@ -844,7 +865,15 @@
 <div class="row">
     <div class="col-12 pl-0 pr-0" style="display: block;">
         <!--<button type="button" class="btn btn-light">Borrar</button>-->
-        <button type="button" class="btn btn-primary float-right mr-3" (click)="adicionarNuevoBien()">Añadir</button>
+        <button type="button" class="btn btn-primary float-right mr-3"
+                (click)="adicionarNuevoBien(codigoSIGA.value,codigoInterno.value,secuencia.value,tipoBien.value,
+                grupoBien.value,claseBien.value,familiaBien.value,itemBien.value,descripcion.value,sede.value,
+                pliego.value, centroCosto.value,empleadoAsignacion.value,origenActivo.value, tipoUbicacion.value,
+                codigoUbicacion.value, marca.value,codigoColor.value,nombreColor.value,caracteristicas.value,
+                modelo.value, medidas.value, nroSerie.value,valorInicial.value, valorDeprec.value, clasificador.value,
+                anoe.value,sub.value,mayor.value,reparacion.value,slida.value,estado.value,conservacion.value)">
+            Añadir
+        </button>
         <button type="button" class="btn btn-secondary float-right mr-2">Registrar</button>
     </div>
 </div>
@@ -853,8 +882,9 @@
     <div class="col-12" style="display: block;">
         <!-- TODO GRID DASHBOARD -->
         <div class="control-section">
-            <ejs-grid [dataSource]='dataGridService' allowPaging='true' [pageSettings]='pageSettings'
-                      [editSettings]='editSettings' [toolbar]='toolbar'>
+            <ejs-grid #gridEdit [dataSource]='dataGridService' allowPaging='true' [pageSettings]='pageSettings'
+                      [selectionSettings]="selectOptions"
+                      [editSettings]='editSettings' [toolbar]='toolbar' (rowSelected)='rowSelectedGridEdit($event)'>
                 <e-columns>
                     <e-column type='checkbox' width='30'></e-column>
                     <e-column field='id_patrimonio' headerText='ID Patrimonio SIGA' width='90' textAlign='Right'

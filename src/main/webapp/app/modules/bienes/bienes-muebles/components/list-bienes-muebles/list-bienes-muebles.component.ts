@@ -56,6 +56,11 @@ export class ListBienesMueblesComponent implements OnInit {
     this.router.navigate(['/bienes-muebles/edit']);
   }
 
+  editarBien() {
+    console.log('mensaje');
+    this.router.navigate(['/bienes-muebles/edit']);
+  }
+
   timerAlertListaBienes() {
     this.mostrarAlert = true;
     setTimeout(() => {

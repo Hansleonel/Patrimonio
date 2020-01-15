@@ -16,13 +16,13 @@
 <div class="row">
     <div class="col-12 pl-0 pr-0" style="display: block;">
         <!--<button type="button" class="btn btn-light">Borrar</button>-->
-        <button type="button" class="btn btn-primary float-right ">Ver Solicitud</button>
+        <button type="button" class="btn btn-primary float-right ">Crear Solicitud</button>
         <button type="button" class="btn btn-light float-right mr-2">Aprobar Solicitud</button>
     </div>
 </div>
 <div class="row mt-3">
-    <ejs-grid [dataSource]='dataGridEmpleado' allowPaging='true' [enableHover]="false" [allowSelection]="true"
-              [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'>
+    <ejs-grid #grid [dataSource]='dataGridEmpleado' allowPaging='true' [enableHover]="false" [allowSelection]="true"
+              [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar' (rowSelected)='rowSelected($event)'>
         <e-columns>
             <e-column type='checkbox' width='50'></e-column>
             <e-column field='doc_iden' isPrimaryKey='true' headerText='DNI' width='120' textAlign='Center'></e-column>
