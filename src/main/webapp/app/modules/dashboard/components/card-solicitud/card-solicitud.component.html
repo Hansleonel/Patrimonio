@@ -1,0 +1,89 @@
+<div class="row mr-1">
+    <div class="col-12 pl-0 pr-0">
+        <!--<button type="button" class="btn btn-light">Borrar</button>-->
+        <button type="button" class="btn btn-primary float-right" (click)="crearSolicitud()">Crear Solicitud</button>
+        <button type="button" class="btn btn-light float-right mr-2">Aprobar Solicitud</button>
+    </div>
+</div>
+<div class="row mt-3 ml-3 mr-1">
+    <div class="e-card" id="basic_card_photo" tabindex="0">
+        <div class="e-card-header">
+
+            <div class="e-card-header-caption">
+                <div class="e-card-header-title">Solicitud NRO {{documentoPersonaHijo}}</div>
+                <div class="e-card-sub-title">Fecha Solicitud | 21 Diciembre 2019</div>
+            </div>
+        </div>
+        <div class="e-card-content">
+            <table>
+                <tbody>
+                <div class="row control-section card-control-section basic_card_layout"
+                     style="margin-bottom: 18px; margin-top: 18px;justify-content: center;">
+                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                        <!-- TODO <IMAGE P> -->
+                        <div class="container">
+                            <div class="row" style="margin-right: auto; margin-left: auto">
+
+                                <img style="width: 40%; height: auto;"
+                                     src="http://10.24.9.39/BBDDLEGAJOS/FOTOS/{{documentoPersonaHijo}}.jpg"
+                                     class="rounded-circle"/>
+
+                            </div>
+                        </div>
+                        <!-- TODO </IMAGE P> -->
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8">
+                        <!-- TODO <DATOS BAR> -->
+                        <table style="width: 100%;table-layout: fixed;">
+                            <tr>
+                                <td>
+                                    <div style="text-align: left"> USUARIO :</div>
+                                </td>
+                                <td>
+                                    <div style="font-weight: bold">
+                                        {{datosPersonaHijo[0]['usu_cod']}}
+                                    </div>
+                                </td>
+                            </tr>
+                            <hr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left"> APELLIDOS Y NOMBRES :</div>
+                                </td>
+                                <td>
+                                    <div style="font-weight: bold">
+                                        {{datosPersonaHijo[0]['ape_pat']}} {{datosPersonaHijo[0]['ape_mat']}}
+                                        {{datosPersonaHijo[0]['nombre1']}}
+                                    </div>
+                                </td>
+                            </tr>
+                            <hr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;font-weight: 500;">OFICINA :</div>
+                                </td>
+                                <td>
+                                    <div style="font-weight: bold">{{datosPersonaHijo[0]['oficina']}}</div>
+                                </td>
+                            </tr>
+                            <hr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;font-weight: 500;">CARGO :</div>
+                                </td>
+                                <td>
+                                    <div style="font-weight: bold">{{datosPersonaHijo[0]['cargo']}}</div>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- TODO </DATOS BAR> -->
+                    </div>
+                </div>
+
+                </tbody>
+            </table>
+            <br></div>
+        <div class="e-card-actions"><a class="e-btn e-outline e-primary" target="_blank"
+                                       href="">Ampliar Hoja de Solicitud</a></div>
+    </div>
+</div>
