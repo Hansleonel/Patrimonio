@@ -65,6 +65,12 @@ public class BienServiceImpl implements BienService {
         return bienRepository.findById(id);
     }
 
+    @Override
+    public Page<Bien> getBienByDescripcion(Pageable pageable, String descripcion) {
+        //List<Invitado> list = invitadoRepository.getOrderInvitado();
+        return bienRepository.getBienByDescripcion(pageable, descripcion);
+    }
+
     /**
      * Delete the office by id.
      *

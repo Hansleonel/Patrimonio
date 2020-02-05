@@ -35,6 +35,8 @@ public interface BienService {
      */
     Optional<Bien> findOne(Long id);
 
+    Page<Bien> getBienByDescripcion(Pageable pageable, String descripcion);
+
     /**
      * Delete the "id" office.
      *

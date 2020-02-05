@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { DashboardService } from 'app/modules/dashboard/dashboard.service';
 import { GridComponent, RowSelectEventArgs } from '@syncfusion/ej2-angular-grids';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'md-bienes-registrados',
@@ -10,6 +11,10 @@ import { GridComponent, RowSelectEventArgs } from '@syncfusion/ej2-angular-grids
 export class BienesRegistradosComponent implements OnInit {
   public dataGrid: Object[];
   public dataGridEmpleado: Object[];
+  // TODO DATA SOLICITUDES
+  public dataGridSolicitudes: Object[];
+  public dataGridSelected: Object[];
+  public nroSolicitud;
 
   public initialPage;
   public selectOptions;
@@ -22,7 +27,7 @@ export class BienesRegistradosComponent implements OnInit {
   @ViewChild('grid', { static: false })
   public grid: GridComponent;
 
-  constructor(private empleadoService: DashboardService) {
+  constructor(private empleadoService: DashboardService, private router: Router) {
     this.datosSeleccionados = new EventEmitter<Object[]>();
   }
 
@@ -222,6 +227,38 @@ export class BienesRegistradosComponent implements OnInit {
       this.dataGridEmpleado = response;
       console.log(this.dataGridEmpleado);
     });
+
+    this.empleadoService.getSolicitudes().subscribe((response: any) => {
+      this.dataGridSolicitudes = response;
+    });
+  }
+
+  irListSolicitud() {
+    console.log('ir a solicitud');
+    this.router.navigate(['/asignaciones/list']);
+  }
+
+  irCrearAsignacion() {
+    console.log('ir a crear solicitud');
+    this.dataGridSelected = this.grid.getSelectedRecords();
+    this.nroSolicitud = this.dataGridSelected[0]['id_solicitud'];
+    console.log(this.nroSolicitud);
+    if (this.dataGridSelected[0]['id_solicitud'] !== undefined) {
+      this.empleadoService.patchSolicitudPR(this.nroSolicitud).subscribe(
+        response => {
+          console.log(response);
+          this.router.navigate(['/asignaciones/create/' + this.nroSolicitud]);
+        },
+        error1 => {
+          console.log(error1);
+        }
+      );
+    }
+  }
+
+  irCrearSolicitud() {
+    console.log('ir crear solicitud');
+    this.router.navigate(['solicitudes/create']);
   }
 
   rowSelected(args: RowSelectEventArgs) {
@@ -230,7 +267,8 @@ export class BienesRegistradosComponent implements OnInit {
     console.log(selectedrowindex);
     const selectedrecords: Object[] = this.grid.getSelectedRecords();
     // console.log(selectedrecords);
-    console.log(selectedrecords[0]['doc_iden']);
+    console.log(selectedrecords[0]['dociden']);
+    // TODO ENVIA DATOS DEL EMPLEADO QUE HIZO LA SOLICITUD
     this.datosSeleccionados.emit(selectedrecords);
   }
 }

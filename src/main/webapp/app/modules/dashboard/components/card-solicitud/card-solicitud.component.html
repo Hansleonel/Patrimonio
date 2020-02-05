@@ -1,10 +1,3 @@
-<div class="row mr-1">
-    <div class="col-12 pl-0 pr-0">
-        <!--<button type="button" class="btn btn-light">Borrar</button>-->
-        <button type="button" class="btn btn-primary float-right" (click)="crearSolicitud()">Crear Solicitud</button>
-        <button type="button" class="btn btn-light float-right mr-2">Aprobar Solicitud</button>
-    </div>
-</div>
 <div class="row mt-3 ml-3 mr-1">
     <div class="e-card" id="basic_card_photo" tabindex="0">
         <div class="e-card-header">
@@ -41,7 +34,7 @@
                                 </td>
                                 <td>
                                     <div style="font-weight: bold">
-                                        {{datosPersonaHijo[0]['usu_cod']}}
+                                        {{datosPersonaHijo[0]['usucod']}}
                                     </div>
                                 </td>
                             </tr>
@@ -52,8 +45,7 @@
                                 </td>
                                 <td>
                                     <div style="font-weight: bold">
-                                        {{datosPersonaHijo[0]['ape_pat']}} {{datosPersonaHijo[0]['ape_mat']}}
-                                        {{datosPersonaHijo[0]['nombre1']}}
+                                        {{datosPersonaHijo[0]['nombres']}} {{datosPersonaHijo[0]['apellidos']}}
                                     </div>
                                 </td>
                             </tr>

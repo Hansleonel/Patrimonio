@@ -1,37 +1,63 @@
-<!--<ejs-grid [dataSource]='dataGrid' allowPaging='true' [enableHover]="false" [allowSelection]="true"
-          [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'>
-    <e-columns>
-        <e-column type='checkbox' width='50'></e-column>
-        <e-column field='CodInterno' isPrimaryKey='true' headerText='Cod Interno' width='120'
-                  textAlign='Center'></e-column>
-        <e-column field='CodPatrimonial' headerText='Cod Patrimonial' width='120'></e-column>
-        <e-column field='Denominacion' headerText='Denominacion' width='140' textAlign='Center'></e-column>
-        <e-column field='Marca' headerText='Marca' width='100' format='C2' textAlign='Center'></e-column>
-        <e-column field='Modelo' headerText='Modelo' width='100' textAlign='Center'></e-column>
-        <e-column field='Serie' headerText='Serie/Dimenciones' width='100' textAlign='Center'></e-column>
-        <e-column field='Color' headerText='Color' width='100' textAlign='Center'></e-column>
-        <e-column field='Estado' headerText='Estado' width='120' textAlign='Center'></e-column>
-    </e-columns>
-</ejs-grid>-->
 <div class="row">
     <div class="col-12 pl-0 pr-0" style="display: block;">
         <!--<button type="button" class="btn btn-light">Borrar</button>-->
-        <button type="button" class="btn btn-primary float-right ">Crear Solicitud</button>
-        <button type="button" class="btn btn-light float-right mr-2">Aprobar Solicitud</button>
+        <button type="button" class="btn btn-primary float-right " (click)="irCrearSolicitud()">Crear Solicitud</button>
+        <button type="button" class="btn btn-light float-right mr-2" (click)="irCrearAsignacion()">Revisar Solicitud
+        </button>
     </div>
 </div>
 <div class="row mt-3">
-    <ejs-grid #grid [dataSource]='dataGridEmpleado' allowPaging='true' [enableHover]="false" [allowSelection]="true"
-              [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar' (rowSelected)='rowSelected($event)'>
+    <ejs-grid #grid [dataSource]='dataGridSolicitudes' allowPaging='true' [enableHover]="false" [allowSelection]="true"
+              [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'
+              (rowSelected)='rowSelected($event)'>
         <e-columns>
-            <e-column type='checkbox' width='50'></e-column>
-            <e-column field='doc_iden' isPrimaryKey='true' headerText='DNI' width='120' textAlign='Center'></e-column>
-            <e-column field='usu_cod' headerText='Usuario' width='120'></e-column>
-            <e-column field='nombre1' headerText='Nombre' width='100' format='C2' textAlign='Center'></e-column>
-            <e-column field='ape_pat' headerText='Paterno' width='100' textAlign='Center'></e-column>
-            <e-column field='ape_mat' headerText='Materno' width='100' textAlign='Center'></e-column>
-            <e-column field='oficina' headerText='Oficina' width='140' textAlign='Center'></e-column>
-            <e-column field='cargo' headerText='Cargo' width='100' format='C2' textAlign='Center'></e-column>
+            <e-column type='checkbox' width='30'></e-column>
+            <e-column field='id_solicitud' isPrimaryKey='true' headerText='ID SOLICITUD' width='80'
+                      textAlign='Center'></e-column>
+            <!--<e-column field='usu_cod' headerText='Usuario' width='120'></e-column>-->
+            <e-column field='fecha_solicitud' headerText='FECHA' width='100' format='C2'
+                      textAlign='Center'></e-column>
+            <e-column field='dociden' headerText='DOCUMENTO ID' width='80' textAlign='Center'></e-column>
+            <e-column field='estado' headerText='ESTADO' width='80'>
+                <ng-template #template let-data>
+                    <div *ngIf="data.estado === 1" class="statustemp e-activecolor">
+                        <!--<span class="badge badge-info p-2">{{data.estado}}</span>-->
+                        <span class="badge badge-info p-2">pendiente</span>
+                    </div>
+                    <div *ngIf="data.estado === 2" class="statustemp e-activecolor">
+                        <!--<span class="badge badge-warning p-2">{{data.estado}}</span>-->
+                        <span class="badge badge-warning p-2">revisado</span>
+                    </div>
+                    <div *ngIf="data.estado === 3" class="statustemp e-activecolor">
+                        <span class="badge badge-danger p-2">rechazado</span>
+                    </div>
+                    <div *ngIf="data.estado === 4" class="statustemp e-activecolor">
+                        <span class="badge badge-success p-2">aceptado</span>
+                    </div>
+                    <div *ngIf="data.estado === 5" class="statustemp e-activecolor">
+                        <!--<span class="badge badge-info p-2">{{data.estado}}</span>-->
+                        <span class="badge badge-info p-2">pendiente</span>
+                    </div>
+                    <div *ngIf="data.estado === 6" class="statustemp e-activecolor">
+                        <!--<span class="badge badge-warning p-2">{{data.estado}}</span>-->
+                        <span class="badge badge-warning p-2">revisado</span>
+                    </div>
+                    <div *ngIf="data.estado === 7" class="statustemp e-activecolor">
+                        <span class="badge badge-danger p-2">rechazado</span>
+                    </div>
+                    <div *ngIf="data.estado === 8" class="statustemp e-activecolor">
+                        <span class="badge badge-success p-2">aceptado</span>
+                    </div>
+                    <div *ngIf="data.estado === 9" class="statustemp e-activecolor">
+                        <span class="badge badge-danger p-2">rechazado</span>
+                    </div>
+                    <div *ngIf="data.estado === 10" class="statustemp e-activecolor">
+                        <span class="badge badge-success p-2">aceptado</span>
+                    </div>
+                </ng-template>
+            </e-column>
+            <!--<e-column field='estado' headerText='ESTADO SOLICITUD' width='100' textAlign='Center'></e-column>-->
+            <e-column field='observacion' headerText='OBSERVACION' width='140' textAlign='Center'></e-column>
         </e-columns>
     </ejs-grid>
 </div>

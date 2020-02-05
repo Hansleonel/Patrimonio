@@ -6,3 +6,5 @@ export const VERSION = process.env.VERSION;
 export const DEBUG_INFO_ENABLED = !!process.env.DEBUG_INFO_ENABLED;
 export const SERVER_API_URL = process.env.SERVER_API_URL;
 export const BUILD_TIMESTAMP = process.env.BUILD_TIMESTAMP;
+// export const SERVER_SERVICES_URL = 'http://10.24.9.78:80/sispide-0.0.1/';
+export const SERVER_SERVICES_URL = 'http://localhost:8080/';

@@ -1,5 +1,9 @@
 package pe.gob.mindef.app.web.rest;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.micrometer.core.annotation.Timed;
+import org.springframework.web.client.RestTemplate;
 import pe.gob.mindef.app.config.Constants;
 import pe.gob.mindef.app.domain.User;
 import pe.gob.mindef.app.repository.UserRepository;
@@ -28,6 +32,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
@@ -87,7 +92,7 @@ public class UserResource {
      *
      * @param userDTO the user to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new user, or with status {@code 400 (Bad Request)} if the login or email is already in use.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     * @throws URISyntaxException       if the Location URI syntax is incorrect.
      * @throws BadRequestAlertException {@code 400 (Bad Request)} if the login or email is already in use.
      */
     @PostMapping("/users")
@@ -106,7 +111,7 @@ public class UserResource {
             User newUser = userService.createUser(userDTO);
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
-                .headers(HeaderUtil.createAlert(applicationName,  "userManagement.created", newUser.getLogin()))
+                .headers(HeaderUtil.createAlert(applicationName, "userManagement.created", newUser.getLogin()))
                 .body(newUser);
         }
     }
@@ -150,8 +155,34 @@ public class UserResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/empleadoMindefDatos/{codigoEmpleado}")
+    @Timed
+    public ResponseEntity<Map> getEmpleadoMindefDatos(@PathVariable String codigoEmpleado) throws IOException {
+        RestTemplate restTemplate01 = new RestTemplate();
+
+        Map[] response01 = restTemplate01.getForObject("http://10.24.9.78/mindef-starter-0.0.1-SNAPSHOT/api/empleadoMindefDatos/" + codigoEmpleado, Map[].class);
+
+        Map respuesta02 = new HashMap();
+
+
+        if (response01.length > 0) {
+            respuesta02.put("docIden", response01[0].get("doc_iden"));
+            respuesta02.put("usuCod", response01[0].get("usu_cod"));
+            respuesta02.put("apePat", response01[0].get("ape_pat"));
+            respuesta02.put("apeMat", response01[0].get("ape_mat"));
+            respuesta02.put("nombre01", response01[0].get("nombre1"));
+            respuesta02.put("nombre02", response01[0].get("nombre2"));
+            respuesta02.put("cargo", response01[0].get("cargo"));
+            respuesta02.put("oficina",response01[0].get("oficina"));
+        }
+
+
+        return new ResponseEntity<Map>(respuesta02, HttpStatus.OK);
+    }
+
     /**
      * Gets a list of all roles.
+     *
      * @return a string list of all roles.
      */
     @GetMapping("/users/authorities")
@@ -185,6 +216,6 @@ public class UserResource {
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
-        return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName,  "userManagement.deleted", login)).build();
+        return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName, "userManagement.deleted", login)).build();
     }
 }

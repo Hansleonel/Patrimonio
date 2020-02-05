@@ -1,6 +1,7 @@
 package pe.gob.mindef.app.web.rest;
 
 import io.github.jhipster.web.util.ResponseUtil;
+import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -86,6 +87,30 @@ public class BienResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, bien.getId_patrimonio().toString()))
             .body(result);
+    }
+
+    @PatchMapping("/bien/{id}")
+    public ResponseEntity<Bien> patchBien(@PathVariable Long id, @RequestBody Bien bien) throws URISyntaxException {
+        log.debug("REST request to patch bien : {}", bien);
+
+        Optional<Bien> bienPatch = bienService.findOne(id);
+
+        bienPatch.get().setEmpleado(bien.getEmpleado());
+
+        Bien result = bienService.save(bienPatch.get());
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, bien.getId_patrimonio().toString()))
+            .body(result);
+    }
+
+    @GetMapping("/BienDescripcion/{descripcion}")
+    @Timed
+    public ResponseEntity<List<Bien>> getAllBienDescripcion(Pageable pageable, @PathVariable String descripcion) throws InterruptedException {
+        log.debug("REST request to get a page of Bien");
+        Page<Bien> page = bienService.getBienByDescripcion(pageable, descripcion);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/BienDescripcion");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+
     }
 
     /*@PutMapping("/invitadoAntecedenteGeneral")

@@ -34,6 +34,24 @@ const LAYOUT_ROUTES = [...errorRoute];
           }
         },
         {
+          path: 'asignaciones',
+          component: AdminLayoutComponent,
+          loadChildren: () => import('./modules/asignacion/asignacion.module').then(m => m.AsignacionModule),
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: ['ROLE_USER', 'ROLE_ADMIN']
+          }
+        },
+        {
+          path: 'solicitudes',
+          component: AdminLayoutComponent,
+          loadChildren: () => import('./modules/solicitud/solicitud.module').then(m => m.SolicitudModule),
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: ['ROLE_USER', 'ROLE_ADMIN']
+          }
+        },
+        {
           path: PublicRoutes.login,
           component: MdLoginComponent
         },

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Enlace } from 'app/modules/dashboard/models/enlace';
 import { Router } from '@angular/router';
+import { DashboardService } from 'app/modules/dashboard/dashboard.service';
 
 @Component({
   selector: 'md-dashboard',
@@ -13,7 +14,7 @@ export class DashboardComponent implements OnInit {
   documentoPersonaPadre;
   datosPersonaPadre: Object[];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private dashboardService: DashboardService) {}
 
   ngOnInit() {
     this.enlaces = [
@@ -54,8 +55,11 @@ export class DashboardComponent implements OnInit {
   mostrarDni(datosSeleccionados: Object[]) {
     console.log('datos seleccionados');
     console.log(datosSeleccionados);
-    this.datosPersonaPadre = datosSeleccionados;
-    this.documentoPersonaPadre = datosSeleccionados[0]['doc_iden'];
+    this.dashboardService.getEmpleado(datosSeleccionados[0]['dociden']).subscribe((response: any) => {
+      this.datosPersonaPadre = response;
+    });
+    // this.datosPersonaPadre = datosSeleccionados;
+    this.documentoPersonaPadre = datosSeleccionados[0]['dociden'];
   }
 
   verBienEnlace(titulo: string) {

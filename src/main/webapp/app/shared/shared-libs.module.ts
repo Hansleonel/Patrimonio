@@ -6,6 +6,7 @@ import { NgJhipsterModule } from 'ng-jhipster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
+import { GridModule } from '@syncfusion/ej2-angular-grids';
 
 @NgModule({
   exports: [
@@ -16,7 +17,8 @@ import { TranslateModule } from '@ngx-translate/core';
     InfiniteScrollModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    GridModule
   ]
 })
 export class MindefAppSharedLibsModule {}

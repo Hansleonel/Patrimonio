@@ -24,6 +24,7 @@
     "@syncfusion/ej2-angular-buttons": "^17.3.27",
     "@syncfusion/ej2-angular-calendars": "^17.3.28",
     "@syncfusion/ej2-angular-charts": "^17.3.27",
+    "@syncfusion/ej2-angular-dropdowns": "^17.4.46",
     "@syncfusion/ej2-angular-grids": "^17.3.27",
     "@syncfusion/ej2-angular-notifications": "^17.3.30",
     "@syncfusion/ej2-ng-navigations": "^16.2.50",

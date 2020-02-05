@@ -113,7 +113,6 @@ export class BienesService {
       codigo_ubicacion: codigoUbicacion,
       codigo_marca: marca,
       codigo_color: codigoColor,
-      nombre_color: nombreColor,
       caracteristica: caracteristicaBien,
       modelo: modeloBien,
       medidas: medidasBien,
