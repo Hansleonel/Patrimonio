@@ -1,0 +1,311 @@
+<!-- TODO <TITULO> -->
+<md-title tituloGeneral="Asignaciones"
+          tituloDescripcion="Cuadro de Asignaciones de Bienes Patrimoniales"></md-title>
+<!-- TODO </TITULO> -->
+
+<!-- TODO <DATOS PRINCIPALES DEL EMPLEADO> -->
+<form>
+    <div class="row">
+        <div class="form-group col-4">
+            <label>Datos Principales del Usuario : </label>
+        </div>
+        <div class="form-group col-4">
+            <label>Ingrese Codigo del Usuario</label>
+            <input [ngClass]="validarInputEmpleado" type="text" maxlength="480" value="{{usuCod}}"
+                   class="form-control" id="codigoUsuario"
+                   aria-describedby="codigoEmpleado"
+                   placeholder="Ingrese Descripcion" #empleadoCodigo
+                   (keyup)="comprobarValorCodEmpleado(empleadoCodigo.value)" disabled autocomplete="off">
+            <div class="invalid-feedback">
+                ID no encontrado(Ingrese un ID correcto)
+            </div>
+            <div class="valid-feedback">
+                ID existe
+            </div>
+        </div>
+        <div class="form-group col-4">
+            <label style="visibility: hidden">buscar</label>
+            <!--<button type="submit" class="form-control btn btn-primary"
+                    (click)="RellenarDatosEmpleado(empleadoCodigo.value)">Completar Datos
+            </button>-->
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-4">
+            <label>Dependencia Oficina</label>
+            <input type="text" class="form-control" id="depedenciaInputTab" disabled
+                   aria-describedby="emailHelp"
+                   placeholder="Ingrese Codigo Patrimonial SIGA" #dependenciaOficina value="{{oficina}}">
+        </div>
+        <div class="form-group col-4">
+            <label>Nombres y Apellidos</label>
+            <input type="text" class="form-control" id="nombreApellidos" disabled aria-describedby="emailHelp"
+                   placeholder="Ingrese Nombres y Apellidos" #nombreApellidos value="{{apellidosNombres}}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-4">
+            <label>Documento de Identidad</label>
+            <input class="form-control" id="descripcionInputTab" disabled
+                   aria-describedby="emailHelp"
+                   placeholder="Ingrese Descripcion" #documentoID value="{{docIden}}">
+        </div>
+        <div class="form-group col-4">
+            <label>Cargo Nivel</label>
+            <input type="text" class="form-control" id="secuenciaInputTab" aria-describedby="emailHelp" disabled
+                   placeholder="Ingrese numero de secuencia" #cargo value="{{cargoEmpleado}}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-8">
+            <label>Estado</label><br>
+            <form class="was-validated custom-control-inline">
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="customRadioInline2" name="radio-stacked"
+                           required>
+                    <label class="custom-control-label" for="customRadioInline2">Funcionario &nbsp;</label>
+                    <div class="invalid-feedback">Seleccione una modalidad</div>
+                </div>
+                <div class="custom-control custom-radio mb-3">
+                    <input type="radio" class="custom-control-input" id="customRadioInline3" name="radio-stacked"
+                           required>
+                    <label class="custom-control-label" for="customRadioInline3">Servidor Publico &nbsp;</label>
+                </div>
+                <div class="custom-control custom-radio mb-3">
+                    <input type="radio" class="custom-control-input" id="customRadioInline4" name="radio-stacked"
+                           required checked>
+                    <label class="custom-control-label" for="customRadioInline4">CAS &nbsp;</label>
+                </div>
+                <div class="custom-control custom-radio mb-3">
+                    <input type="radio" class="custom-control-input" id="customRadioInline5" name="radio-stacked"
+                           required>
+                    <label class="custom-control-label" for="customRadioInline5">Practicante &nbsp;</label>
+                </div>
+                <div class="custom-control custom-radio mb-3">
+                    <input type="radio" class="custom-control-input" id="customRadioInline6" name="radio-stacked"
+                           required>
+                    <label class="custom-control-label" for="customRadioInline6">Tercero &nbsp;</label>
+                </div>
+            </form>
+        </div>
+    </div>
+</form>
+<!-- TODO </DATOS PRINCIPALES DEL EMPLEADO> -->
+<hr>
+<!-- TODO <DATOS DE LA PETICION> -->
+<form>
+    <div class="row">
+        <div class="form-group col-4">
+            <label>Datos Principales de la Peticion : </label>
+        </div>
+        <div class="form-group col-8">
+            <label>Ingrese Su peticion</label>
+            <div class="form-group">
+                <!-- TODO TEXT AREA -->
+                <textarea class="form-control" disabled id="exampleFormControlTextarea1" rows="3"
+                          value="{{descripcionPeticion}}"
+                          #peticioTextArea></textarea>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- TODO </DATOS DE LA PETICION> -->
+<hr>
+<!-- TODO <BUSCAR EN EL GRID> -->
+<form>
+    <div class="row">
+        <div class="form-group col-4">
+            <label>Buscar Bienes Muebles para la solicitud </label>
+        </div>
+        <div class="form-group col-8">
+            <label>Ingrese Su peticion</label>
+            <div class="form-group">
+                <input type="text" maxlength="480"
+                       class="form-control" id="buscarPeticion"
+                       aria-describedby="buscarPeticion"
+                       placeholder="Ingrese la despcripcion del bien" #buscarBien
+                       (keyup)="buscarBienToAsignacion(buscarBien.value)" autocomplete="off">
+            </div>
+        </div>
+    </div>
+</form>
+<!-- TODO </BUSCAR EN EL GRID> -->
+<hr>
+
+<!-- TODO <DATOS PRINCIPALES DEL MUEBLE> -->
+<form>
+    <div class="row">
+        <div class="form-group col-4">
+            <label>Datos Principales del bien Mueble : </label>
+        </div>
+        <div class="form-group col-4">
+            <label>Codigo Patrimonial SIGA</label>
+            <input [ngClass]="validarInputBien"
+                   type="number" class="form-control"
+                   aria-describedby="emailHelp"
+                   placeholder="Ingrese Codigo Patrimonial SIGA" #codigoSIGA value="{{codigoPatrimonialEdit}}"
+                   (keyup)="comprobarValorCodSiga(codigoSIGA.value)">
+            <div class="invalid-feedback">
+                {{messageValidadorInvalid}}
+            </div>
+            <div class="valid-feedback">
+                El ID encontrado
+            </div>
+        </div>
+        <div class="form-group col-4">
+            <label>Codigo Interno</label>
+            <input class="form-control" id="codigoInternoInputTab" aria-describedby="emailHelp"
+                   placeholder="Ingrese Secuencia" #codigoInterno value="{{codigoInternoEdit}}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-4">
+            <label>Descripcion</label>
+            <input type="text" maxlength="480" class="form-control"
+                   aria-describedby="emailHelp"
+                   placeholder="Ingrese Descripcion" #descripcion value="{{descripcionEdit}}" autocomplete="off">
+        </div>
+        <div class="form-group col-4">
+            <label>Secuencia</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp"
+                   placeholder="Ingrese numero de secuencia" #secuencia value="{{secuenciaEdit}}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-8">
+            <label>Caracteristicas</label>
+            <input type=text maxlength="480" class="form-control" id="caracteristicasInputTab"
+                   aria-describedby="emailHelp"
+                   placeholder="Ingrese Caracteristicas" #caracteristicas value="{{caracteristicaEdit}}"
+                   autocomplete="off">
+        </div>
+    </div>
+
+    <!-- TODO </DATOS PRINCIPALES DEL MUEBLE> -->
+
+
+    <!-- TODO <DATOS SECUNDARIOS DEL MUEBLE> -->
+    <div class="row">
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-4">
+            <label>Marca</label>
+            <input type="text" class="form-control" id="marcaInputTab" aria-describedby="emailHelp"
+                   placeholder="Ingrese Marca" #marca value="{{marcaEdit}}" autocomplete="off">
+        </div>
+        <div class="form-group col-4">
+            <label>Modelo</label>
+            <input type="text" maxlength="120" class="form-control" id="modeloInputTab"
+                   aria-describedby="emailHelp"
+                   placeholder="Ingrese Modelo" #modelo value="{{modeloEdit}}" autocomplete="off">
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-4">
+            <label>Nro de Serie</label>
+            <input type="text" maxlength="120" class="form-control" id="serieInputTab"
+                   aria-describedby="emailHelp"
+                   placeholder="Ingrese nro de Serie" #nroSerie value="{{nroSerieEdit}}" autocomplete="off">
+        </div>
+        <div class="form-group col-4">
+            <label>Medidas</label>
+            <input type="text" maxlength="120" class="form-control" id="medidasInputTab"
+                   aria-describedby="emailHelp"
+                   placeholder="Ingrese las medidas del bien" #medidas value="{{medidasEdit}}" autocomplete="off">
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="form-group col-4">
+            <label> </label>
+        </div>
+        <div class="form-group col-4">
+            <label>Codigo Color</label>
+            <input class="form-control" id="codigoColorInputTab" aria-describedby="emailHelp"
+                   placeholder="Ingrese el Codigo del Color" #codigoColor value="{{codigoColorEdit}}"
+                   autocomplete="off">
+        </div>
+        <div class="form-group col-4">
+            <label>Nombre Color</label>
+            <input maxlength="60" class="form-control" id="nombreColorInputTab"
+                   aria-describedby="emailHelp"
+                   placeholder="Ingrese el nombre del color" #nombreColor value="{{nombreColorEdit}}"
+                   autocomplete="off">
+        </div>
+    </div>
+    <!-- TODO <DATOS SCUNDARIOS DEL MUEBLE> -->
+</form>
+
+<!-- TODO METODOS PARA GENERAR GRABAR Y AGREGAR A LA LISTA DEL GRID -->
+<div class="row">
+    <div class="col-12 pl-0 pr-0">
+        <button type="button" class="btn btn-light float-right mr-2" (click)="generarPDF()">Generar PDF</button>
+        <button type="button" class="btn btn-outline-primary float-right mr-2"
+                (click)="grabarAsignacion(codigoSIGA.value, documentoID.value)">Grabar
+            Asignacion
+        </button>
+        <button type="button" class="btn btn-primary float-right mr-2"
+                (click)="agregarBienLista(codigoSIGA.value)">Agregar a Lista
+        </button>
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-12 pl-0 pr-0">
+        <div *ngIf="mostrarAlert" [ngClass]="classMessage" role="alert">
+            {{messageAlert}}
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <ejs-grid #grid [dataSource]='dataBienes' allowPaging='true' [enableHover]="false" [allowSelection]="true"
+              [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'>
+        <e-columns>
+            <!--<e-column type='checkbox' width='50'></e-column>
+            <e-column field='doc_iden' isPrimaryKey='true' headerText='DNI' width='120' textAlign='Center'></e-column>
+            <e-column field='usu_cod' headerText='Usuario' width='120'></e-column>
+            <e-column field='nombre1' headerText='Nombre' width='100' format='C2' textAlign='Center'></e-column>
+            <e-column field='ape_pat' headerText='Paterno' width='100' textAlign='Center'></e-column>
+            <e-column field='ape_mat' headerText='Materno' width='100' textAlign='Center'></e-column>
+            <e-column field='oficina' headerText='Oficina' width='140' textAlign='Center'></e-column>
+            <e-column field='cargo' headerText='Cargo' width='100' format='C2' textAlign='Center'></e-column>-->
+            <e-column type='checkbox' width='30'></e-column>
+            <e-column field='id_patrimonio' headerText='ID Patrimonio SIGA' width='90' textAlign='Right'
+                      isPrimaryKey='true'></e-column>
+            <e-column field='id_interno' headerText='ID Interno' width='60' textAlign='Right'
+                      isPrimaryKey='true'></e-column>
+            <e-column field='descripcion' headerText='Descripcion' width='250' textAlign='Right'></e-column>
+            <e-column field='estado_asignado' headerText='Estado Asignacion' width='90'
+                      textAlign='Right'></e-column>
+            <e-column field='empleado' headerText='Empleado' width='100' editType='dropdownedit'
+                      textAlign='Right'></e-column>
+            <e-column field='caracteristica' headerText='Caracteristica' width='150'></e-column>
+        </e-columns>
+    </ejs-grid>
+</div>
+
+
+
