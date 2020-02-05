@@ -103,7 +103,7 @@ export class BienesService {
       clase_bien: claseBien,
       familia_bien: familiaBien,
       item_bien: itemBien,
-      descripcion: descripcionBien,
+      escripcion: descripcionBien,
       sede: sedeBien,
       pliego: pliegoBien,
       centro_costo: centrocosto,
