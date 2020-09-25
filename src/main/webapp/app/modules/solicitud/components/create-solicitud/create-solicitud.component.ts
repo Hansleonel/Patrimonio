@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SolicitudService } from 'app/modules/solicitud/solicitud.service';
 import { Router } from '@angular/router';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'md-create-solicitud',
@@ -8,6 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-solicitud.component.scss']
 })
 export class CreateSolicitudComponent implements OnInit {
+  // TODO DATOS DE CUENTA TO KNOW THE ROLE
+
+  currentAccount: any;
+
   // TODO VALIDADORES
   validarInputEmpleado = 'form-control';
   messageAlertSolicitud = 'Solicitud Enviada y Registrada';
@@ -56,11 +61,19 @@ export class CreateSolicitudComponent implements OnInit {
   // set the placeholder to AutoComplete input
   waterMark = 'Buscar bien solicitado'; */
 
-  constructor(private solicitudService: SolicitudService, private router: Router) {}
+  constructor(private solicitudService: SolicitudService, private router: Router, private accountService: AccountService) {}
 
   ngOnInit() {
-    this.RellenarDatosEmpleado('JPINEDA');
-    this.comprobarValorCodEmpleado('JPINEDA');
+    this.accountService.identity().subscribe(account => {
+      this.currentAccount = account;
+      console.log('LA CUENTA DEL USER Y EL ROL ES');
+      console.log(this.currentAccount);
+      this.usuCod = this.currentAccount['login'];
+      this.RellenarDatosEmpleado(this.currentAccount['login']);
+      this.comprobarValorCodEmpleado(this.currentAccount['login']);
+    });
+    // this.RellenarDatosEmpleado('JPINEDA');
+    // this.comprobarValorCodEmpleado('JPINEDA');
   }
 
   RellenarDatosEmpleado(codigoEmpleado) {
@@ -129,7 +142,7 @@ export class CreateSolicitudComponent implements OnInit {
 
     const objetoSolicitudPeticion = {
       observacion: this.observacion,
-      estado: 'pendiente',
+      estado: 1,
       fecha_solicitud: dateSolicitud,
       dociden: this.docIden,
       proceso: {

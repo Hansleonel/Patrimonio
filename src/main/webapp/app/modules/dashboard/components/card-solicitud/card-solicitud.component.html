@@ -1,81 +1,73 @@
-<div class="row mt-3 ml-3 mr-1">
-    <div class="e-card" id="basic_card_photo" tabindex="0">
-        <div class="e-card-header">
-
-            <div class="e-card-header-caption">
-                <div class="e-card-header-title">Solicitud NRO {{documentoPersonaHijo}}</div>
-                <div class="e-card-sub-title">Fecha Solicitud | 21 Diciembre 2019</div>
+<div class="card">
+    <article class="card-body">
+        <h4 class="card-title text-center mb-4 mt-1">Peticion</h4>
+        <br>
+        <hr>
+        <img style="width: 10%; height: auto;"
+             src="http://10.24.9.39/BBDDLEGAJOS/FOTOS/{{documentoPersonaHijo}}.jpg"
+             class="rounded-circle centerImg"/>
+        <br>
+        <span *ngIf="datosSolicitudHijo[0]['estado']===2"
+              class="badge badge-warning p-3 centerImg">ESTADO: EN REVISION</span>
+        <span *ngIf="datosSolicitudHijo[0]['estado']===1"
+              class="badge badge-info p-3 centerImg">ESTADO: PENDIENTE DE REVISION</span>
+        <br>
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user-circle"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="CODIGO DE SOLICITANTE" type="text" disabled
+                           value="{{datosPersonaHijo[0]['usucod']}}">
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-address-card"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="DATOS SOLICITANTE" type="text" disabled
+                           value="{{datosPersonaHijo[0]['nombres']}}{{datosPersonaHijo[0]['apellidos']}}">
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-sitemap"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="CARGO SOLICITANTE" type="text" disabled
+                           value="{{cargoUsuarioSolicitud}}">
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="OFICINA SOLICITANTE" type="text" disabled
+                           value="{{datosPersonaHijo[0]['oficina']}}">
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-shopping-cart"></i> </span>
+                    </div>
+                    <textarea style="border-color: #007bff" name="" class="form-control"
+                              placeholder="LISTA DE PETICIONES"
+                              type="text" disabled
+                              value="{{datosSolicitudHijo[0]['observacion']}}"></textarea>
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-primary btn-block"> Volver a la Bandeja
+                    </button>
+                </div> <!-- form-group// -->
+                <!--<p class="text-center"><a href="#" class="btn">Forgot password?</a></p>-->
             </div>
-        </div>
-        <div class="e-card-content">
-            <table>
-                <tbody>
-                <div class="row control-section card-control-section basic_card_layout"
-                     style="margin-bottom: 18px; margin-top: 18px;justify-content: center;">
-                    <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
-                        <!-- TODO <IMAGE P> -->
-                        <div class="container">
-                            <div class="row" style="margin-right: auto; margin-left: auto">
-
-                                <img style="width: 40%; height: auto;"
-                                     src="http://10.24.9.39/BBDDLEGAJOS/FOTOS/{{documentoPersonaHijo}}.jpg"
-                                     class="rounded-circle"/>
-
-                            </div>
-                        </div>
-                        <!-- TODO </IMAGE P> -->
-                    </div>
-                    <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8">
-                        <!-- TODO <DATOS BAR> -->
-                        <table style="width: 100%;table-layout: fixed;">
-                            <tr>
-                                <td>
-                                    <div style="text-align: left"> USUARIO :</div>
-                                </td>
-                                <td>
-                                    <div style="font-weight: bold">
-                                        {{datosPersonaHijo[0]['usucod']}}
-                                    </div>
-                                </td>
-                            </tr>
-                            <hr>
-                            <tr>
-                                <td>
-                                    <div style="text-align: left"> APELLIDOS Y NOMBRES :</div>
-                                </td>
-                                <td>
-                                    <div style="font-weight: bold">
-                                        {{datosPersonaHijo[0]['nombres']}} {{datosPersonaHijo[0]['apellidos']}}
-                                    </div>
-                                </td>
-                            </tr>
-                            <hr>
-                            <tr>
-                                <td>
-                                    <div style="text-align: left;font-weight: 500;">OFICINA :</div>
-                                </td>
-                                <td>
-                                    <div style="font-weight: bold">{{datosPersonaHijo[0]['oficina']}}</div>
-                                </td>
-                            </tr>
-                            <hr>
-                            <tr>
-                                <td>
-                                    <div style="text-align: left;font-weight: 500;">CARGO :</div>
-                                </td>
-                                <td>
-                                    <div style="font-weight: bold">{{datosPersonaHijo[0]['cargo']}}</div>
-                                </td>
-                            </tr>
-                        </table>
-                        <!-- TODO </DATOS BAR> -->
-                    </div>
-                </div>
-
-                </tbody>
-            </table>
-            <br></div>
-        <div class="e-card-actions"><a class="e-btn e-outline e-primary" target="_blank"
-                                       href="">Ampliar Hoja de Solicitud</a></div>
-    </div>
+        </form>
+    </article>
 </div>
+

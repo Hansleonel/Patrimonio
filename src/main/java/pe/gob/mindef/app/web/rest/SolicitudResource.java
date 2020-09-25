@@ -8,9 +8,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import pe.gob.mindef.app.domain.Authority;
 import pe.gob.mindef.app.domain.Solicitud;
+import pe.gob.mindef.app.repository.SolicitudRepository;
+import pe.gob.mindef.app.repository.UserRepository;
+import pe.gob.mindef.app.security.SecurityUtils;
 import pe.gob.mindef.app.service.SolicitudService;
+import pe.gob.mindef.app.service.UserService;
 import pe.gob.mindef.app.web.rest.errors.BadRequestAlertException;
 import pe.gob.mindef.app.web.rest.util.HeaderUtil;
 import pe.gob.mindef.app.web.rest.util.PaginationUtil;
@@ -18,6 +25,8 @@ import pe.gob.mindef.app.web.rest.util.PaginationUtil;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,9 +42,11 @@ public class SolicitudResource {
     private static final String ENTITY_NAME = "solicitud";
 
     private final SolicitudService solicitudService;
+    private final UserRepository userRepository;
 
-    public SolicitudResource(SolicitudService solicitudService) {
+    public SolicitudResource(SolicitudService solicitudService, UserRepository userRepository) {
         this.solicitudService = solicitudService;
+        this.userRepository = userRepository;
     }
 
 
@@ -89,7 +100,27 @@ public class SolicitudResource {
     @GetMapping("/solicitud")
     public ResponseEntity<List<Solicitud>> getAllSolicitud(Pageable pageable) throws InterruptedException {
         log.debug("REST request to get a page of Solicitud");
-        Page<Solicitud> page = solicitudService.findAll(pageable);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        log.debug("MOSTRANDO LOS DATOS DEL LOGGIN USER " + authentication.getPrincipal());
+        log.debug("MOSTRANDO DATOS DE GETNAME " + authentication.getName());
+
+        log.debug("MOSTRANDO DATOS DE LOS DETAILS" + authentication.getDetails());
+        log.debug("EL ROL DEL USER ES " + authentication.getAuthorities());
+
+        //Collection<Authority> collection = (Collection<Authority>) SecurityUtils.getRoles();
+        //log.debug("MOSTRANDO AUTHORITY" + collection);
+        log.debug("ENCONTRAR USER POR ID" + userRepository.findOneByLogin(authentication.getName()).get().getDociden());
+
+        Page<Solicitud> page;
+        if (authentication.getAuthorities().toString().equals("[ROLE_USER]")) {
+            log.debug("ESTA PERSONA TIENE UN ROL DE USER");
+            page = solicitudService.getSolicitudByUser(pageable, userRepository.findOneByLogin(authentication.getName()).get().getDociden());
+        } else {
+            page = solicitudService.findAll(pageable);
+        }
+
+        // Page<Solicitud> page = solicitudService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/solicitud");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -99,7 +130,10 @@ public class SolicitudResource {
         log.debug("REST request to patch solicitud : {}", solicitud);
 
         Optional<Solicitud> solicitudPatch = solicitudService.findOne(id);
+        Date fechaAtencion = new Date();
+        log.debug("FECHA DE ATENCION " + fechaAtencion);
         log.debug("ESTADO DE LA SOLICITUD" + solicitud.getEstado(), solicitud.getEstado());
+        solicitudPatch.get().setFecha_atencion(fechaAtencion);
         if (solicitudPatch.get().getEstado() == 1) {
             solicitudPatch.get().setEstado(2);
         }
@@ -136,6 +170,5 @@ public class SolicitudResource {
         solicitudService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
 
 }

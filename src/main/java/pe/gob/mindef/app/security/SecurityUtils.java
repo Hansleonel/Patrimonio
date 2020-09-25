@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -61,9 +62,11 @@ public final class SecurityUtils {
             getAuthorities(authentication).anyMatch(authority::equals);
     }
 
+
     private static Stream<String> getAuthorities(Authentication authentication) {
         return authentication.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority);
     }
+
 
 }

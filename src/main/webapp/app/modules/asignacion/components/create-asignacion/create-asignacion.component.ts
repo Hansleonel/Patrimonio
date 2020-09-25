@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AsignacionService } from 'app/modules/asignacion/asignacion.service';
-import { GridComponent, DataResult } from '@syncfusion/ej2-angular-grids';
-import { ActivatedRoute } from '@angular/router';
+import { GridComponent, DataResult, RowSelectEventArgs } from '@syncfusion/ej2-angular-grids';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'md-create-asignacion',
@@ -15,7 +15,11 @@ export class CreateAsignacionComponent implements OnInit {
   public editSettings;
   public toolbar;
 
+  // TODO DATA BIENES BUSQUEDA
+  public dataBienesBusqueda: object[];
+
   @ViewChild('grid', { static: false }) public gridObj: GridComponent;
+  @ViewChild('gridBusqueda', { static: false }) public gridBusquedaObj: GridComponent;
 
   // TODO VALIDADORES
   validarInputEmpleado = 'form-control';
@@ -56,7 +60,7 @@ export class CreateAsignacionComponent implements OnInit {
   nroSolicitud = '';
   descripcionPeticion = '';
 
-  constructor(private activatedRoute: ActivatedRoute, private empleadoService: AsignacionService) {
+  constructor(private activatedRoute: ActivatedRoute, private empleadoService: AsignacionService, private router: Router) {
     this.dataBienes = [];
     this.activatedRoute.params.subscribe(params => {
       console.log(params['idSolicitud']);
@@ -181,62 +185,65 @@ export class CreateAsignacionComponent implements OnInit {
     );
   }
 
+  volverToBandeja() {
+    this.router.navigate(['']);
+  }
+
   buscarBienToAsignacion(bienDescripcion) {
     bienDescripcion = bienDescripcion.toUpperCase();
     if (bienDescripcion.length > 3) {
-      this.empleadoService.getBienByDescription(bienDescripcion).subscribe(response => {
+      this.empleadoService.getBienByDescription(bienDescripcion).subscribe((response: any) => {
         console.log(response);
+        this.dataBienesBusqueda = response;
+        this.gridBusquedaObj.refresh();
       });
     }
   }
 
-  grabarAsignacion(codigoBienSIGA, dniEmpleado) {
-    console.log('Guardando la asignacion');
-    if (dniEmpleado.length > 0) {
-      for (const biencontados of this.dataBienes) {
-        // TODO SI BIEN ESTE SERVICIO TIENE UN NOMBRE "EMPLEADOSERVICE" EL SERVICIO ES PARA LAS ASIGNACIONES
-        // TODO NORMALMENTE DEVERIA DE LLAMARSE "ASGINACIONSERVICE"
-        this.empleadoService.patchAsignarBienMueble(biencontados['id_patrimonio'], dniEmpleado).subscribe(
-          response => {
-            console.log(response);
+  rowSelectedGridBusqueda(args: RowSelectEventArgs) {
+    const selectedrowindex: number[] = this.gridBusquedaObj.getSelectedRowIndexes();
+    // alert(selectedrowindex);
+    console.log(selectedrowindex);
+    const selectedrecords: Object[] = this.gridBusquedaObj.getSelectedRecords();
+    console.log(selectedrecords);
+    this.codigoPatrimonialEdit = selectedrecords[0]['id_patrimonio'];
+    this.codigoInternoEdit = selectedrecords[0]['id_interno'];
+    this.secuenciaEdit = selectedrecords[0]['secuencia'];
+    /* this.tipoBienEdit = selectedrecords[0]['tipo_bien'];
+    this.grupoBienEdit = selectedrecords[0]['grupo_bien'];
+    this.claseBienEdit = selectedrecords[0]['clase_bien'];
+    this.familiaBienEdit = selectedrecords[0]['familia_bien'];
+    this.itemBienEdit = selectedrecords[0]['item_bien'];*/
+    this.descripcionEdit = selectedrecords[0]['descripcion'];
+    this.empleadoAsignadoEdit = selectedrecords[0]['empleado'];
+    /* this.sedeEdit = selectedrecords[0]['sede'];
+    this.empleadoEdit = selectedrecords[0]['empleado'];
+    this.pliegoEdit = selectedrecords[0]['pliego'];
+    this.centrocostoEdit = selectedrecords[0]['centro_costo'];
+    this.origenactivoEdit = selectedrecords[0]['origen_activo'];
+    this.tipoubicacionEdit = selectedrecords[0]['tipo_ubicacion'];
+    this.codigoUbicacionEdit = selectedrecords[0]['codigo_ubicacion'];*/
+    this.marcaEdit = selectedrecords[0]['codigo_marca'];
+    this.codigoColorEdit = selectedrecords[0]['codigo_color'];
+    this.nombreColorEdit = selectedrecords[0]['nombre_color'];
+    this.caracteristicaEdit = selectedrecords[0]['caracteristica'];
+    this.modeloEdit = selectedrecords[0]['modelo'];
+    this.medidasEdit = selectedrecords[0]['medidas'];
+    this.nroSerieEdit = selectedrecords[0]['nroserie'];
+    this.estadoAsignadoEdit = selectedrecords[0]['estado_asignado'];
+    /* his.valorInicialEdit = selectedrecords[0]['valor_inicial'];
+    this.valorDepEdit = selectedrecords[0]['valor_deprec'];
+    this.clasificadorEdit = selectedrecords[0]['clasificador'];
+    this.anoEEdit = selectedrecords[0]['ano_e'];
+    this.subctaEdit = selectedrecords[0]['sub_cta'];
+    this.mayorEdit = selectedrecords[0]['mayor'];
+    // console.log('30 asignado ' + asignado);
+    this.reparacionEdit = selectedrecords[0]['estado_reparacion'];
+    this.slidaEdit = selectedrecords[0]['salida'];
+    this.estadoEdit = selectedrecords[0]['estado_activo'];
+    this.conservacionEdit = selectedrecords[0]['estado_consercacion'];*/
 
-            // TODO CREAR REGISTRO EN EL TABLE ASIGNATION
-            this.crearAsignacion();
-
-            this.messageAlert = 'SE ASIGNO CORRECTAMENTE LA LISTA DE BIENES AL EMPLEADO SELECCIONADO';
-            this.classMessage = 'alert alert-success';
-            this.mostrarAlert = true;
-            setTimeout(() => {
-              this.mostrarAlert = false;
-              // this.frase = 'guardar';
-            }, 2600);
-          },
-          error1 => {
-            console.log(error1);
-            this.messageAlert = 'NO SE PUDO ASIGNAR CORRECTAMENTE LA LISTA DE BIENES';
-            this.classMessage = 'alert alert-danger';
-            this.mostrarAlert = true;
-            setTimeout(() => {
-              this.mostrarAlert = false;
-              // this.frase = 'guardar';
-            }, 3600);
-          }
-        );
-      }
-    }
-
-    console.log(this.dataBienes);
-  }
-
-  crearAsignacion() {
-    this.empleadoService.postCrearAsignacion().subscribe(
-      response => {
-        console.log(response);
-      },
-      error1 => {
-        console.log(error1);
-      }
-    );
+    // this.comprobarValorCodSiga(this.codigoPatrimonialEdit);
   }
 
   agregarBienLista(codigoSIga) {
@@ -288,6 +295,55 @@ export class CreateAsignacionComponent implements OnInit {
     } as DataResult;
 
     this.gridObj.refresh();
+  }
+
+  grabarAsignacion(codigoBienSIGA, dniEmpleado) {
+    console.log('Guardando la asignacion');
+    if (dniEmpleado.length > 0) {
+      for (const biencontados of this.dataBienes) {
+        // TODO SI BIEN ESTE SERVICIO TIENE UN NOMBRE "EMPLEADOSERVICE" EL SERVICIO ES PARA LAS ASIGNACIONES
+        // TODO NORMALMENTE DEVERIA DE LLAMARSE "ASGINACIONSERVICE"
+        this.empleadoService.patchAsignarBienMueble(biencontados['id_patrimonio'], dniEmpleado).subscribe(
+          response => {
+            console.log(response);
+
+            // TODO CREAR REGISTRO EN EL TABLE ASIGNATION
+            this.crearAsignacion();
+
+            this.messageAlert = 'SE ASIGNO CORRECTAMENTE LA LISTA DE BIENES AL EMPLEADO SELECCIONADO';
+            this.classMessage = 'alert alert-success';
+            this.mostrarAlert = true;
+            setTimeout(() => {
+              this.mostrarAlert = false;
+              // this.frase = 'guardar';
+            }, 2600);
+          },
+          error1 => {
+            console.log(error1);
+            this.messageAlert = 'NO SE PUDO ASIGNAR CORRECTAMENTE LA LISTA DE BIENES';
+            this.classMessage = 'alert alert-danger';
+            this.mostrarAlert = true;
+            setTimeout(() => {
+              this.mostrarAlert = false;
+              // this.frase = 'guardar';
+            }, 3600);
+          }
+        );
+      }
+    }
+
+    console.log(this.dataBienes);
+  }
+
+  crearAsignacion() {
+    this.empleadoService.postCrearAsignacion().subscribe(
+      response => {
+        console.log(response);
+      },
+      error1 => {
+        console.log(error1);
+      }
+    );
   }
 
   generarPDF() {

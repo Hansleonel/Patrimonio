@@ -1,10 +1,10 @@
 <div id="toast_target"></div>
 <div id='#sample_container '>
     <div id='container'>
-        <button (click)="btnClick($event)">Show Toast</button>
+        <button (click)="btnClick()">Show Toast</button>
     </div>
 </div>
-<ejs-toast #element showProgressBar=true (created)="onCreate($event)" (beforeOpen)="onBeforeOpen($event)"
+<ejs-toast #element showProgressBar=true (created)="onCreate()" (beforeOpen)="onBeforeOpen($event)"
            [position]='position'>
     <ng-template #title>
         <div>Nueva Solicitud de Asignacion</div>

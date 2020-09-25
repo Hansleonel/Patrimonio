@@ -6,16 +6,13 @@
 <!-- TODO <DATOS PRINCIPALES DEL EMPLEADO> -->
 <form>
     <div class="row">
-        <div class="form-group col-4">
-            <label>Mis Principales del Usuario : </label>
-        </div>
-        <div class="form-group col-4">
+        <div class="form-group col-6">
             <label>Ingrese Codigo del Usuario</label>
             <input [ngClass]="validarInputEmpleado" [disabled]="valorDis" type="text" maxlength="480"
                    class="form-control" id="codigoUsuario"
                    aria-describedby="codigoEmpleado"
                    placeholder="Ingrese Descripcion" #empleadoCodigo
-                   (keyup)="comprobarValorCodEmpleado(empleadoCodigo.value)" value="JPINEDA" autocomplete="off">
+                   (keyup)="comprobarValorCodEmpleado(empleadoCodigo.value)" value="{{usuCod}}" autocomplete="off">
             <div class="invalid-feedback">
                 ID no encontrado(Ingrese un ID correcto)
             </div>
@@ -23,48 +20,39 @@
                 ID existe
             </div>
         </div>
-        <div class="form-group col-4">
+        <div class="form-group col-6">
             <label style="visibility: hidden">buscar</label>
 
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-4">
-            <label> </label>
-        </div>
-        <div class="form-group col-4">
+        <div class="form-group col-6">
             <label>Dependencia Oficina</label>
             <input type="text" class="form-control" disabled id="depedenciaInputTab"
                    aria-describedby="emailHelp"
                    placeholder="Ingrese Codigo Patrimonial SIGA" #dependenciaOficina value="{{oficina}}">
         </div>
-        <div class="form-group col-4">
+        <div class="form-group col-6">
             <label>Nombres y Apellidos</label>
             <input type="text" class="form-control" disabled id="nombreApellidos" aria-describedby="emailHelp"
                    placeholder="Ingrese Nombres y Apellidos" #nombreApellidos value="{{apellidosNombres}}">
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-4">
-            <label> </label>
-        </div>
-        <div class="form-group col-4">
+        <div class="form-group col-6">
             <label>Documento de Identidad</label>
             <input class="form-control" disabled id="descripcionInputTab"
                    aria-describedby="emailHelp"
                    placeholder="Ingrese Descripcion" #documentoID value="{{docIden}}">
         </div>
-        <div class="form-group col-4">
+        <div class="form-group col-6">
             <label>Cargo Nivel</label>
             <input type="text" class="form-control" disabled id="secuenciaInputTab" aria-describedby="emailHelp"
                    placeholder="Ingrese numero de secuencia" #cargo value="{{cargoEmpleado}}">
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-4">
-            <label> </label>
-        </div>
-        <div class="form-group col-8">
+        <div class="form-group col-12">
             <label>Estado</label><br>
             <form class="was-validated custom-control-inline">
                 <div class="custom-control custom-radio">
@@ -103,10 +91,7 @@
 <!-- TODO <DATOS DE LA PETICION> -->
 <form>
     <div class="row">
-        <div class="form-group col-4">
-            <label>Datos Principales de la Peticion : </label>
-        </div>
-        <div class="form-group col-8">
+        <div class="form-group col-12">
             <label>Ingrese Su peticion</label>
             <div class="form-group">
                 <!-- TODO TEXT AREA -->

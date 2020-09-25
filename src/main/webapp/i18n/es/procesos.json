@@ -1,0 +1,18 @@
+{
+  "procesos": {
+    "title": "PEI",
+    "configuration": {
+      "title": "Configuración"
+    },
+    "goals": {
+      "title": "Objetivos Estratégicos"
+    },
+    "actions": {
+      "process01": "Registro de Bienes",
+      "process02": "Asignacion de Bienes",
+      "process03": "Desplazamiento",
+      "process04": "Relevos",
+      "process05": "Internamiento"
+    }
+  }
+}

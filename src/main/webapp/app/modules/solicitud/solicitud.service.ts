@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { SERVER_API_URL } from 'app/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,6 @@ export class SolicitudService {
   }
 
   postSolicitud(objetoSolicitudPeticion) {
-    return this.http.post(`http://localhost:9000/api/solicitud`, objetoSolicitudPeticion);
+    return this.http.post(`${SERVER_API_URL}api/solicitud`, objetoSolicitudPeticion);
   }
 }

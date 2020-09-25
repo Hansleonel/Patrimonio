@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import pe.gob.mindef.app.domain.Solicitud;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -18,6 +19,8 @@ public interface SolicitudService {
      * @return the persisted entity
      */
     Solicitud save(Solicitud solicitud);
+
+    Solicitud saveDesplazamiento(Solicitud solicitud, List<Long> codigosbien);
 
     /**
      * Get all the solicitud.
@@ -34,6 +37,11 @@ public interface SolicitudService {
      * @return the entity
      */
     Optional<Solicitud> findOne(Long id);
+
+
+    Page<Solicitud> getSolicitudByUser(Pageable pageable, String dni);
+
+
 
     /**
      * Delete the "id" solicitud.

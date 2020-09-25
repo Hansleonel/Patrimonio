@@ -17,7 +17,7 @@ public class Solicitud implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_SOLICITUD")
-    @SequenceGenerator(name = "SQ_SOLICITUD", sequenceName = "SQ_TT_SOLICITUD_ID"
+    @SequenceGenerator(name = "SQ_SOLICITUD", sequenceName = "SQ_TT_SOLICITUD_ID", allocationSize = 1
     )
     @Column(name = "IDSOLICITUD")
     private Long id_solicitud;
@@ -38,24 +38,26 @@ public class Solicitud implements Serializable {
     @JoinColumn(name = "IDPROCESO", referencedColumnName = "IDPROCESO", foreignKey = @ForeignKey(name = "FK_SOLICITUD_PROCESO"))
     private Proceso proceso;
 
+    @ManyToOne(targetEntity = Motivo.class)
+    @JoinColumn(name = "IDMOTIVO", referencedColumnName = "IDMOTIVO", foreignKey = @ForeignKey(name = "FK_SOLICITUD_MOTIVO"))
+    private Motivo motivo;
+
     @Column(name = "FECHAATENCION")
     private Date fecha_atencion;
 
     @Column(name = "FECHARESPUESTA")
     private Date fecha_respuesta;
 
+    @Column(name = "FECHAFINALIZADO")
+    private Date fecha_finalizdo;
+
+    @Column(name = "DESCRIPCIONRESPUESTA")
+    private String descripcionRespuesta;
+
+    @Column(name = "TIPO")
+    private int tipo;
 
     public Solicitud() {
-    }
-
-    public Solicitud(String observacion, int estado, Date fecha_solicitud, String dociden, Proceso proceso, Date fecha_atencion, Date fecha_respuesta) {
-        this.observacion = observacion;
-        this.estado = estado;
-        this.fecha_solicitud = fecha_solicitud;
-        this.dociden = dociden;
-        this.proceso = proceso;
-        this.fecha_atencion = fecha_atencion;
-        this.fecha_respuesta = fecha_respuesta;
     }
 
     public Long getId_solicitud() {
@@ -106,6 +108,14 @@ public class Solicitud implements Serializable {
         this.proceso = proceso;
     }
 
+    public Motivo getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(Motivo motivo) {
+        this.motivo = motivo;
+    }
+
     public Date getFecha_atencion() {
         return fecha_atencion;
     }
@@ -122,24 +132,52 @@ public class Solicitud implements Serializable {
         this.fecha_respuesta = fecha_respuesta;
     }
 
+    public Date getFecha_finalizdo() {
+        return fecha_finalizdo;
+    }
+
+    public void setFecha_finalizdo(Date fecha_finalizdo) {
+        this.fecha_finalizdo = fecha_finalizdo;
+    }
+
+    public String getDescripcionRespuesta() {
+        return descripcionRespuesta;
+    }
+
+    public void setDescripcionRespuesta(String descripcionRespuesta) {
+        this.descripcionRespuesta = descripcionRespuesta;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Solicitud)) return false;
         Solicitud solicitud = (Solicitud) o;
         return getEstado() == solicitud.getEstado() &&
+            getTipo() == solicitud.getTipo() &&
             Objects.equals(getId_solicitud(), solicitud.getId_solicitud()) &&
             Objects.equals(getObservacion(), solicitud.getObservacion()) &&
             Objects.equals(getFecha_solicitud(), solicitud.getFecha_solicitud()) &&
             Objects.equals(getDociden(), solicitud.getDociden()) &&
             Objects.equals(getProceso(), solicitud.getProceso()) &&
+            Objects.equals(getMotivo(), solicitud.getMotivo()) &&
             Objects.equals(getFecha_atencion(), solicitud.getFecha_atencion()) &&
-            Objects.equals(getFecha_respuesta(), solicitud.getFecha_respuesta());
+            Objects.equals(getFecha_respuesta(), solicitud.getFecha_respuesta()) &&
+            Objects.equals(getFecha_finalizdo(), solicitud.getFecha_finalizdo()) &&
+            Objects.equals(getDescripcionRespuesta(), solicitud.getDescripcionRespuesta());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId_solicitud(), getObservacion(), getEstado(), getFecha_solicitud(), getDociden(), getProceso(), getFecha_atencion(), getFecha_respuesta());
+        return Objects.hash(getId_solicitud(), getObservacion(), getEstado(), getFecha_solicitud(), getDociden(), getProceso(), getMotivo(), getFecha_atencion(), getFecha_respuesta(), getFecha_finalizdo(), getDescripcionRespuesta(), getTipo());
     }
 
     @Override
@@ -151,8 +189,12 @@ public class Solicitud implements Serializable {
             ", fecha_solicitud=" + fecha_solicitud +
             ", dociden='" + dociden + '\'' +
             ", proceso=" + proceso +
+            ", motivo=" + motivo +
             ", fecha_atencion=" + fecha_atencion +
             ", fecha_respuesta=" + fecha_respuesta +
+            ", fecha_finalizdo=" + fecha_finalizdo +
+            ", descripcionRespuesta='" + descripcionRespuesta + '\'' +
+            ", tipo=" + tipo +
             '}';
     }
 }

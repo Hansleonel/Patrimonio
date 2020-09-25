@@ -63,7 +63,8 @@ import { CardSolicitudComponent } from './components/card-solicitud/card-solicit
     SortService,
     FilterService,
     GroupService,
-    ToolbarService
+    ToolbarService,
+    SortService
   ]
 })
 export class DashboardModule {}

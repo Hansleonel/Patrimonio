@@ -17,7 +17,7 @@ const routes: Routes = [
     path: 'create',
     component: CreateSolicitudComponent,
     data: {
-      pageTitle: 'Crear Solicitud',
+      pageTitle: 'pesem.configuration.title',
       text: 'Crear',
       breadcrumbs: true
     }

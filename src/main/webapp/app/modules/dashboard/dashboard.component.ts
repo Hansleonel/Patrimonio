@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
 
   documentoPersonaPadre;
   datosPersonaPadre: Object[];
+  datosSolicitudPadre: Object[];
 
   constructor(private router: Router, private dashboardService: DashboardService) {}
 
@@ -50,11 +51,13 @@ export class DashboardComponent implements OnInit {
     // TODO Es necesario inicializar el arreglo aunque sea en null puesto que en el componente hijo nos pedira un valor
     // TODO para los campos consultados como [0]['doc_iden']
     this.datosPersonaPadre = [{}];
+    this.datosSolicitudPadre = [{}];
   }
 
   mostrarDni(datosSeleccionados: Object[]) {
     console.log('datos seleccionados');
     console.log(datosSeleccionados);
+    this.datosSolicitudPadre = datosSeleccionados;
     this.dashboardService.getEmpleado(datosSeleccionados[0]['dociden']).subscribe((response: any) => {
       this.datosPersonaPadre = response;
     });

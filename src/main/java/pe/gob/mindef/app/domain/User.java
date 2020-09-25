@@ -84,6 +84,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
+    @Column(name = "dociden")
+    private String dociden;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -109,6 +112,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public String getLogin() {
         return login;
+    }
+
+    public String getDociden() {
+        return dociden;
+    }
+
+    public void setDociden(String dociden) {
+        this.dociden = dociden;
     }
 
     // Lowercase the login before saving it in database
@@ -231,6 +242,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Override
     public String toString() {
         return "User{" +
+            "id = " + id +
             "login='" + login + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
@@ -239,6 +251,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +
+            ", dociden = " + dociden +
             "}";
     }
 }

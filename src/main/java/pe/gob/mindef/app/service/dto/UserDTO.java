@@ -53,6 +53,8 @@ public class UserDTO {
 
     private Set<String> authorities;
 
+    private String dociden;
+
     public UserDTO() {
         // Empty constructor needed for Jackson.
     }
@@ -70,6 +72,7 @@ public class UserDTO {
         this.createdDate = user.getCreatedDate();
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
+        this.dociden = user.getDociden();
         this.authorities = user.getAuthorities().stream()
             .map(Authority::getName)
             .collect(Collectors.toSet());
@@ -179,9 +182,18 @@ public class UserDTO {
         this.authorities = authorities;
     }
 
+    public String getDociden() {
+        return dociden;
+    }
+
+    public void setDociden(String dociden) {
+        this.dociden = dociden;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
+            "id = " + id +
             "login='" + login + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
@@ -194,6 +206,7 @@ public class UserDTO {
             ", lastModifiedBy='" + lastModifiedBy + '\'' +
             ", lastModifiedDate=" + lastModifiedDate +
             ", authorities=" + authorities +
+            ", dociden=" + dociden +
             "}";
     }
 }

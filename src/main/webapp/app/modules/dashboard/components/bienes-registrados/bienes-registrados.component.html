@@ -2,14 +2,15 @@
     <div class="col-12 pl-0 pr-0" style="display: block;">
         <!--<button type="button" class="btn btn-light">Borrar</button>-->
         <button type="button" class="btn btn-primary float-right " (click)="irCrearSolicitud()">Crear Solicitud</button>
-        <button type="button" class="btn btn-light float-right mr-2" (click)="irCrearAsignacion()">Revisar Solicitud
+        <button *mdHasAnyAuthority="['ROLE_ADMIN']" type="button" class="btn btn-light float-right mr-2"
+                (click)="irCrearAsignacion()">Revisar Solicitud
         </button>
     </div>
 </div>
 <div class="row mt-3">
     <ejs-grid #grid [dataSource]='dataGridSolicitudes' allowPaging='true' [enableHover]="false" [allowSelection]="true"
               [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'
-              (rowSelected)='rowSelected($event)'>
+              (rowSelected)='rowSelected($event)' [allowSorting]='true'>
         <e-columns>
             <e-column type='checkbox' width='30'></e-column>
             <e-column field='id_solicitud' isPrimaryKey='true' headerText='ID SOLICITUD' width='80'

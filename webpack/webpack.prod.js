@@ -15,7 +15,7 @@ const commonConfig = require('./webpack.common.js');
 
 const ENV = 'production';
 const sass = require('sass');
-const ARTIFACT_ID = 'mindefApp'; // Cambiar de acuerdo al nombre del proyecto
+const ARTIFACT_ID = 'patrimonio'; // Cambiar de acuerdo al nombre del proyecto
 
 module.exports = webpackMerge(commonConfig({ env: ENV }), {
     // Enable source maps. Please note that this will slow down the build.

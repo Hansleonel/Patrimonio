@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/cor
 import { DashboardService } from 'app/modules/dashboard/dashboard.service';
 import { GridComponent, RowSelectEventArgs } from '@syncfusion/ej2-angular-grids';
 import { Router } from '@angular/router';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'md-bienes-registrados',
@@ -9,6 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./bienes-registrados.component.scss']
 })
 export class BienesRegistradosComponent implements OnInit {
+  // TODO DATOS DE CUENTA TO KNOW THE ROLE
+
+  currentAccount: any;
+
   public dataGrid: Object[];
   public dataGridEmpleado: Object[];
   // TODO DATA SOLICITUDES
@@ -27,12 +32,18 @@ export class BienesRegistradosComponent implements OnInit {
   @ViewChild('grid', { static: false })
   public grid: GridComponent;
 
-  constructor(private empleadoService: DashboardService, private router: Router) {
+  constructor(private empleadoService: DashboardService, private router: Router, private accountService: AccountService) {
     this.datosSeleccionados = new EventEmitter<Object[]>();
   }
 
   ngOnInit() {
     this.buscarEmpleado();
+    this.accountService.identity().subscribe(account => {
+      this.currentAccount = account;
+      console.log('LA CUENTA DEL USER Y EL ROL ES');
+      console.log(this.currentAccount);
+    });
+
     this.dataGrid = [
       {
         CodInterno: 1000,
@@ -227,7 +238,6 @@ export class BienesRegistradosComponent implements OnInit {
       this.dataGridEmpleado = response;
       console.log(this.dataGridEmpleado);
     });
-
     this.empleadoService.getSolicitudes().subscribe((response: any) => {
       this.dataGridSolicitudes = response;
     });

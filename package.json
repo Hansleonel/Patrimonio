@@ -1,5 +1,5 @@
 {
-  "name": "mindef-app",
+  "name": "patrimonio",
   "version": "0.0.1-SNAPSHOT",
   "description": "Description for mindefApp",
   "private": true,
@@ -27,6 +27,7 @@
     "@syncfusion/ej2-angular-dropdowns": "^17.4.46",
     "@syncfusion/ej2-angular-grids": "^17.3.27",
     "@syncfusion/ej2-angular-notifications": "^17.3.30",
+    "@syncfusion/ej2-layouts": "^17.4.47",
     "@syncfusion/ej2-ng-navigations": "^16.2.50",
     "admin-lte": "^3.0.0-rc.5",
     "bootstrap": "4.3.1",
@@ -69,7 +70,7 @@
     "file-loader": "4.2.0",
     "fork-ts-checker-webpack-plugin": "1.5.0",
     "friendly-errors-webpack-plugin": "1.7.0",
-    "generator-jhipster": "6.4.1",
+    "generator-jhipster": "^6.7.1",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
     "husky": "3.0.4",

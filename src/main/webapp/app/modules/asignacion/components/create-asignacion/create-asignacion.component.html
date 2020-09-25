@@ -3,8 +3,145 @@
           tituloDescripcion="Cuadro de Asignaciones de Bienes Patrimoniales"></md-title>
 <!-- TODO </TITULO> -->
 
-<!-- TODO <DATOS PRINCIPALES DEL EMPLEADO> -->
+<!-- TODO CARD -->
 <form>
+    <div class="row">
+        <div class="form-group col-4">
+            <label>Datos Principales de la Peticion : </label>
+            <!--<div tabindex="0" class="e-card" id="basic">
+                <div tabindex="0" class="e-card">
+                    <div class="e-card-header">
+                        <div class="e-card-header-image football">
+                            <img style="width: 80%; height: auto;"
+                                 src="http://10.24.9.39/BBDDLEGAJOS/FOTOS/{{docIden}}.jpg"
+                                 class="rounded-circle"/></div>
+                        <div class="e-card-header-caption">
+                            <div class="e-card-header-title"> {{usuCod}}</div>
+                            <div class="e-card-sub-title">{{oficina}}</div>
+                        </div>
+                    </div>
+                    <div class="e-card-content">
+                        DNI : {{docIden}}<br>
+                        <br>
+                        APELIIDOS Y NOMBRES : {{apellidosNombres}}<br>
+                        <br>
+                        <div style="font-weight: bold;">
+                            PETICION : {{descripcionPeticion.toUpperCase()}}
+                        </div>
+                        <br>
+                        CARGO : {{cargoEmpleado}}<br>
+                        <br>
+                        <span class="badge badge-warning p-3">ESTADO: EN REVISION</span>
+                    </div>
+                </div>
+            </div>-->
+            <div class="card">
+                <article class="card-body">
+                    <h4 class="card-title text-center mb-4 mt-1">Peticion</h4>
+                    <br>
+                    <hr>
+                    <img style="width: 20%; height: auto;"
+                         src="http://10.24.9.39/BBDDLEGAJOS/FOTOS/{{docIden}}.jpg"
+                         class="rounded-circle centerImg"/>
+                    <br>
+                    <span class="badge badge-warning p-3 centerImg">ESTADO: EN REVISION</span>
+                    <br>
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-address-card"></i> </span>
+                                </div>
+                                <input name="" class="form-control" placeholder="Email or login" type="text" disabled
+                                       value="{{usuCod}}">
+                            </div> <!-- input-group.// -->
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input name="" class="form-control" placeholder="Email or login" type="text" disabled
+                                       value="{{apellidosNombres}}">
+                            </div> <!-- input-group.// -->
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-sitemap"></i> </span>
+                                </div>
+                                <input name="" class="form-control" placeholder=" " type="text" disabled
+                                       value="{{cargoEmpleado}}">
+                            </div> <!-- input-group.// -->
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                                </div>
+                                <input name="" class="form-control" placeholder=" " type="text" disabled
+                                       value="{{oficina}}">
+                            </div> <!-- input-group.// -->
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-shopping-cart"></i> </span>
+                                </div>
+                                <textarea style="border-color: #007bff" name="" class="form-control" placeholder=" "
+                                          type="text" disabled
+                                          value="{{descripcionPeticion.toUpperCase()}}"></textarea>
+                            </div> <!-- input-group.// -->
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-primary btn-block"
+                                        (click)="volverToBandeja()"> Volver a la Bandeja
+                                </button>
+                            </div> <!-- form-group// -->
+                            <!--<p class="text-center"><a href="#" class="btn">Forgot password?</a></p>-->
+                        </div>
+                    </form>
+                </article>
+            </div> <!-- card.// -->
+        </div>
+        <div class="form-group col-8">
+            <label>Ingrese Busqueda de la Peticion</label>
+            <div class="form-group">
+                <input type="text" maxlength="480"
+                       class="form-control" id="buscarPeticion1"
+                       aria-describedby="buscarPeticion"
+                       placeholder="Ingrese la descripcion del bien" #buscarBien
+                       (keyup)="buscarBienToAsignacion(buscarBien.value)" autocomplete="off">
+                <br>
+                <ejs-grid #gridBusqueda [dataSource]='dataBienesBusqueda' allowPaging='true' [enableHover]="false"
+                          [allowSelection]="true"
+                          [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'
+                          (rowSelected)='rowSelectedGridBusqueda($event)'>
+                    <e-columns>
+                        <e-column type='checkbox' width='30'></e-column>
+                        <e-column field='id_patrimonio' headerText='ID Patrimonio SIGA' width='90' textAlign='Right'
+                                  isPrimaryKey='true'></e-column>
+                        <e-column field='id_interno' headerText='ID Interno' width='60' textAlign='Right'
+                                  isPrimaryKey='true'></e-column>
+                        <e-column field='descripcion' headerText='Descripcion' width='250' textAlign='Left'></e-column>
+                        <e-column field='estado_asignado' headerText='Estado Asignacion' width='90'
+                                  textAlign='Right'></e-column>
+                        <e-column field='empleado' headerText='Empleado' width='100' editType='dropdownedit'
+                                  textAlign='Right'></e-column>
+                        <e-column field='caracteristica' headerText='Caracteristica' width='150'></e-column>
+                    </e-columns>
+                </ejs-grid>
+
+
+            </div>
+        </div>
+    </div>
+</form>
+<!-- TODO </CARD> -->
+
+<!-- TODO <DATOS PRINCIPALES DEL EMPLEADO> -->
+<form hidden>
     <div class="row">
         <div class="form-group col-4">
             <label>Datos Principales del Usuario : </label>
@@ -101,9 +238,9 @@
     </div>
 </form>
 <!-- TODO </DATOS PRINCIPALES DEL EMPLEADO> -->
-<hr>
+<!--<hr>-->
 <!-- TODO <DATOS DE LA PETICION> -->
-<form>
+<form hidden>
     <div class="row">
         <div class="form-group col-4">
             <label>Datos Principales de la Peticion : </label>
@@ -120,15 +257,15 @@
     </div>
 </form>
 <!-- TODO </DATOS DE LA PETICION> -->
-<hr>
+<!--<hr>-->
 <!-- TODO <BUSCAR EN EL GRID> -->
-<form>
+<!--<form>
     <div class="row">
         <div class="form-group col-4">
             <label>Buscar Bienes Muebles para la solicitud </label>
         </div>
         <div class="form-group col-8">
-            <label>Ingrese Su peticion</label>
+            <label>Ingrese Busqueda de la Peticion</label>
             <div class="form-group">
                 <input type="text" maxlength="480"
                        class="form-control" id="buscarPeticion"
@@ -139,11 +276,39 @@
         </div>
     </div>
 </form>
-<!-- TODO </BUSCAR EN EL GRID> -->
+<form>
+    <div class="row">
+        <div class="form-group col-4">
+        </div>
+        <div class="form-group col-8">
+            <div class="form-group">
+                <ejs-grid #gridBusqueda [dataSource]='dataBienesBusqueda' allowPaging='true' [enableHover]="false"
+                          [allowSelection]="true"
+                          [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'
+                          (rowSelected)='rowSelectedGridBusqueda($event)'>
+                    <e-columns>
+                        <e-column type='checkbox' width='30'></e-column>
+                        <e-column field='id_patrimonio' headerText='ID Patrimonio SIGA' width='90' textAlign='Right'
+                                  isPrimaryKey='true'></e-column>
+                        <e-column field='id_interno' headerText='ID Interno' width='60' textAlign='Right'
+                                  isPrimaryKey='true'></e-column>
+                        <e-column field='descripcion' headerText='Descripcion' width='250' textAlign='Left'></e-column>
+                        <e-column field='estado_asignado' headerText='Estado Asignacion' width='90'
+                                  textAlign='Right'></e-column>
+                        <e-column field='empleado' headerText='Empleado' width='100' editType='dropdownedit'
+                                  textAlign='Right'></e-column>
+                        <e-column field='caracteristica' headerText='Caracteristica' width='150'></e-column>
+                    </e-columns>
+                </ejs-grid>
+            </div>
+        </div>
+    </div>
 <hr>
+</form>-->
+<!-- TODO </BUSCAR EN EL GRID> -->
 
 <!-- TODO <DATOS PRINCIPALES DEL MUEBLE> -->
-<form>
+<form hidden>
     <div class="row">
         <div class="form-group col-4">
             <label>Datos Principales del bien Mueble : </label>
@@ -258,54 +423,46 @@
 </form>
 
 <!-- TODO METODOS PARA GENERAR GRABAR Y AGREGAR A LA LISTA DEL GRID -->
-<div class="row">
-    <div class="col-12 pl-0 pr-0">
-        <button type="button" class="btn btn-light float-right mr-2" (click)="generarPDF()">Generar PDF</button>
-        <button type="button" class="btn btn-outline-primary float-right mr-2"
-                (click)="grabarAsignacion(codigoSIGA.value, documentoID.value)">Grabar
-            Asignacion
-        </button>
-        <button type="button" class="btn btn-primary float-right mr-2"
-                (click)="agregarBienLista(codigoSIGA.value)">Agregar a Lista
-        </button>
-    </div>
-</div>
-
-<br>
-<div class="row">
-    <div class="col-12 pl-0 pr-0">
-        <div *ngIf="mostrarAlert" [ngClass]="classMessage" role="alert">
-            {{messageAlert}}
+<form>
+    <div class="row">
+        <div class="col-12 pl-0 pr-0">
+            <button type="button" class="btn btn-light float-right mr-2" (click)="generarPDF()">Generar PDF</button>
+            <button type="button" class="btn btn-outline-primary float-right mr-2"
+                    (click)="grabarAsignacion(codigoSIGA.value, documentoID.value)">Aprobar Asignacion
+            </button>
+            <button type="button" class="btn btn-primary float-right mr-2"
+                    (click)="agregarBienLista(codigoSIGA.value)">Agregar a Lista
+            </button>
         </div>
     </div>
-</div>
 
-<div class="row mt-3">
-    <ejs-grid #grid [dataSource]='dataBienes' allowPaging='true' [enableHover]="false" [allowSelection]="true"
-              [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'>
-        <e-columns>
-            <!--<e-column type='checkbox' width='50'></e-column>
-            <e-column field='doc_iden' isPrimaryKey='true' headerText='DNI' width='120' textAlign='Center'></e-column>
-            <e-column field='usu_cod' headerText='Usuario' width='120'></e-column>
-            <e-column field='nombre1' headerText='Nombre' width='100' format='C2' textAlign='Center'></e-column>
-            <e-column field='ape_pat' headerText='Paterno' width='100' textAlign='Center'></e-column>
-            <e-column field='ape_mat' headerText='Materno' width='100' textAlign='Center'></e-column>
-            <e-column field='oficina' headerText='Oficina' width='140' textAlign='Center'></e-column>
-            <e-column field='cargo' headerText='Cargo' width='100' format='C2' textAlign='Center'></e-column>-->
-            <e-column type='checkbox' width='30'></e-column>
-            <e-column field='id_patrimonio' headerText='ID Patrimonio SIGA' width='90' textAlign='Right'
-                      isPrimaryKey='true'></e-column>
-            <e-column field='id_interno' headerText='ID Interno' width='60' textAlign='Right'
-                      isPrimaryKey='true'></e-column>
-            <e-column field='descripcion' headerText='Descripcion' width='250' textAlign='Right'></e-column>
-            <e-column field='estado_asignado' headerText='Estado Asignacion' width='90'
-                      textAlign='Right'></e-column>
-            <e-column field='empleado' headerText='Empleado' width='100' editType='dropdownedit'
-                      textAlign='Right'></e-column>
-            <e-column field='caracteristica' headerText='Caracteristica' width='150'></e-column>
-        </e-columns>
-    </ejs-grid>
-</div>
+    <br>
+    <div class="row">
+        <div class="col-12 pl-0 pr-0">
+            <div *ngIf="mostrarAlert" [ngClass]="classMessage" role="alert">
+                {{messageAlert}}
+            </div>
+        </div>
+    </div>
 
+    <div class="row mt-3">
+        <ejs-grid #grid [dataSource]='dataBienes' allowPaging='true' [enableHover]="false" [allowSelection]="true"
+                  [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'>
+            <e-columns>
+                <e-column type='checkbox' width='30'></e-column>
+                <e-column field='id_patrimonio' headerText='ID Patrimonio SIGA' width='90' textAlign='Right'
+                          isPrimaryKey='true'></e-column>
+                <e-column field='id_interno' headerText='ID Interno' width='60' textAlign='Right'
+                          isPrimaryKey='true'></e-column>
+                <e-column field='descripcion' headerText='Descripcion' width='250' textAlign='Right'></e-column>
+                <e-column field='estado_asignado' headerText='Estado Asignacion' width='90'
+                          textAlign='Right'></e-column>
+                <e-column field='empleado' headerText='Empleado' width='100' editType='dropdownedit'
+                          textAlign='Right'></e-column>
+                <e-column field='caracteristica' headerText='Caracteristica' width='150'></e-column>
+            </e-columns>
+        </ejs-grid>
+    </div>
+</form>
 
 

@@ -1,7 +1,7 @@
-<md-title tituloGeneral="Dashboard Patrimonio"
+ <md-title *mdHasAnyAuthority="['ROLE_ADMIN']" tituloGeneral="Dashboard Patrimonio"
           tituloDescripcion="Generador de cuadro de asignacion de bienes Patrimoniales"></md-title>
 <!-- TODO CARDS DASHBOARD -->
-<div class="row">
+<div *mdHasAnyAuthority="['ROLE_ADMIN']" class="row">
     <div class="col-md-3 col-sm-6 col-xs-12" *ngFor="let e of enlaces">
         <md-bien-enlace (cardSeleccionado)="verBienEnlace($event)" [tituloHijo]="e.titulo" [classesHijo]="e.classes"
                         [iconClassHijo]="e.iconClasses" [descripcionHijo]="e.descripcion"
@@ -10,11 +10,11 @@
 </div>
 <!-- TODO CARDS DASHBOARD -->
 
-<md-title tituloGeneral="Cuadros Estadisticos"
+<md-title *mdHasAnyAuthority="['ROLE_ADMIN']" tituloGeneral="Cuadros Estadisticos"
           tituloDescripcion="Generador de cuadros estadisticos"></md-title>
 
 <!-- TODO <CARDS CONTAINER> -->
-<div class="row control-section card-control-section basic_card_layout"
+<div *mdHasAnyAuthority="['ROLE_ADMIN']" class="row control-section card-control-section basic_card_layout"
      style="margin-bottom: 18px; margin-top: 18px;justify-content: center;">
     <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
         <!-- TODO <CHART P> -->
@@ -33,7 +33,8 @@
 <div class="row">
     <div class="col-6" style="display: block;">
         <!-- TODO GRID DASHBOARD -->
-        <md-bienes-registrados (datosSeleccionados)="mostrarDni($event)"></md-bienes-registrados>
+        <md-bienes-registrados *mdHasAnyAuthority="['ROLE_ADMIN','ROLE_USER']"
+                               (datosSeleccionados)="mostrarDni($event)"></md-bienes-registrados>
         <!-- TODO /GRID DASHBOARD -->
     </div>
     <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
@@ -41,6 +42,10 @@
         <!-- <md-toast-empleado></md-toast-empleado> -->
         <!-- TODO el componente card-solicitud.component puede recibir informacion desde el componente padre es decir
              TODO este componente dashboard.component, puesto que card-solicutd.component esta usando el @Input()-->
-        <md-card-solicitud [documentoPersonaHijo]="documentoPersonaPadre" [datosPersonaHijo]="datosPersonaPadre"></md-card-solicitud>
+        <md-card-solicitud *mdHasAnyAuthority="['ROLE_ADMIN']"
+                           [documentoPersonaHijo]="documentoPersonaPadre"
+                           [datosPersonaHijo]="datosPersonaPadre"
+                           [datosSolicitudHijo]=datosSolicitudPadre></md-card-solicitud>
     </div>
 </div>
+

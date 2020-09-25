@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pe.gob.mindef.app</groupId>
-    <artifactId>mindef-app</artifactId>
+    <artifactId>patrimonio</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
     <name>Mindef App</name>

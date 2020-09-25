@@ -2,7 +2,7 @@ import { IMenu } from 'app/shared/models/menu';
 
 export const MENU: IMenu = {
   items: [
-    {
+    /* {
       icon: 'city',
       text: 'PESEM',
       translate: 'pesem.title',
@@ -49,6 +49,43 @@ export const MENU: IMenu = {
           icon: 'clipboard-list',
           text: 'Acciones Estratégicas',
           translate: 'pei.actions.title'
+        }
+      ]
+    }, */
+    {
+      icon: 'box',
+      text: 'Procesos',
+      translate: '',
+      children: [
+        {
+          link: '/bienes-muebles',
+          icon: 'box',
+          text: 'Registro Bienes',
+          translate: 'procesos.actions.process01'
+        },
+        {
+          link: '/solicitudes/create',
+          icon: 'box',
+          text: 'Asignacion Bienes',
+          translate: 'procesos.actions.process02'
+        },
+        {
+          link: '/Desplazamiento',
+          icon: 'box',
+          text: 'Desplazamiento Bienes',
+          translate: 'procesos.actions.process03'
+        },
+        {
+          link: '/Relevos',
+          icon: 'box',
+          text: 'Relevos Bienes',
+          translate: 'procesos.actions.process04'
+        },
+        {
+          link: '/Internamiento',
+          icon: 'box',
+          text: 'Internamiento Bienes',
+          translate: 'procesos.actions.process05'
         }
       ]
     }

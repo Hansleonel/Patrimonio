@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { SERVER_API_URL } from 'app/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -47,15 +48,15 @@ export class BienesService {
   constructor(private http: HttpClient) {}
 
   getBien() {
-    return this.http.get(`http://localhost:9000/api/bien?page=1&size=2000`);
+    return this.http.get(`${SERVER_API_URL}api/bien?page=1&size=2000`);
   }
 
   getBienes() {
-    return this.http.get(`http://localhost:9000/api/bien`);
+    return this.http.get(`${SERVER_API_URL}api/bien`);
   }
 
   getBienCodigo(codigoSIGA) {
-    return this.http.get(`http://localhost:9000/api/bien/${codigoSIGA}`);
+    return this.http.get(`${SERVER_API_URL}api/bien/${codigoSIGA}`);
   }
 
   postBien(
@@ -129,7 +130,7 @@ export class BienesService {
       estado_consercacion: conservacion,
       nroserie: nroSerieBien
     };
-    return this.http.post(`http://localhost:9000/api/bien`, this.a);
+    return this.http.post(`${SERVER_API_URL}api/bien`, this.a);
 
     // return this.http.post(`http://localhost:9000/api/bien`, this.a)
   }

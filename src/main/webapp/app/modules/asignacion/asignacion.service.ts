@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { SERVER_API_URL } from 'app/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +20,15 @@ export class AsignacionService {
   }
 
   getBienCodigo(codigoSIGA) {
-    return this.http.get(`http://localhost:9000/api/bien/${codigoSIGA}`);
+    return this.http.get(`${SERVER_API_URL}api/bien/${codigoSIGA}`);
   }
 
   getBienByDescription(descripcionBien) {
-    return this.http.get(`http://localhost:9000/api/BienDescripcion/${descripcionBien}`);
+    return this.http.get(`${SERVER_API_URL}api/BienDescripcion/${descripcionBien}?size=1080`);
   }
 
   getSolicitud(nroSolicitud) {
-    return this.http.get(`http://localhost:9000/api/solicitud/${nroSolicitud}`);
+    return this.http.get(`${SERVER_API_URL}api/solicitud/${nroSolicitud}`);
   }
 
   patchAsignarBienMueble(idBienMueble, dniEmpleado) {
@@ -36,7 +37,7 @@ export class AsignacionService {
       empleado: dniEmpleado
     };
 
-    return this.http.patch(`http://localhost:9000/api/bien/${idBienMueble}`, this.asignarMueble);
+    return this.http.patch(`${SERVER_API_URL}api/bien/${idBienMueble}`, this.asignarMueble);
   }
 
   postCrearAsignacion() {
@@ -50,6 +51,6 @@ export class AsignacionService {
       estado_asignacion: 'aprobado'
     };
 
-    return this.http.post(`http://localhost:9000/api/asignacion`, this.asignacion);
+    return this.http.post(`${SERVER_API_URL}api/asignacion`, this.asignacion);
   }
 }

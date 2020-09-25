@@ -122,6 +122,10 @@ public class Bien implements Serializable {
     public Bien() {
     }
 
+    public Bien(Long id_patrimonio) {
+        this.id_patrimonio = id_patrimonio;
+    }
+
     public Bien(Long id_patrimonio, Long id_interno, int secuencia, String tipo_bien, int grupo_bien, int clase_bien, int familia_bien, int item_bien, String descripcion, int sede, int pliego, long centro_costo, long empleado, String origen_activo, int tipo_ubicacion, int codigo_ubicacion, int codigo_marca, int codigo_color, String nombre_color, String caracteristica, String modelo, String medidas, String nroserie, String valor_inicial, String valor_deprec, String clasificador, int ano_e, long sub_cta, int mayor, String estado_asignado, String estado_reparacion, String salida, String estado_activo, String estado_consercacion) {
         this.id_patrimonio = id_patrimonio;
         this.id_interno = id_interno;
