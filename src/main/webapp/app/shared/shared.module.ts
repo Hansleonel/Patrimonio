@@ -7,9 +7,11 @@ import { MdLoginComponent } from './login/login.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 import { LoadingComponent } from './loading/loading.component';
 import { TitleComponent } from './title/title.component';
+import { SearchComponent } from './search/search.component';
+import { AutoCompleteModule } from '@syncfusion/ej2-angular-dropdowns';
 
 @NgModule({
-  imports: [MindefAppSharedLibsModule],
+  imports: [MindefAppSharedLibsModule, AutoCompleteModule],
   declarations: [
     FindLanguageFromKeyPipe,
     MdAlertComponent,
@@ -17,7 +19,8 @@ import { TitleComponent } from './title/title.component';
     MdLoginComponent,
     HasAnyAuthorityDirective,
     LoadingComponent,
-    TitleComponent
+    TitleComponent,
+    SearchComponent
   ],
   entryComponents: [MdLoginComponent, LoadingComponent],
   exports: [
@@ -28,7 +31,8 @@ import { TitleComponent } from './title/title.component';
     MdLoginComponent,
     HasAnyAuthorityDirective,
     LoadingComponent,
-    TitleComponent
+    TitleComponent,
+    SearchComponent
   ]
 })
 export class MindefAppSharedModule {}

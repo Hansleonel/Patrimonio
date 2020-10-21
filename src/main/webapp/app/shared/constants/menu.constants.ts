@@ -70,7 +70,7 @@ export const MENU: IMenu = {
           translate: 'procesos.actions.process02'
         },
         {
-          link: '/Desplazamiento',
+          link: '/desplazamiento/entrante',
           icon: 'box',
           text: 'Desplazamiento Bienes',
           translate: 'procesos.actions.process03'

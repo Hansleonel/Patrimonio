@@ -1,0 +1,4 @@
+<ejs-autocomplete
+    id='customers2' #remote2
+    [dataSource]='data | async'  [fields]='remoteFields' [placeholder]='remoteWaterMark' (filtering)="filtering($event)"></ejs-autocomplete >
+

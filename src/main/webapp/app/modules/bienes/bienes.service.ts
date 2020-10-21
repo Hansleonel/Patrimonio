@@ -48,7 +48,7 @@ export class BienesService {
   constructor(private http: HttpClient) {}
 
   getBien() {
-    return this.http.get(`${SERVER_API_URL}api/bien?page=1&size=2000`);
+    return this.http.get(`${SERVER_API_URL}api/bien?page=0&size=2000`);
   }
 
   getBienes() {

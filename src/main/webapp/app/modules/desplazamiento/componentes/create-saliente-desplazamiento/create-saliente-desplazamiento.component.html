@@ -1,0 +1,59 @@
+<form [formGroup]="form">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="tipoDesplazamiento">Tipo de Desplazamiento</label>
+                    <select id="tipoDesplazamiento" class="form-control" formControlName="tipoDesplazamiento">
+                        <option *ngFor="let td of tiposDesplazamiento"
+                                [value]="td.idTipoDesplazamiento">{{td.nombre}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="usuarioAutorizante">Usuario Autorizante</label>
+                    <!--<input type="search" class="form-control" id="usuarioAutorizante"
+                           formControlName="usuarioAutorizante"/>-->
+                    <md-search></md-search>
+
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="codigoBien">C&oacute;digo Bien Interno</label>
+
+                    <select id="codigoBien" class="form-control" formControlName="codigoBien">
+                        <option value="">Selecciones c&oacute;digo</option>
+                        <option *ngFor="let td of bienes"
+                                [value]="td.idBien">{{td.nombre}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="fechaInicioDesplazamiento">Fecha inicio del Departamento</label>
+                    <input type="date" class="form-control" id="fechaInicioDesplazamiento"
+                           formControlName="fechaInicioDesplazamiento"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="fechaFinDesplazamiento">Fecha fin del Desplazamiento</label>
+                    <input type="date" class="form-control" id="fechaFinDesplazamiento"
+                           formControlName="fechaFinDesplazamiento"/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="detalle">Datos Adicionales</label>
+                    <textarea class="form-control" id="detalle" rows="3" formControlName="detalle"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid" (click)="onSave()">Guardar
+    </button>
+</form>

@@ -1,0 +1,27 @@
+<div class="row" *ngIf="showTab">
+    <div class="col-md-12 p-2 ">
+        <button class="btn btn-primary float-right" [routerLink]="'create'">Solicitar Desplazamiento</button>
+    </div>
+    <div class="col-md-12">
+
+        <ejs-grid #grid [dataSource]="[]" allowPaging="true" [enableHover]="false" [allowSelection]="true"
+                  [selectionSettings]="{}" [editSettings]='{}' [toolbar]=''>
+            <e-columns>
+                <e-column type="checkbox" width="30"></e-column>
+                <e-column field="id_patrimonio" headerText="ID Patrimonio SIGA" width="90" textAlign="Right"
+                          isPrimaryKey="true"></e-column>
+                <e-column field="id_interno" headerText="ID Interno" width="60" textAlign="Right"
+                          isPrimaryKey="true"></e-column>
+                <e-column field="descripcion" headerText="Descripcion" width="250" textAlign="Right"></e-column>
+                <e-column field="estado_asignado" headerText="Estado Asignacion" width="90"
+                          textAlign="Right"></e-column>
+                <e-column field="empleado" headerText="Empleado" width="100" editType="dropdownedit"
+                          textAlign="Right"></e-column>
+                <e-column field="caracteristica" headerText="Caracteristica" width="150"></e-column>
+            </e-columns>
+        </ejs-grid>
+    </div>
+    <div class="col-md-12"></div>
+</div>
+
+<router-outlet></router-outlet>

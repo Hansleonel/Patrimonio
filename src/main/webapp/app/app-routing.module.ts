@@ -52,6 +52,15 @@ const LAYOUT_ROUTES = [...errorRoute];
           }
         },
         {
+          path: 'desplazamiento',
+          component: AdminLayoutComponent,
+          loadChildren: () => import('./modules/desplazamiento/desplazamiento.module').then(m => m.DesplazamientoModule),
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: ['ROLE_USER', 'ROLE_ADMIN']
+          }
+        },
+        {
           path: PublicRoutes.login,
           component: MdLoginComponent
         },
