@@ -1,38 +1,97 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+
+import { FormControl, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
+
+interface Item {
+  value: string;
+  name: string;
+  selected?: boolean;
+  detail?: any;
+}
+
 @Component({
   selector: 'md-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  public data: Observable<any>;
+  itemSelected: Item;
+  data: any[] = [];
+  formControl = new FormControl();
+  isHidden = true;
+  @Input() placeholder = 'Search';
+  @Input() spinner = false;
 
-  // maps the remote data column to fields property
-  public remoteFields: Object = { value: 'UserName' };
-
-  // set the placeholder to AutoComplete input element
-  public remoteWaterMark = 'Select a customer';
-
-  public value = 'Badminton';
-  constructor(private http: HttpClient) {
-    this.data = this.http.get<{ [key: string]: object }[]>('https://services.odata.org/V4/Northwind/Northwind.svc/Customers').pipe(
-      map((results: { [key: string]: any }) => {
-        return results.value;
-      })
-    );
-  }
-  ngOnInit(): void {}
-
-  filtering(event) {
-    console.log(event);
-    this.data = this.onSearchingData(event.text);
+  @Input() set required(req: boolean) {
+    if (req) {
+      this.formControl.setValidators([Validators.required]);
+    }
   }
 
-  onSearchingData(params) {
-    return this.http.get("https://services.odata.org/TripPinRESTierService/People?$filter=FirstName eq '" + params + "'");
-    // return this.http.get("https://jsonplaceholder.typicode.com/comments", {params})
+  @Input() set item(item: Item) {
+    this.itemSelected = item;
+  }
+
+  @Input() set items(items: Item[]) {
+    setTimeout(() => {
+      this.data = items.map(r => {
+        if (this.itemSelected) {
+          r.selected = r.value === this.itemSelected.value;
+        }
+        return r;
+      });
+    }, 20);
+  }
+
+  @Input() hasNextPage: boolean;
+  @Output() textChange = new EventEmitter<any>();
+  @Output() nextPage = new EventEmitter<void>();
+  @Output() valueChange = new EventEmitter<Item>();
+
+  constructor(private eRef: ElementRef) {}
+
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.isHidden = true;
+    }
+  }
+
+  toggleList() {
+    this.isHidden = !this.isHidden;
+  }
+
+  ngOnInit() {
+    this.formControl.valueChanges.pipe(debounceTime(300)).subscribe(r => {
+      this.onValueChange(r);
+    });
+  }
+
+  selectInput() {
+    if (this.formControl.value) {
+      this.isHidden = false;
+    }
+  }
+
+  onValueChange(val) {
+    this.selectInput();
+    this.textChange.emit(val);
+  }
+
+  onNextPage() {
+    this.nextPage.emit();
+  }
+
+  onSelectItem(index: number, item: Item) {
+    this.data.map(r => {
+      return (r.selected = false);
+    });
+    item.selected = true;
+    this.formControl.setValue(item.name, { emitEvent: false });
+    const obj: any = { ...item };
+    delete obj.selected;
+    this.valueChange.emit(obj);
+    this.toggleList();
   }
 }

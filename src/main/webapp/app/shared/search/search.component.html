@@ -1,4 +1,37 @@
-<ejs-autocomplete
-    id='customers2' #remote2
-    [dataSource]='data | async'  [fields]='remoteFields' [placeholder]='remoteWaterMark' (filtering)="filtering($event)"></ejs-autocomplete >
+<div>
+    <input type="text" class="form-control" [placeholder]="placeholder" [formControl]="formControl"
+           (click)="selectInput()"/>
+    <div class="card w-100" [hidden]="isHidden" style="position: absolute; width: 100%; z-index: 1;">
 
+        <div class="card-body p-0" style="overflow: auto; max-height: 180px">
+            <ul class="list-group p-0">
+                <ng-container *ngIf="data && data.length > 0; else notFound">
+                    <ng-container *ngFor="let item of data; let i=index">
+                        <li class="list-group-item p-2 pl-2 " style="cursor: pointer"
+                            [ngClass]="{'active': item.selected}"
+                            (click)="onSelectItem(i, item)">
+                            {{item.name}}
+                        </li>
+
+                    </ng-container>
+                    <li class="list-group-item list-group-item-action text-center p-0" *ngIf="hasNextPage"
+                        (click)="onNextPage()">
+                            <span>
+                                <i class="fa fa-angle-down"></i>
+                            </span>
+                    </li>
+                </ng-container>
+                <ng-template #notFound>
+                    <li class="list-group-item pl-2 d-flex justify-content-center text-muted"
+                        style="cursor: pointer">
+                        <div class="spinner-border" role="status" [hidden]="!spinner">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <span [hidden]="spinner">no information</span>
+
+                    </li>
+                </ng-template>
+            </ul>
+        </div>
+    </div>
+</div>
