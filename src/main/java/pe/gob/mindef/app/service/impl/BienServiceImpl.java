@@ -10,6 +10,7 @@ import pe.gob.mindef.app.domain.Bien;
 import pe.gob.mindef.app.repository.BienRepository;
 import pe.gob.mindef.app.service.BienService;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -80,5 +81,10 @@ public class BienServiceImpl implements BienService {
     public void delete(Long id) {
         log.debug("Request to delete Invitado : {}", id);
         bienRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Bien> getAllByEmpleado(long empleado){
+        return bienRepository.getBienByEmpleado(empleado);
     }
 }

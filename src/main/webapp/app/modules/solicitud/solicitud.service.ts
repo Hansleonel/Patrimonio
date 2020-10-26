@@ -11,7 +11,7 @@ export class SolicitudService {
   constructor(private http: HttpClient) {}
 
   getEmpleado(codigoEmpleado) {
-    return this.http.get(`http://10.24.9.78/mindef-starter-0.0.1-SNAPSHOT/api/empleadoMindefDatos/${codigoEmpleado}`);
+    return this.http.get(`http://sistemas.mindef.gob.pe/mindef-starter-0.0.1-SNAPSHOT/api/empleadoMindefDatos/${codigoEmpleado}`);
   }
 
   postSolicitud(objetoSolicitudPeticion) {

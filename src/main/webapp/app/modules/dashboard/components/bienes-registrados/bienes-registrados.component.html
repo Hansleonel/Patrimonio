@@ -1,64 +1,122 @@
-<div class="row">
-    <div class="col-12 pl-0 pr-0" style="display: block;">
-        <!--<button type="button" class="btn btn-light">Borrar</button>-->
-        <button type="button" class="btn btn-primary float-right " (click)="irCrearSolicitud()">Crear Solicitud</button>
-        <button *mdHasAnyAuthority="['ROLE_ADMIN']" type="button" class="btn btn-light float-right mr-2"
-                (click)="irCrearAsignacion()">Revisar Solicitud
-        </button>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <!-- TODO <TABS TITTLES> -->
+  <li class="nav-item">
+    <a class="nav-link active" id="dato-tab" data-toggle="tab" href="#misBienes" role="tab" aria-controls="mis bienes" aria-selected="true"
+      >Mis Bienes</a
+    >
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      id="ubicacion-tab"
+      data-toggle="tab"
+      href="#asignacion"
+      role="tab"
+      aria-controls="Solicitudes de asignacion"
+      aria-selected="false"
+      >Solicitudes de asignación</a
+    >
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="misBienes" role="tabpanel" aria-labelledby="dato-bienes">
+    <div class="mt4"></div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <ejs-grid
+          [dataSource]="bienes"
+          allowPaging="true"
+          [enableHover]="false"
+          [allowSelection]="true"
+          [selectionSettings]="selectOptions"
+          [editSettings]="editSettings"
+          [toolbar]="toolbar"
+        >
+          <e-columns>
+            <e-column field="id_patrimonio" headerText="Cod. Patrimonial" isPrimaryKey="true"></e-column>
+            <e-column field="id_interno" headerText="ID Interno" isPrimaryKey="true"></e-column>
+            <e-column field="descripcion" headerText="Descripcion"></e-column>
+            <e-column field="estado_asignado" headerText="Estado Asignacion"></e-column>
+            <e-column field="caracteristica" headerText="Caracteristica"></e-column>
+          </e-columns>
+        </ejs-grid>
+      </div>
     </div>
-</div>
-<div class="row mt-3">
-    <ejs-grid #grid [dataSource]='dataGridSolicitudes' allowPaging='true' [enableHover]="false" [allowSelection]="true"
-              [selectionSettings]="selectOptions" [editSettings]='editSettings' [toolbar]='toolbar'
-              (rowSelected)='rowSelected($event)' [allowSorting]='true'>
-        <e-columns>
-            <e-column type='checkbox' width='30'></e-column>
-            <e-column field='id_solicitud' isPrimaryKey='true' headerText='ID SOLICITUD' width='80'
-                      textAlign='Center'></e-column>
+  </div>
+  <div class="tab-pane fade" id="asignacion" role="tabpanel" aria-labelledby="asignacion">
+    <div class="mt4">
+      <div class="row">
+        <div class="col-12 pl-0 pr-0" style="display: block;">
+          <!--<button type="button" class="btn btn-light">Borrar</button>-->
+          <button type="button" class="btn btn-primary float-right " (click)="irCrearSolicitud()">Crear Solicitud</button>
+          <button *mdHasAnyAuthority="['ROLE_ADMIN']" type="button" class="btn btn-light float-right mr-2" (click)="irCrearAsignacion()">
+            Revisar Solicitud
+          </button>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <ejs-grid
+          #grid
+          [dataSource]="dataGridSolicitudes"
+          allowPaging="true"
+          [enableHover]="false"
+          [allowSelection]="true"
+          [selectionSettings]="selectOptions"
+          [editSettings]="editSettings"
+          [toolbar]="toolbar"
+          (rowSelected)="rowSelected($event)"
+          [allowSorting]="true"
+        >
+          <e-columns>
+            <e-column type="checkbox" width="30"></e-column>
+            <e-column field="id_solicitud" isPrimaryKey="true" headerText="ID SOLICITUD" width="80" textAlign="Center"></e-column>
             <!--<e-column field='usu_cod' headerText='Usuario' width='120'></e-column>-->
-            <e-column field='fecha_solicitud' headerText='FECHA' width='100' format='C2'
-                      textAlign='Center'></e-column>
-            <e-column field='dociden' headerText='DOCUMENTO ID' width='80' textAlign='Center'></e-column>
-            <e-column field='estado' headerText='ESTADO' width='80'>
-                <ng-template #template let-data>
-                    <div *ngIf="data.estado === 1" class="statustemp e-activecolor">
-                        <!--<span class="badge badge-info p-2">{{data.estado}}</span>-->
-                        <span class="badge badge-info p-2">pendiente</span>
-                    </div>
-                    <div *ngIf="data.estado === 2" class="statustemp e-activecolor">
-                        <!--<span class="badge badge-warning p-2">{{data.estado}}</span>-->
-                        <span class="badge badge-warning p-2">revisado</span>
-                    </div>
-                    <div *ngIf="data.estado === 3" class="statustemp e-activecolor">
-                        <span class="badge badge-danger p-2">rechazado</span>
-                    </div>
-                    <div *ngIf="data.estado === 4" class="statustemp e-activecolor">
-                        <span class="badge badge-success p-2">aceptado</span>
-                    </div>
-                    <div *ngIf="data.estado === 5" class="statustemp e-activecolor">
-                        <!--<span class="badge badge-info p-2">{{data.estado}}</span>-->
-                        <span class="badge badge-info p-2">pendiente</span>
-                    </div>
-                    <div *ngIf="data.estado === 6" class="statustemp e-activecolor">
-                        <!--<span class="badge badge-warning p-2">{{data.estado}}</span>-->
-                        <span class="badge badge-warning p-2">revisado</span>
-                    </div>
-                    <div *ngIf="data.estado === 7" class="statustemp e-activecolor">
-                        <span class="badge badge-danger p-2">rechazado</span>
-                    </div>
-                    <div *ngIf="data.estado === 8" class="statustemp e-activecolor">
-                        <span class="badge badge-success p-2">aceptado</span>
-                    </div>
-                    <div *ngIf="data.estado === 9" class="statustemp e-activecolor">
-                        <span class="badge badge-danger p-2">rechazado</span>
-                    </div>
-                    <div *ngIf="data.estado === 10" class="statustemp e-activecolor">
-                        <span class="badge badge-success p-2">aceptado</span>
-                    </div>
-                </ng-template>
+            <e-column field="fecha_solicitud" headerText="FECHA" width="100" format="C2" textAlign="Center"></e-column>
+            <e-column field="dociden" headerText="DOCUMENTO ID" width="80" textAlign="Center"></e-column>
+            <e-column field="estado" headerText="ESTADO" width="80">
+              <ng-template #template let-data>
+                <div *ngIf="data.estado === 1" class="statustemp e-activecolor">
+                  <!--<span class="badge badge-info p-2">{{data.estado}}</span>-->
+                  <span class="badge badge-info p-2">pendiente</span>
+                </div>
+                <div *ngIf="data.estado === 2" class="statustemp e-activecolor">
+                  <!--<span class="badge badge-warning p-2">{{data.estado}}</span>-->
+                  <span class="badge badge-warning p-2">revisado</span>
+                </div>
+                <div *ngIf="data.estado === 3" class="statustemp e-activecolor">
+                  <span class="badge badge-danger p-2">rechazado</span>
+                </div>
+                <div *ngIf="data.estado === 4" class="statustemp e-activecolor">
+                  <span class="badge badge-success p-2">aceptado</span>
+                </div>
+                <div *ngIf="data.estado === 5" class="statustemp e-activecolor">
+                  <!--<span class="badge badge-info p-2">{{data.estado}}</span>-->
+                  <span class="badge badge-info p-2">pendiente</span>
+                </div>
+                <div *ngIf="data.estado === 6" class="statustemp e-activecolor">
+                  <!--<span class="badge badge-warning p-2">{{data.estado}}</span>-->
+                  <span class="badge badge-warning p-2">revisado</span>
+                </div>
+                <div *ngIf="data.estado === 7" class="statustemp e-activecolor">
+                  <span class="badge badge-danger p-2">rechazado</span>
+                </div>
+                <div *ngIf="data.estado === 8" class="statustemp e-activecolor">
+                  <span class="badge badge-success p-2">aceptado</span>
+                </div>
+                <div *ngIf="data.estado === 9" class="statustemp e-activecolor">
+                  <span class="badge badge-danger p-2">rechazado</span>
+                </div>
+                <div *ngIf="data.estado === 10" class="statustemp e-activecolor">
+                  <span class="badge badge-success p-2">aceptado</span>
+                </div>
+              </ng-template>
             </e-column>
             <!--<e-column field='estado' headerText='ESTADO SOLICITUD' width='100' textAlign='Center'></e-column>-->
-            <e-column field='observacion' headerText='OBSERVACION' width='140' textAlign='Center'></e-column>
-        </e-columns>
-    </ejs-grid>
+            <e-column field="observacion" headerText="OBSERVACION" width="140" textAlign="Center"></e-column>
+          </e-columns>
+        </ejs-grid>
+      </div>
+    </div>
+  </div>
 </div>

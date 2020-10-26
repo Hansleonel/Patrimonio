@@ -10,11 +10,13 @@ import pe.gob.mindef.app.domain.Asignacion;
 import pe.gob.mindef.app.domain.Bien;
 import pe.gob.mindef.app.repository.AsignacionRepository;
 import pe.gob.mindef.app.repository.BienRepository;
+import pe.gob.mindef.app.security.SecurityUtils;
 import pe.gob.mindef.app.service.AsignacionService;
 import pe.gob.mindef.app.service.BienService;
 
 import java.util.Optional;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  * Service Implementation for managing Invitado.
  */
@@ -38,6 +40,10 @@ public class AsignacionServiceImpl implements AsignacionService {
      */
     @Override
     public Asignacion save(Asignacion asignacion) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        asignacion.setPatrimonio_aprobacion(SecurityUtils.getCurrentUserLogin().get());
+        asignacion.setFecha_asignacion(sdf.format(new Date()));
+        asignacion.setEstado_asignacion("APROBADO");
         log.debug("Request to save asignacion : {}", asignacion);
         return asignacionRepository.save(asignacion);
     }

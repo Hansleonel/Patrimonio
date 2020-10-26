@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import pe.gob.mindef.app.domain.Bien;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -44,4 +45,6 @@ public interface BienService {
      */
     void delete(Long id);
 
+
+    List<Bien> getAllByEmpleado(long empleado);
 }

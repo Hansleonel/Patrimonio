@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AsignacionService } from 'app/modules/asignacion/asignacion.service';
 import { GridComponent, DataResult, RowSelectEventArgs } from '@syncfusion/ej2-angular-grids';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IAsignacion } from 'app/shared/models/asignacion';
 
 @Component({
   selector: 'md-create-asignacion',
@@ -14,6 +15,8 @@ export class CreateAsignacionComponent implements OnInit {
   public selectOptions;
   public editSettings;
   public toolbar;
+
+  asignacion: IAsignacion;
 
   // TODO DATA BIENES BUSQUEDA
   public dataBienesBusqueda: object[];
@@ -68,8 +71,10 @@ export class CreateAsignacionComponent implements OnInit {
     });
 
     this.empleadoService.getSolicitud(this.nroSolicitud).subscribe((response: any) => {
+      console.log('Datos de la solicitud ', response);
       console.log('el dni del empleado ' + response['dociden']);
       this.descripcionPeticion = response['observacion'];
+      this.docIden = response['dociden'];
       this.empleadoService.getEmpleadoWithDni(response['dociden']).subscribe((responseEmple: any) => {
         console.log(responseEmple);
         console.log('el codigo del empleado es ' + responseEmple[0]['usucod']);
@@ -297,18 +302,22 @@ export class CreateAsignacionComponent implements OnInit {
     this.gridObj.refresh();
   }
 
-  grabarAsignacion(codigoBienSIGA, dniEmpleado) {
+  grabarAsignacion(codigoBienSIGA) {
     console.log('Guardando la asignacion');
-    if (dniEmpleado.length > 0) {
+    if (this.docIden.length > 0) {
       for (const biencontados of this.dataBienes) {
         // TODO SI BIEN ESTE SERVICIO TIENE UN NOMBRE "EMPLEADOSERVICE" EL SERVICIO ES PARA LAS ASIGNACIONES
         // TODO NORMALMENTE DEVERIA DE LLAMARSE "ASGINACIONSERVICE"
-        this.empleadoService.patchAsignarBienMueble(biencontados['id_patrimonio'], dniEmpleado).subscribe(
+        this.empleadoService.patchAsignarBienMueble(biencontados['id_patrimonio'], this.docIden).subscribe(
           response => {
-            console.log(response);
+            console.log('PATCH', response);
 
             // TODO CREAR REGISTRO EN EL TABLE ASIGNATION
-            this.crearAsignacion();
+            this.asignacion = {
+              id_bien: response['id_patrimonio'],
+              id_empleado: this.docIden
+            };
+            this.crearAsignacion(this.asignacion);
 
             this.messageAlert = 'SE ASIGNO CORRECTAMENTE LA LISTA DE BIENES AL EMPLEADO SELECCIONADO';
             this.classMessage = 'alert alert-success';
@@ -335,8 +344,8 @@ export class CreateAsignacionComponent implements OnInit {
     console.log(this.dataBienes);
   }
 
-  crearAsignacion() {
-    this.empleadoService.postCrearAsignacion().subscribe(
+  crearAsignacion(asignacion: IAsignacion) {
+    this.empleadoService.postCrearAsignacion(asignacion).subscribe(
       response => {
         console.log(response);
       },

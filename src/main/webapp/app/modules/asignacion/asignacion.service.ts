@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SERVER_API_URL } from 'app/app.constants';
+import { IAsignacion } from 'app/shared/models/asignacion';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AsignacionService {
   constructor(private http: HttpClient) {}
 
   getEmpleado(codigoEmpleado) {
-    return this.http.get(`http://10.24.9.78/mindef-starter-0.0.1-SNAPSHOT/api/empleadoMindefDatos/${codigoEmpleado}`);
+    return this.http.get(`http://sistemas.mindef.gob.pe/mindef-starter-0.0.1-SNAPSHOT/api/empleadoMindefDatos/${codigoEmpleado}`);
   }
 
   getEmpleadoWithDni(dniEmpleado) {
@@ -33,14 +34,14 @@ export class AsignacionService {
 
   patchAsignarBienMueble(idBienMueble, dniEmpleado) {
     this.asignarMueble = {
-      id_patrimonio: idBienMueble,
+      codigoPatrimonial: idBienMueble,
       empleado: dniEmpleado
     };
 
     return this.http.patch(`${SERVER_API_URL}api/bien/${idBienMueble}`, this.asignarMueble);
   }
 
-  postCrearAsignacion() {
+  postCrearAsignacion(asignacion: IAsignacion) {
     this.asignacion = {
       id_empleado: '08179975',
       modalidad: 'CAS',
@@ -51,6 +52,6 @@ export class AsignacionService {
       estado_asignacion: 'aprobado'
     };
 
-    return this.http.post(`${SERVER_API_URL}api/asignacion`, this.asignacion);
+    return this.http.post(`${SERVER_API_URL}api/asignacion`, asignacion);
   }
 }

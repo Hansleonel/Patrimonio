@@ -1,5 +1,7 @@
 package pe.gob.mindef.app.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +19,7 @@ import pe.gob.mindef.app.domain.Bien;
 public interface BienRepository extends JpaRepository<Bien, Long> {
     @Query("select b from Bien b where b.estado_asignado = 'No Asignado' and b.descripcion like concat('%',:descripcion,'%')")
     Page<Bien> getBienByDescripcion(Pageable pageable, @Param("descripcion") String descripcion);
+
+    List<Bien> getBienByEmpleado(long empleado);
+
 }

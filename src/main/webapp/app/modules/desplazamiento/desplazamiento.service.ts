@@ -12,7 +12,7 @@ export class DesplazamientoService {
     return of(param);
   }
   getTipoDesplazamiento(): Observable<any> {
-    return of([{ idTipoDesplazamiento: 1, nombre: 'Entrada' }, { idTipoDesplazamiento: 2, nombre: 'Salida' }]);
+    return of([{ idTipoDesplazamiento: 1, nombre: 'Interno' }, { idTipoDesplazamiento: 2, nombre: 'Externo' }]);
   }
   getBienes(): Observable<any> {
     return of([{ idBien: 1, nombre: '034052345' }, { idBien: 2, nombre: '0001P012' }]);

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SERVER_API_URL } from 'app/app.constants';
+import { Observable } from 'rxjs';
+import { IBien } from 'app/shared/models/bien';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,10 @@ export class DashboardService {
 
   getSolicitudes() {
     return this.http.get(`${SERVER_API_URL}api/solicitud?size100`);
+  }
+
+  getBienesByEmpleado(empleado): Observable<IBien[]> {
+    return this.http.get<IBien[]>(`${SERVER_API_URL}api/bienes/by-empleado/${empleado}`);
   }
 
   patchSolicitudPR(idSolicitud) {

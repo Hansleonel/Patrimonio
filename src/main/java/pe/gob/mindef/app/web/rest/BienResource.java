@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.gob.mindef.app.domain.Bien;
 import pe.gob.mindef.app.security.AuthoritiesConstants;
+import pe.gob.mindef.app.security.SecurityUtils;
 import pe.gob.mindef.app.service.BienService;
 import pe.gob.mindef.app.web.rest.errors.BadRequestAlertException;
 import pe.gob.mindef.app.web.rest.util.HeaderUtil;
@@ -91,16 +92,23 @@ public class BienResource {
 
     @PatchMapping("/bien/{id}")
     public ResponseEntity<Bien> patchBien(@PathVariable Long id, @RequestBody Bien bien) throws URISyntaxException {
-        log.debug("REST request to patch bien : {}", bien);
+        log.debug("REST request to patch bien : {}", bien.getEmpleado());
 
         Optional<Bien> bienPatch = bienService.findOne(id);
 
         bienPatch.get().setEmpleado(bien.getEmpleado());
+        bienPatch.get().setEstado_asignado("Asignado");
 
         Bien result = bienService.save(bienPatch.get());
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, bien.getId_patrimonio().toString()))
-            .body(result);
+        return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/bienes/by-empleado/{id}")
+    public ResponseEntity<List<Bien>> getBienesEmpleado(@PathVariable Long id) throws URISyntaxException {
+        log.debug("REST request to get to bienes del empleado");
+        List<Bien> results = bienService.getAllByEmpleado(id);
+        log.debug("SIZE",results.size());
+        return ResponseEntity.ok().body(results);
     }
 
     @GetMapping("/BienDescripcion/{descripcion}")
