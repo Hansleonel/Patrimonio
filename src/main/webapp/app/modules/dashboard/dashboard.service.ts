@@ -19,7 +19,7 @@ export class DashboardService {
   }
 
   getSolicitudes() {
-    return this.http.get(`${SERVER_API_URL}api/solicitud?size100`);
+    return this.http.get(`${SERVER_API_URL}api/solicitud?size=100`);
   }
 
   getBienesByEmpleado(empleado): Observable<IBien[]> {

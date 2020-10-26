@@ -31,21 +31,11 @@
 <md-title tituloGeneral="Empleados y solicitud de asignaciones"
           tituloDescripcion="Empleados solicitantes de asignacion"></md-title>
 <div class="row">
-    <div class="col-6" style="display: block;">
+    <div class="col-12" style="display: block;">
         <!-- TODO GRID DASHBOARD -->
         <md-bienes-registrados *mdHasAnyAuthority="['ROLE_ADMIN','ROLE_USER']"
                                (datosSeleccionados)="mostrarDni($event)"></md-bienes-registrados>
         <!-- TODO /GRID DASHBOARD -->
-    </div>
-    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-        <!--<md-calendar-bienes-ingresos></md-calendar-bienes-ingresos>-->
-        <!-- <md-toast-empleado></md-toast-empleado> -->
-        <!-- TODO el componente card-solicitud.component puede recibir informacion desde el componente padre es decir
-             TODO este componente dashboard.component, puesto que card-solicutd.component esta usando el @Input()-->
-        <md-card-solicitud *mdHasAnyAuthority="['ROLE_ADMIN']"
-                           [documentoPersonaHijo]="documentoPersonaPadre"
-                           [datosPersonaHijo]="datosPersonaPadre"
-                           [datosSolicitudHijo]=datosSolicitudPadre></md-card-solicitud>
     </div>
 </div>
 
