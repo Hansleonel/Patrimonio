@@ -38,10 +38,11 @@ public interface SolicitudService {
      */
     Optional<Solicitud> findOne(Long id);
 
-
     Page<Solicitud> getSolicitudByUser(Pageable pageable, String dni);
 
+    List<Solicitud> getSolicitudDesplazamientoEntrantes(String dociden);
 
+    List<Solicitud> getSolicitudDesplazamientoSalientes(String dociden);
 
     /**
      * Delete the "id" solicitud.

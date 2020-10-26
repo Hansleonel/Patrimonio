@@ -29,7 +29,8 @@ public class SolicitudServiceImpl implements SolicitudService {
     private final DocumentoRepository documentoRepository;
     private final DetalleDocumentoRepository detalleDocumentoRepository;
 
-    public SolicitudServiceImpl(SolicitudRepository solicitudRepository, DocumentoRepository documentoRepository, DetalleDocumentoRepository detalleDocumentoRepository) {
+    public SolicitudServiceImpl(SolicitudRepository solicitudRepository, DocumentoRepository documentoRepository,
+            DetalleDocumentoRepository detalleDocumentoRepository) {
         this.solicitudRepository = solicitudRepository;
         this.documentoRepository = documentoRepository;
         this.detalleDocumentoRepository = detalleDocumentoRepository;
@@ -70,8 +71,7 @@ public class SolicitudServiceImpl implements SolicitudService {
 
         documentoRepository.save(documento);
 
-        for (Long c : codigosBien
-        ) {
+        for (Long c : codigosBien) {
             DetalleDocumento detalleDocumento = new DetalleDocumento();
             detalleDocumento.setDocumento(documento);
             detalleDocumento.setBien(new Bien(c));
@@ -80,7 +80,6 @@ public class SolicitudServiceImpl implements SolicitudService {
 
         return solicitud;
     }
-
 
     /**
      * Get all the solicitud.
@@ -97,7 +96,7 @@ public class SolicitudServiceImpl implements SolicitudService {
 
     @Override
     public Page<Solicitud> getSolicitudByUser(Pageable pageable, String dni) {
-        //List<Invitado> list = invitadoRepository.getOrderInvitado();
+        // List<Invitado> list = invitadoRepository.getOrderInvitado();
         return solicitudRepository.getSolicitudByUser(pageable, dni);
     }
 
@@ -124,5 +123,21 @@ public class SolicitudServiceImpl implements SolicitudService {
     public void delete(Long id) {
         log.debug("Request to delete Solicitud : {}", id);
         solicitudRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Solicitud> getSolicitudDesplazamientoEntrantes(String dociden) {
+        Proceso p = new Proceso();
+        p.setId_proceso(2L);
+
+        return solicitudRepository.getSolicitudByProcesoAndAutorizador(p, dociden);
+    }
+
+    @Override
+    public List<Solicitud> getSolicitudDesplazamientoSalientes(String dociden) {
+        Proceso p = new Proceso();
+        p.setId_proceso(2L);
+
+        return solicitudRepository.getSolicitudByProcesoAndDociden(p, dociden);
     }
 }

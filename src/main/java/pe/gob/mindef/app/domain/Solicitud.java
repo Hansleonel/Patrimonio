@@ -1,9 +1,14 @@
 package pe.gob.mindef.app.domain;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Invitado.
@@ -17,8 +22,7 @@ public class Solicitud implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_SOLICITUD")
-    @SequenceGenerator(name = "SQ_SOLICITUD", sequenceName = "SQ_TT_SOLICITUD_ID", allocationSize = 1
-    )
+    @SequenceGenerator(name = "SQ_SOLICITUD", sequenceName = "SQ_TT_SOLICITUD_ID", allocationSize = 1)
     @Column(name = "IDSOLICITUD")
     private Long id_solicitud;
 
@@ -33,6 +37,9 @@ public class Solicitud implements Serializable {
 
     @Column(name = "DOCIDEN")
     private String dociden;
+
+    @Column(name = "AUTORIZADOR")
+    private String autorizador;
 
     @ManyToOne(targetEntity = Proceso.class)
     @JoinColumn(name = "IDPROCESO", referencedColumnName = "IDPROCESO", foreignKey = @ForeignKey(name = "FK_SOLICITUD_PROCESO"))
@@ -49,13 +56,17 @@ public class Solicitud implements Serializable {
     private Date fecha_respuesta;
 
     @Column(name = "FECHAFINALIZADO")
-    private Date fecha_finalizdo;
+    private Date fechaFinalizado;
 
     @Column(name = "DESCRIPCIONRESPUESTA")
     private String descripcionRespuesta;
 
     @Column(name = "TIPO")
     private int tipo;
+
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "solicitud", fetch = FetchType.EAGER)
+    private Set<SolicitudDetalle> detalles = new HashSet<>();
 
     public Solicitud() {
     }
@@ -132,12 +143,12 @@ public class Solicitud implements Serializable {
         this.fecha_respuesta = fecha_respuesta;
     }
 
-    public Date getFecha_finalizdo() {
-        return fecha_finalizdo;
+    public Date getFechaFinalizado() {
+        return fechaFinalizado;
     }
 
-    public void setFecha_finalizdo(Date fecha_finalizdo) {
-        this.fecha_finalizdo = fecha_finalizdo;
+    public void setFechaFinalizado(Date fechaFinalizado) {
+        this.fechaFinalizado = fechaFinalizado;
     }
 
     public String getDescripcionRespuesta() {
@@ -156,45 +167,47 @@ public class Solicitud implements Serializable {
         this.tipo = tipo;
     }
 
+    public String getAutorizador() {
+        return autorizador;
+    }
+
+    public void setAutorizador(String autorizador) {
+        this.autorizador = autorizador;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Solicitud)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Solicitud))
+            return false;
         Solicitud solicitud = (Solicitud) o;
-        return getEstado() == solicitud.getEstado() &&
-            getTipo() == solicitud.getTipo() &&
-            Objects.equals(getId_solicitud(), solicitud.getId_solicitud()) &&
-            Objects.equals(getObservacion(), solicitud.getObservacion()) &&
-            Objects.equals(getFecha_solicitud(), solicitud.getFecha_solicitud()) &&
-            Objects.equals(getDociden(), solicitud.getDociden()) &&
-            Objects.equals(getProceso(), solicitud.getProceso()) &&
-            Objects.equals(getMotivo(), solicitud.getMotivo()) &&
-            Objects.equals(getFecha_atencion(), solicitud.getFecha_atencion()) &&
-            Objects.equals(getFecha_respuesta(), solicitud.getFecha_respuesta()) &&
-            Objects.equals(getFecha_finalizdo(), solicitud.getFecha_finalizdo()) &&
-            Objects.equals(getDescripcionRespuesta(), solicitud.getDescripcionRespuesta());
+        return getEstado() == solicitud.getEstado() && getTipo() == solicitud.getTipo()
+                && Objects.equals(getId_solicitud(), solicitud.getId_solicitud())
+                && Objects.equals(getObservacion(), solicitud.getObservacion())
+                && Objects.equals(getFecha_solicitud(), solicitud.getFecha_solicitud())
+                && Objects.equals(getDociden(), solicitud.getDociden())
+                && Objects.equals(getProceso(), solicitud.getProceso())
+                && Objects.equals(getMotivo(), solicitud.getMotivo())
+                && Objects.equals(getFecha_atencion(), solicitud.getFecha_atencion())
+                && Objects.equals(getFecha_respuesta(), solicitud.getFecha_respuesta())
+                && Objects.equals(getFechaFinalizado(), solicitud.getFechaFinalizado())
+                && Objects.equals(getDescripcionRespuesta(), solicitud.getDescripcionRespuesta());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId_solicitud(), getObservacion(), getEstado(), getFecha_solicitud(), getDociden(), getProceso(), getMotivo(), getFecha_atencion(), getFecha_respuesta(), getFecha_finalizdo(), getDescripcionRespuesta(), getTipo());
+        return Objects.hash(getId_solicitud(), getObservacion(), getEstado(), getFecha_solicitud(), getDociden(),
+                getProceso(), getMotivo(), getFecha_atencion(), getFecha_respuesta(), getFechaFinalizado(),
+                getDescripcionRespuesta(), getTipo());
     }
 
     @Override
     public String toString() {
-        return "Solicitud{" +
-            "id_solicitud=" + id_solicitud +
-            ", observacion='" + observacion + '\'' +
-            ", estado=" + estado +
-            ", fecha_solicitud=" + fecha_solicitud +
-            ", dociden='" + dociden + '\'' +
-            ", proceso=" + proceso +
-            ", motivo=" + motivo +
-            ", fecha_atencion=" + fecha_atencion +
-            ", fecha_respuesta=" + fecha_respuesta +
-            ", fecha_finalizdo=" + fecha_finalizdo +
-            ", descripcionRespuesta='" + descripcionRespuesta + '\'' +
-            ", tipo=" + tipo +
-            '}';
+        return "Solicitud{" + "id_solicitud=" + id_solicitud + ", observacion='" + observacion + '\'' + ", estado="
+                + estado + ", fecha_solicitud=" + fecha_solicitud + ", dociden='" + dociden + '\'' + ", proceso="
+                + proceso + ", motivo=" + motivo + ", fecha_atencion=" + fecha_atencion + ", fecha_respuesta="
+                + fecha_respuesta + ", fechaFinalizado=" + fechaFinalizado + ", descripcionRespuesta='"
+                + descripcionRespuesta + '\'' + ", tipo=" + tipo + '}';
     }
 }

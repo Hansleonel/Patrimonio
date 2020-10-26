@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SERVER_API_URL } from 'app/app.constants';
 import { IAsignacion } from 'app/shared/models/asignacion';
+import { Observable } from 'rxjs';
+import { IBien } from 'app/shared/models/bien';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +26,8 @@ export class AsignacionService {
     return this.http.get(`${SERVER_API_URL}api/bien/${codigoSIGA}`);
   }
 
-  getBienByDescription(descripcionBien) {
-    return this.http.get(`${SERVER_API_URL}api/BienDescripcion/${descripcionBien}?size=1080`);
+  getBienByDescription(descripcionBien): Observable<IBien[]> {
+    return this.http.get<IBien[]>(`${SERVER_API_URL}api/BienDescripcion/${descripcionBien}?size=1080`);
   }
 
   getSolicitud(nroSolicitud) {

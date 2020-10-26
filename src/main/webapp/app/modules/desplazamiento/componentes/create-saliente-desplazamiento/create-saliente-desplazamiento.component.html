@@ -1,67 +1,66 @@
 <form [formGroup]="form">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="tipoDesplazamiento">Tipo de Desplazamiento</label>
-                    <select id="tipoDesplazamiento" class="form-control" formControlName="tipoDesplazamiento">
-                        <option *ngFor="let td of tiposDesplazamiento"
-                                [value]="td.idTipoDesplazamiento">{{td.nombre}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="codigoUsuario">Usuario Autorizante</label>
-                    <!--<md-search id="usuarioAutorizante" [items]="persons" [spinner]="spinnerPerson" [required]="form.get('usuarioAutorizante').invalid"
-                               (textChange)="getPersons($event)" (valueChange)="onPersonSelected($event)"></md-search>-->
-                    <input type="text" maxlength="480" class="form-control" id="codigoUsuario"
-                           formControlName="codigoUsuario" aria-describedby="codigoEmpleado"
-                           placeholder="c&oacute;digo de usuario" autocomplete="off"
-                           [ngClass]="{'is-valid': form.get('codigoUsuario').valid, 'is-invalid': form.get('codigoUsuario').invalid}">
-                    <div class="invalid-feedback">
-                        ID no encontrado(Ingrese un ID correcto)
-                    </div>
-                    <div class="valid-feedback">
-                        ID existe
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="codigoBien">C&oacute;digo Bien Interno</label>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="tipoDesplazamiento">Tipo de Desplazamiento</label>
+          <select id="tipoDesplazamiento" class="form-control" formControlName="tipo">
+            <option *ngFor="let td of tiposDesplazamiento" [value]="td.idTipoDesplazamiento">{{ td.nombre }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="codigoUsuario">Usuario Autorizante</label>
+          <input
+            [ngClass]="empleadoClass"
+            type="text"
+            maxlength="480"
+            formControlName="codigoAutorizador"
+            placeholder="Ingrese usuario"
+            #autorizante
+            (change)="buscarEmpleado(autorizante.value)"
+            autocomplete="off"
+          />
+          <div class="invalid-feedback">
+            ID no encontrado(Ingrese un ID correcto)
+          </div>
+          <div class="valid-feedback">
+            ID existe
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="codigoBien">C&oacute;digo Bien Interno</label>
 
-                    <select id="codigoBien" class="form-control" formControlName="codigoBien">
-                        <option value="">Selecciones c&oacute;digo</option>
-                        <option *ngFor="let td of bienes"
-                                [value]="td.idBien">{{td.nombre}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="fechaInicioDesplazamiento">Fecha inicio del Desplazamiento</label>
-                    <input type="date" class="form-control" id="fechaInicioDesplazamiento"
-                           formControlName="fechaInicioDesplazamiento"/>
-                </div>
-            </div>
+          <select id="codigoBien" class="form-control" formControlName="codigoBien">
+            <option value="">Selecciones c&oacute;digo</option>
+            <option *ngFor="let td of bienes" [value]="td.id_patrimonio">{{ td.descripcion }}</option>
+          </select>
         </div>
-        <div class="col-md-6">
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="fechaFinDesplazamiento">Fecha fin del Desplazamiento</label>
-                    <input type="date" class="form-control" id="fechaFinDesplazamiento"
-                           formControlName="fechaFinDesplazamiento"/>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="detalle">Datos Adicionales</label>
-                    <textarea class="form-control" id="detalle" rows="3" formControlName="detalle"></textarea>
-                </div>
-            </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="fechaInicioDesplazamiento">Fecha inicio del Desplazamiento</label>
+          <input type="date" class="form-control" id="fechaInicioDesplazamiento" formControlName="fecha_solicitud" />
         </div>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid" (click)="onSave()">Guardar
-    </button>
+    <div class="col-md-6">
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="fechaFinDesplazamiento">Fecha fin del Desplazamiento</label>
+          <input type="date" class="form-control" id="fechaFinDesplazamiento" formControlName="fechaFinalizado" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="detalle">Datos Adicionales</label>
+          <textarea class="form-control" id="detalle" rows="3" formControlName="observacion"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid" (click)="onSave()">Guardar</button>
 </form>

@@ -80,7 +80,7 @@ public class SolicitudPublicResource {
         Optional<Solicitud> solicitudPatch = solicitudService.findOne(id);
         // solicitudPatch.get().setFecha_finalizdo(new Date());
         if (solicitudPatch.get().getEstado() == 3) {
-            solicitudPatch.get().setFecha_finalizdo(new Date());
+            solicitudPatch.get().setFechaFinalizado(new Date());
             solicitudPatch.get().setEstado(5);
         }
 

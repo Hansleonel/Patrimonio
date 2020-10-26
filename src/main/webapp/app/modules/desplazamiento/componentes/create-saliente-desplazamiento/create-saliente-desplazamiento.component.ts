@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DesplazamientoService } from 'app/modules/desplazamiento/desplazamiento.service';
 import { Router } from '@angular/router';
 import { AsignacionService } from 'app/modules/asignacion/asignacion.service';
+import { IBien } from 'app/shared/models/bien';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
 
 @Component({
   selector: 'md-create-saliente-desplazamiento',
@@ -12,42 +15,60 @@ import { AsignacionService } from 'app/modules/asignacion/asignacion.service';
 export class CreateSalienteDesplazamientoComponent implements OnInit {
   form: FormGroup;
   tiposDesplazamiento: Array<any> = [];
-  bienes: Array<any> = [];
+
   persons: Array<any> = [];
   spinner = false;
   spinnerPerson = false;
+
+  bienes: IBien[] = [];
+  account: Account;
+
+  empleadoClass = 'form-control';
 
   constructor(
     private fb: FormBuilder,
     private desplazamientoService: DesplazamientoService,
     private empleadoService: AsignacionService,
-    private router: Router
+    private router: Router,
+    private accountService: AccountService
   ) {
     const now = new Date().toISOString().split('T')[0];
     this.form = this.fb.group({
-      tipoDesplazamiento: ['', Validators.required],
-      codigoUsuario: ['', Validators.required],
+      tipo: ['', Validators.required],
+      dociden: ['', Validators.required],
+      autorizador: ['', Validators.required],
+      codigoAutorizador: [''],
       codigoBien: ['', Validators.required],
-      fechaInicioDesplazamiento: [now, Validators.required],
-      fechaFinDesplazamiento: [now, Validators.required],
-      detalle: ['', Validators.required],
-      idProceso: ['', Validators.required]
+      fecha_solicitud: [now, Validators.required],
+      fechaFinalizado: [now, Validators.required],
+      observacion: ['', Validators.required],
+      proceso: [{ id_proceso: 2, nombre_Proceso: 'desplazamiento' }],
+      estado: [1]
     });
   }
 
   ngOnInit() {
     this.getTipoDesplazamiento();
-    this.getBienes();
-
-    this.form.get('codigoUsuario').valueChanges.subscribe(r => {
-      if (r) this.getUser();
-    });
+    this.account = this.accountService.getUserIdentity();
+    this.form.controls['dociden'].patchValue(this.account.dociden);
+    // this.form.get('codigoUsuario').valueChanges.subscribe(r => {
+    //   if (r) this.getUser();
+    // });
   }
 
   onSave() {
+    const _data = { ...this.form.value };
+    _data['detalles'] = [];
+    _data['detalles'].push({
+      bien: {
+        id_patrimonio: this.form.controls['codigoBien'].value
+      }
+    });
+
     this.spinner = true;
+
     if (this.form.valid) {
-      this.desplazamientoService.save(this.form.value).subscribe(
+      this.desplazamientoService.save(_data).subscribe(
         () => {
           this.router.navigate(['desplazamiento/saliente']).then();
           this.spinner = false;
@@ -55,6 +76,36 @@ export class CreateSalienteDesplazamientoComponent implements OnInit {
         () => (this.spinner = false)
       );
     }
+  }
+
+  buscarEmpleado(codigoEmpleado) {
+    codigoEmpleado = codigoEmpleado.toUpperCase();
+    this.empleadoService.getEmpleado(codigoEmpleado).subscribe(
+      (response: []) => {
+        if (response.length > 0) {
+          this.empleadoClass = 'form-control is-valid';
+          this.form.controls['autorizador'].patchValue(response[0]['doc_iden']);
+
+          if (response[0]['doc_iden']) {
+            this.getBienesEmpleado(response[0]['doc_iden']);
+          }
+        } else if (response.length === 0) {
+          this.empleadoClass = 'form-control is-invalid';
+        }
+      },
+      error1 => {
+        this.empleadoClass = 'form-control is-invalid';
+        if (error1['statusText'] === 'Not Found') {
+          this.empleadoClass = 'form-control is-invalid';
+        }
+      }
+    );
+  }
+
+  getBienesEmpleado(docIden) {
+    this.desplazamientoService.getBienesByEmpleado(docIden).subscribe(r => {
+      this.bienes = r.filter(b => b.estado_asignado === 'Asignado');
+    });
   }
 
   getTipoDesplazamiento() {
