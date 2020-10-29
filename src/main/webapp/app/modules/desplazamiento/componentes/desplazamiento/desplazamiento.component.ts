@@ -51,7 +51,10 @@ export class DesplazamientoComponent implements OnInit {
   constructor(private router: Router) {
     router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
       this.entrySelected = event.url.includes('entrante');
-      this.showTab = event.url.split('/').pop() !== 'create';
+      // const arrurl: string[] = event.url.split('/');
+      console.log('arryaURL', event.url);
+      this.showTab = !(event.url.includes('authorize') || event.url.includes('create'));
+      // this.showTab = event.url.includes('create');
     });
   }
 

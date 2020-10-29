@@ -1,46 +1,153 @@
-<form>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+<form [formGroup]="form">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="tipoDesplazamiento">Tipo de Desplazamiento</label>
+                    <select id="tipoDesplazamiento" class="form-control" formControlName="tipo">
+                        <option *ngFor="let td of tiposDesplazamiento"
+                                [value]="td.idTipoDesplazamiento">{{ td.nombre }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="codigoUsuario">Usuario Autorizante</label>
+                    <input
+                        id="codigoUsuario"
+                        [ngClass]="empleadoClass"
+                        type="text"
+                        maxlength="480"
+                        formControlName="codigoAutorizador"
+                        placeholder="Ingrese usuario"
+                        #autorizante
+                        autocomplete="off"
+                    />
+                    <div class="invalid-feedback">
+                        ID no encontrado(Ingrese un ID correcto)
+                    </div>
+                    <div class="valid-feedback">
+                        ID existe
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="fechaInicioDesplazamiento">Fecha inicio del Desplazamiento</label>
+                    <input type="date" class="form-control" id="fechaInicioDesplazamiento"
+                           formControlName="fecha_solicitud"/>
+                </div>
+            </div>
         </div>
-        <div class="form-group col-md-6">
-            <label for="inputPassword4">Password</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+        <div class="col-md-6">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="fechaFinDesplazamiento">Fecha fin del Desplazamiento</label>
+                    <input type="date" class="form-control" id="fechaFinDesplazamiento"
+                           formControlName="fechaFinalizado"/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="detalle">Datos Adicionales</label>
+                    <textarea class="form-control" id="detalle" rows="3" formControlName="observacion"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group col-md-12">
+                <label for="detalle">Bienes Solicitados</label>
+                <ejs-grid
+                    [dataSource]="details"
+                    [enableHover]="false"
+                    [allowSelection]="false"
+                    [allowSorting]="true">
+                    <e-columns>
+                        <e-column field="bien.id_interno" isPrimaryKey="true" headerText="C&Oacute;DIGO" width="80"
+                                  textAlign="Center"></e-column>
+                        <e-column field="bien.caracteristica" headerText="BIEN" width="150" format="C2"
+                                  ></e-column>
+                        <e-column field="bien.estado_consercacion" headerText="ESTADO" width="80"
+                                  textAlign="Center"></e-column>
+                        <e-column field="bien.descripcion" headerText="DESCRIPCI&Oacute;N" width="200"
+                                  textAlign="Center"></e-column>
+                    </e-columns>
+                </ejs-grid>
+            </div>
+
+        </div>
+        <div class="col-md-12" [hidden]="!isValid">
+            <div class="float-right">
+                <button type="button" class="btn btn-outline-primary" (click)="onCancel()">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#rechazarModal">
+                    Rechazar solicitud
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aprobarModal">
+                    Aprobar Solicitud
+                </button>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-    </div>
-    <div class="form-group">
-        <label for="inputAddress2">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity">
-        </div>
-        <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-            </select>
-        </div>
-        <div class="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-                Check me out
-            </label>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
+
+
+<div class="modal fade" id="rechazarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Rechazar Asignaci&oacute;n</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formRechazo">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="motivo">Motivo</label>
+                            <select id="motivo" class="form-control" formControlName="motivo">
+                                <option *ngFor="let td of motivos"
+                                        [value]="td.idMotivo">{{ td.observacion }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="descripcionRespuesta">Descripci&oacute;n Respuesta</label>
+                            <textarea class="form-control" id="descripcionRespuesta" rows="3"
+                                      formControlName="descripcionRespuesta"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" [disabled]="formRechazo.invalid" (click)="onRechazar()"  data-dismiss="modal">
+                    Rechazar Solicitud
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="aprobarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="aprobModalLabel">Confirmaci&oacute;n de acci&oacute;n</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="font-weight-bold">Se aprobar&aacute; el desplazamiento de los bienes solicitados.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="onAprobar()"  data-dismiss="modal">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>

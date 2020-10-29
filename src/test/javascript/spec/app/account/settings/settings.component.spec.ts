@@ -40,7 +40,8 @@ describe('Component Tests', () => {
         langKey: 'es',
         login: 'john',
         authorities: [],
-        imageUrl: ''
+        imageUrl: '',
+        dociden: ''
       };
       mockAuth.setIdentityResponse(accountValues);
 

@@ -6,11 +6,13 @@ import { AsignacionService } from 'app/modules/asignacion/asignacion.service';
 import { IBien } from 'app/shared/models/bien';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
+import { CheckBoxSelectionService } from '@syncfusion/ej2-angular-dropdowns';
 
 @Component({
   selector: 'md-create-saliente-desplazamiento',
   templateUrl: './create-saliente-desplazamiento.component.html',
-  styleUrls: ['./create-saliente-desplazamiento.component.scss']
+  styleUrls: ['./create-saliente-desplazamiento.component.scss'],
+  providers: [CheckBoxSelectionService]
 })
 export class CreateSalienteDesplazamientoComponent implements OnInit {
   form: FormGroup;
@@ -25,6 +27,8 @@ export class CreateSalienteDesplazamientoComponent implements OnInit {
 
   empleadoClass = 'form-control';
 
+  public fields: Object = { text: 'id_patrimonio', value: 'id_patrimonio' };
+
   constructor(
     private fb: FormBuilder,
     private desplazamientoService: DesplazamientoService,
@@ -35,10 +39,14 @@ export class CreateSalienteDesplazamientoComponent implements OnInit {
     const now = new Date().toISOString().split('T')[0];
     this.form = this.fb.group({
       tipo: ['', Validators.required],
-      dociden: ['', Validators.required],
-      autorizador: ['', Validators.required],
       codigoAutorizador: [''],
-      codigoBien: ['', Validators.required],
+      dociden: [''],
+      autorizador: ['', Validators.required],
+      codigosBien: ['', Validators.required],
+      fechaInicioDesplazamiento: [now, Validators.required],
+      fechaFinDesplazamiento: [now, Validators.required],
+      // detalle: ['', Validators.required],
+      // idProceso: ['', Validators.required]
       fecha_solicitud: [now, Validators.required],
       fechaFinalizado: [now, Validators.required],
       observacion: ['', Validators.required],
@@ -54,15 +62,22 @@ export class CreateSalienteDesplazamientoComponent implements OnInit {
     // this.form.get('codigoUsuario').valueChanges.subscribe(r => {
     //   if (r) this.getUser();
     // });
+
+    this.form.get('autorizador').valueChanges.subscribe(r => {
+      console.log('change value', r);
+    });
   }
 
   onSave() {
     const _data = { ...this.form.value };
     _data['detalles'] = [];
-    _data['detalles'].push({
-      bien: {
-        id_patrimonio: this.form.controls['codigoBien'].value
-      }
+
+    this.form.value.codigosBien.forEach(b => {
+      _data['detalles'].push({
+        bien: {
+          id_patrimonio: b
+        }
+      });
     });
 
     this.spinner = true;
@@ -70,7 +85,7 @@ export class CreateSalienteDesplazamientoComponent implements OnInit {
     if (this.form.valid) {
       this.desplazamientoService.save(_data).subscribe(
         () => {
-          this.router.navigate(['desplazamiento/saliente']).then();
+          this.goBack();
           this.spinner = false;
         },
         () => (this.spinner = false)
@@ -84,10 +99,10 @@ export class CreateSalienteDesplazamientoComponent implements OnInit {
       (response: []) => {
         if (response.length > 0) {
           this.empleadoClass = 'form-control is-valid';
-          this.form.controls['autorizador'].patchValue(response[0]['doc_iden']);
-
-          if (response[0]['doc_iden']) {
-            this.getBienesEmpleado(response[0]['doc_iden']);
+          const data: any = response.shift();
+          this.form.controls['autorizador'].patchValue(data.doc_iden);
+          if (data.doc_iden) {
+            this.getBienesEmpleado(data.doc_iden);
           }
         } else if (response.length === 0) {
           this.empleadoClass = 'form-control is-invalid';
@@ -135,7 +150,11 @@ export class CreateSalienteDesplazamientoComponent implements OnInit {
     );
   }
 
-  onUser(event) {
+  onUser() {
     // this.form.get('usuarioAutorizante').setValue(event.value);
+  }
+
+  goBack() {
+    this.router.navigate(['desplazamiento/saliente']).then(() => {});
   }
 }

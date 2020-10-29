@@ -4,6 +4,7 @@ import { DesplazamientoRoutingModule } from './desplazamiento-routing.module';
 
 import { FormDesplazamientoComponent } from './componentes/form-desplazamiento/form-desplazamiento.component';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
+import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { EntranteDesplazamientoComponent } from './componentes/entrante-desplazamiento/entrante-desplazamiento.component';
 import { DesplazamientoComponent } from './componentes/desplazamiento/desplazamiento.component';
 import { SalienteDesplazamientoComponent } from './componentes/saliente-desplazamiento/saliente-desplazamiento.component';
@@ -24,6 +25,6 @@ import { MindefAppSharedModule } from 'app/shared/shared.module';
     CreateSalienteDesplazamientoComponent,
     ListSalienteDesplazamientoComponent
   ],
-  imports: [CommonModule, DesplazamientoRoutingModule, GridModule, MindefAppSharedModule]
+  imports: [CommonModule, DesplazamientoRoutingModule, GridModule, MindefAppSharedModule, MultiSelectModule]
 })
 export class DesplazamientoModule {}

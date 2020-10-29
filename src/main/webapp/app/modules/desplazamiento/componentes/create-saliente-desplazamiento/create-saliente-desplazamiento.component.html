@@ -13,6 +13,7 @@
         <div class="form-group col-md-12">
           <label for="codigoUsuario">Usuario Autorizante</label>
           <input
+            id="codigoUsuario"
             [ngClass]="empleadoClass"
             type="text"
             maxlength="480"
@@ -33,11 +34,14 @@
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="codigoBien">C&oacute;digo Bien Interno</label>
-
-          <select id="codigoBien" class="form-control" formControlName="codigoBien">
-            <option value="">Selecciones c&oacute;digo</option>
-            <option *ngFor="let td of bienes" [value]="td.id_patrimonio">{{ td.descripcion }}</option>
-          </select>
+          <ejs-multiselect
+            id="multiselectelement"
+            [dataSource]="bienes"
+            [fields]="fields"
+            mode="CheckBox"
+            placeholder="Código Bien"
+            formControlName="codigosBien"
+          ></ejs-multiselect>
         </div>
       </div>
       <div class="form-row">

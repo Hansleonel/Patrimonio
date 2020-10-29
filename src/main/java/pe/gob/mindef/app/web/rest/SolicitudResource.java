@@ -185,4 +185,17 @@ public class SolicitudResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    @PostMapping("/solicitud/{id}/aprobar")
+    public ResponseEntity<Solicitud> aprobar(@PathVariable Long id) {
+        Solicitud solicitud = solicitudService.aprobar(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, solicitud.toString()))
+                .body(solicitud);
+    }
+
+    @PostMapping("/solicitud/{id}/denegar")
+    public ResponseEntity<Solicitud> denegar(@PathVariable Long id, @RequestBody Solicitud solicitud) {
+        Solicitud s = solicitudService.denegar(id, solicitud);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, s.toString())).body(s);
+    }
+
 }

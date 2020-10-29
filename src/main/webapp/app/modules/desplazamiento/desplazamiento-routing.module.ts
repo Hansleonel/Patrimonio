@@ -28,7 +28,7 @@ const routes: Routes = [
             },
             children: [
               {
-                path: 'create',
+                path: ':idSolicitud/authorize',
                 component: CreateEntranteDesplazamientoComponent,
                 data: {
                   pageTitle: 'pesem.configuration.title',
@@ -65,6 +65,11 @@ const routes: Routes = [
             ]
           }
         ]
+      },
+      {
+        path: '_saliente',
+        redirectTo: 'saliente/lista',
+        pathMatch: 'full'
       }
     ]
   },

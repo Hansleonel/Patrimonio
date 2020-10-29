@@ -51,4 +51,7 @@ public interface SolicitudService {
      */
     void delete(Long id);
 
+    Solicitud aprobar(Long id);
+
+    Solicitud denegar(Long id, Solicitud solicitud);
 }

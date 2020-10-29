@@ -60,7 +60,7 @@ public class SolicitudServiceImpl implements SolicitudService {
         proceso.setId_proceso(2L);
         solicitud.setProceso(proceso);
         // 1 Interno 2 Externo
-        solicitud.setTipo(2);
+        // solicitud.setTipo(2);
 
         solicitudRepository.save(solicitud);
         Documento documento = new Documento();
@@ -139,5 +139,30 @@ public class SolicitudServiceImpl implements SolicitudService {
         p.setId_proceso(2L);
 
         return solicitudRepository.getSolicitudByProcesoAndDociden(p, dociden);
+    }
+
+    @Override
+    public Solicitud aprobar(Long id) {
+        Solicitud s = solicitudRepository.getOne(id);
+
+        s.setFecha_respuesta(new Date());
+        s.setFechaFinalizado(new Date());
+        s.setEstado(3);
+
+        solicitudRepository.save(s);
+        return s;
+    }
+
+    @Override
+    public Solicitud denegar(Long id, Solicitud solicitud) {
+        Solicitud s = solicitudRepository.getOne(id);
+        s.setDescripcionRespuesta(solicitud.getDescripcionRespuesta());
+        s.setMotivo(solicitud.getMotivo());
+        s.setFecha_respuesta(new Date());
+        s.setFechaFinalizado(new Date());
+        s.setEstado(4);
+
+        solicitudRepository.save(s);
+        return s;
     }
 }
