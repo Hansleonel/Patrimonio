@@ -1,0 +1,75 @@
+<button class="btn btn-primary" routerLink="solicitar">Solicitar</button>
+<p>list-saliente works!</p>
+<router-outlet></router-outlet>
+
+<ejs-grid
+    #grid
+    [dataSource]="solicitudes"
+    allowPaging="true"
+    [enableHover]="false"
+    [allowSelection]="true"
+    [allowSorting]="true"
+>
+    <e-columns>
+        <e-column type="checkbox" width="30"></e-column>
+        <e-column field="id_solicitud" isPrimaryKey="true" headerText="ID SOLICITUD" width="80"
+                  textAlign="Center"></e-column>
+        <!--<e-column field='usu_cod' headerText='Usuario' width='120'></e-column>-->
+        <e-column field="fecha_solicitud" headerText="FECHA" width="100" format="C2"
+                  textAlign="Center">
+            <ng-template #template let-data>
+                <span>{{data.fecha_solicitud | date: 'mediumDate'}}</span>
+            </ng-template>
+
+        </e-column>
+        <e-column field="dociden" headerText="DOCUMENTO ID" width="80" textAlign="Center"></e-column>
+        <e-column field="estado" headerText="ESTADO" width="80">
+            <ng-template #template let-data>
+                <div *ngIf="data.estado === 1" class="statustemp e-activecolor">
+                    <!--<span class="badge badge-info p-2">{{data.estado}}</span>-->
+                    <span class="badge badge-info p-2">pendiente</span>
+                </div>
+                <div *ngIf="data.estado === 2" class="statustemp e-activecolor">
+                    <!--<span class="badge badge-warning p-2">{{data.estado}}</span>-->
+                    <span class="badge badge-warning p-2">revisado</span>
+                </div>
+                <div *ngIf="data.estado === 4" class="statustemp e-activecolor">
+                    <span class="badge badge-danger p-2">rechazado</span>
+                </div>
+                <div *ngIf="data.estado === 3" class="statustemp e-activecolor">
+                    <span class="badge badge-success p-2">aceptado</span>
+                </div>
+                <div *ngIf="data.estado === 5" class="statustemp e-activecolor">
+                    <!--<span class="badge badge-info p-2">{{data.estado}}</span>-->
+                    <span class="badge badge-info p-2">pendiente</span>
+                </div>
+                <div *ngIf="data.estado === 6" class="statustemp e-activecolor">
+                    <!--<span class="badge badge-warning p-2">{{data.estado}}</span>-->
+                    <span class="badge badge-warning p-2">revisado</span>
+                </div>
+                <div *ngIf="data.estado === 7" class="statustemp e-activecolor">
+                    <span class="badge badge-danger p-2">rechazado</span>
+                </div>
+                <div *ngIf="data.estado === 8" class="statustemp e-activecolor">
+                    <span class="badge badge-success p-2">aceptado</span>
+                </div>
+                <div *ngIf="data.estado === 9" class="statustemp e-activecolor">
+                    <span class="badge badge-danger p-2">rechazado</span>
+                </div>
+                <div *ngIf="data.estado === 10" class="statustemp e-activecolor">
+                    <span class="badge badge-success p-2">aceptado</span>
+                </div>
+            </ng-template>
+        </e-column>
+        <!--<e-column field='estado' headerText='ESTADO SOLICITUD' width='100' textAlign='Center'></e-column>-->
+        <e-column field="observacion" headerText="OBSERVACION" width="140" textAlign="Center"></e-column>
+        <e-column headerText="" width="40" textAlign="Center">
+            <ng-template #template let-data>
+                <button class="btn btn-sm btn-info" [disabled]="data.estado === 4 || data.estado === 3"
+                        [routerLink]="[data.id_solicitud,'authorize']">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </ng-template>
+        </e-column>
+    </e-columns>
+</ejs-grid>

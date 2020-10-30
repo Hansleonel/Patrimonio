@@ -76,7 +76,7 @@ export const MENU: IMenu = {
           translate: 'procesos.actions.process03'
         },
         {
-          link: '/Relevos',
+          link: '/relevos',
           icon: 'box',
           text: 'Relevos Bienes',
           translate: 'procesos.actions.process04'

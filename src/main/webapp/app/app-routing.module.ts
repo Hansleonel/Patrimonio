@@ -61,6 +61,15 @@ const LAYOUT_ROUTES = [...errorRoute];
           }
         },
         {
+          path: 'relevos',
+          component: AdminLayoutComponent,
+          loadChildren: () => import('./modules/relevos/relevos.module').then(m => m.RelevosModule),
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: ['ROLE_USER', 'ROLE_ADMIN']
+          }
+        },
+        {
           path: PublicRoutes.login,
           component: MdLoginComponent
         },

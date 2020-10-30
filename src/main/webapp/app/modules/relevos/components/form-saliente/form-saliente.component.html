@@ -1,0 +1,96 @@
+<form [formGroup]="form">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="transferente">C&oacute;digo Transferente</label>
+                    <input class="form-control" id="transferente" formControlName="transferente" disabled>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="codigoUsuario">C&oacute;digo Receptor</label>
+                    <input
+                        id="codigoUsuario"
+                        [ngClass]="empleadoClass"
+                        type="text"
+                        maxlength="480"
+                        formControlName="codigoAutorizador"
+                        placeholder="Ingrese usuario"
+                        #autorizante
+                        (change)="buscarEmpleado(autorizante.value)"
+                        autocomplete="off"
+                    />
+                    <div class="invalid-feedback">
+                        ID no encontrado(Ingrese un ID correcto)
+                    </div>
+                    <div class="valid-feedback">
+                        ID existe
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="nombreRecepto">Apellidos y nombres Receptor</label>
+                    <input class="form-control" id="nombreRecepto" formControlName="nombreReceptor" disabled>
+                    <!--<ejs-multiselect
+                        id="multiselectelement"
+                        [dataSource]="bienes"
+                        [fields]="fields"
+                        mode="CheckBox"
+                        placeholder="Código Bien"
+                        formControlName="codigosBien"
+                    ></ejs-multiselect>-->
+                </div>
+            </div>
+            <!--     <div class="form-row">
+                     <div class="form-group col-md-12">
+                         <label for="fechaInicioDesplazamiento">Fecha inicio del Desplazamiento</label>
+                         <input type="date" class="form-control" id="fechaInicioDesplazamiento" formControlName="fecha_solicitud" />
+                     </div>
+                 </div>-->
+        </div>
+        <div class="col-md-6">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="fechaInicioDesplazamiento">Fecha Tranferencia</label>
+                    <input type="date" class="form-control" id="fechaInicioDesplazamiento"
+                           formControlName="fechaInicioDesplazamiento"/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="detalle">Datos Adicionales</label>
+                    <textarea class="form-control" id="detalle" rows="4" formControlName="observacion"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid" (click)="onSave()">
+                Guardar
+            </button>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col-md-12">
+        <ejs-grid
+            [dataSource]="bienes"
+            allowPaging="true"
+            [enableHover]="false"
+            [allowSelection]="true"
+            [selectionSettings]="selectOptions"
+            [editSettings]="editSettings"
+            [toolbar]="toolbar" (checkBoxChange)="changeCheck($event)">
+            <e-columns>
+                <e-column type="checkbox" width="30"></e-column>
+                <e-column field="id_patrimonio" headerText="Cod. Patrimonial" isPrimaryKey="true"></e-column>
+                <e-column field="id_interno" headerText="ID Interno" isPrimaryKey="true"></e-column>
+                <e-column field="descripcion" headerText="Descripcion"></e-column>
+                <e-column field="estado_asignado" headerText="Estado Asignacion"></e-column>
+                <e-column field="caracteristica" headerText="Caracteristica"></e-column>
+            </e-columns>
+        </ejs-grid>
+    </div>
+
+</div>
