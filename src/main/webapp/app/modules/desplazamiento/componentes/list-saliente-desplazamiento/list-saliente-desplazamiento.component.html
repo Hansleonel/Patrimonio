@@ -7,7 +7,7 @@
 
         <ejs-grid
         #grid
-        [dataSource]="solicitudes"
+        [dataSource]="solicitudes |async"
         allowPaging="true"
         [enableHover]="false"
         [allowSelection]="true"
